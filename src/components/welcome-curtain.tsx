@@ -63,10 +63,10 @@ export function WelcomeCurtain() {
       return;
     }
 
-    // Auto-dismiss smoothly after 3.2 seconds when the line finishes expanding
+    // Auto-dismiss smoothly after exactly 2 seconds when the line finishes expanding
     const timer = setTimeout(() => {
       dismiss();
-    }, 3200);
+    }, 2000);
 
     // Keyboard ESC/Enter/Space to skip immediately
     const handleKeyDown = (e: KeyboardEvent) => {

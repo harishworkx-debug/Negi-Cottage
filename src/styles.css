@@ -476,5 +476,5 @@ html.intro-seen #negi-welcome-curtain {
 
 .animate-expand-line {
   transform-origin: center;
-  animation: expand-line 3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: expand-line 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

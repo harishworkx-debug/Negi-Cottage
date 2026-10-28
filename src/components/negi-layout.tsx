@@ -246,16 +246,16 @@ export function SiteFooter() {
 export function FloatingBooking() {
   return (
     <>
-      {/* Desktop Floating WhatsApp Pill */}
+      {/* Real Official Circular Floating WhatsApp Button (Pure real WhatsApp icon, no text) */}
       <a
         href={whatsappUrl}
         target="_blank"
         rel="noreferrer"
-        className="floating-whatsapp hidden lg:inline-flex"
-        aria-label="Book Negi Cottage on WhatsApp"
+        className="floating-whatsapp"
+        aria-label="Chat with Negi Cottage on WhatsApp"
+        title="Chat on WhatsApp"
       >
-        <WhatsAppIcon className="h-5 w-5 text-terracotta" />
-        <span>Book on WhatsApp</span>
+        <WhatsAppIcon className="h-7 w-7 sm:h-8 sm:w-8 text-white drop-shadow-sm" />
       </a>
 
       {/* Mobile Fixed Bottom Action Bar */}
@@ -264,14 +264,14 @@ export function FloatingBooking() {
           href={phoneUrl}
           className="flex-1 flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 py-3 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-white/20"
         >
-          <Phone className="h-3.5 w-3.5 text-gold" />
-          <span>Call</span>
+          <Phone className="h-4 w-4 text-gold" />
+          <span>Call Host</span>
         </a>
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noreferrer"
-          className="button-gold flex-1 justify-center py-3 text-xs font-bold shadow-lg"
+          className="flex-1 flex items-center justify-center gap-2 rounded-full bg-[#25D366] hover:bg-[#20BA5A] py-3 text-xs font-bold uppercase tracking-wider text-white shadow-lg transition"
         >
           <WhatsAppIcon className="h-4 w-4 text-white" />
           <span>WhatsApp</span>

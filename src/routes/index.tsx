@@ -1197,35 +1197,35 @@ function Index() {
         </div>
       </footer>
 
-      {/* Floating WhatsApp on Desktop */}
+      {/* Real Official Circular Floating WhatsApp Button (Pure real WhatsApp icon, no text) */}
       <a
         href={whatsappUrl}
         target="_blank"
         rel="noreferrer"
-        className="floating-whatsapp hidden lg:inline-flex"
-        aria-label="Book Negi Cottage on WhatsApp"
+        className="floating-whatsapp"
+        aria-label="Chat with Negi Cottage on WhatsApp"
+        title="Chat on WhatsApp"
       >
-        <WhatsAppIcon className="h-5 w-5 text-terracotta" />
-        <span>Book on WhatsApp</span>
+        <WhatsAppIcon className="h-7 w-7 sm:h-8 sm:w-8 text-white drop-shadow-sm" />
       </a>
 
       {/* Mobile Fixed Bottom Action Bar */}
-      <div className="fixed inset-x-0 bottom-0 z-40 flex items-center gap-2 border-t border-forest-border/40 bg-forest/98 p-2.5 shadow-2xl backdrop-blur-lg lg:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-40 flex items-center gap-2.5 border-t border-forest-border/40 bg-forest/98 p-2.5 shadow-2xl backdrop-blur-lg lg:hidden">
         <a
           href={phoneUrl}
-          className="flex-1 flex items-center justify-center gap-2 rounded-full border border-white/20 bg-black/20 py-2.5 text-xs font-bold uppercase tracking-wider text-white"
+          className="flex-1 flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 py-3 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-white/20"
         >
-          <Phone className="h-3.5 w-3.5 text-terracotta" />
+          <Phone className="h-4 w-4 text-gold" />
           <span>Call Host</span>
         </a>
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noreferrer"
-          className="flex-1 flex items-center justify-center gap-2 rounded-full bg-terracotta py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow-md"
+          className="flex-1 flex items-center justify-center gap-2 rounded-full bg-[#25D366] hover:bg-[#20BA5A] py-3 text-xs font-bold uppercase tracking-wider text-white shadow-lg transition"
         >
-          <WhatsAppIcon className="h-4 w-4" />
-          <span>Book Stay</span>
+          <WhatsAppIcon className="h-4 w-4 text-white" />
+          <span>WhatsApp</span>
         </a>
       </div>
 

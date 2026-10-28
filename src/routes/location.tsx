@@ -28,9 +28,10 @@ export const Route = createFileRoute("/location")({
           "Directions, route distances, and property accessibility for Negi Cottage near Kamru Fort, Sangla, and Chitkul.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.negicottage.in/location" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/location" }],
+    links: [{ rel: "canonical", href: "https://www.negicottage.in/location" }],
   }),
   component: LocationPage,
 });

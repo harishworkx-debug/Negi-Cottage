@@ -21,9 +21,10 @@ export const Route = createFileRoute("/reviews")({
           "279 verified guest reviews praising peaceful apple orchards, hearty home-cooked food, mountain views, and the genuine hospitality of Mr. Negi.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.negicottage.in/reviews" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/reviews" }],
+    links: [{ rel: "canonical", href: "https://www.negicottage.in/reviews" }],
   }),
   component: ReviewsPage,
 });

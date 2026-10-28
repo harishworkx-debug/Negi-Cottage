@@ -34,9 +34,10 @@ export const Route = createFileRoute("/experience")({
           "Curated local guide: Kamru Fort, Chitkul excursions, apple orchards, Baspa river walks, and Kinnaur travel itineraries curated by Negi Cottage.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.negicottage.in/experience" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/experience" }],
+    links: [{ rel: "canonical", href: "https://www.negicottage.in/experience" }],
   }),
   component: ExperiencePage,
 });

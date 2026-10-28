@@ -38,9 +38,10 @@ export const Route = createFileRoute("/stay")({
           "Authentic rooms and family suites in Sangla Valley with orchard balconies, Kinner Kailash views, 24/7 hot water, and home-cooked meals from ₹1,500/night.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.negicottage.in/stay" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/stay" }],
+    links: [{ rel: "canonical", href: "https://www.negicottage.in/stay" }],
   }),
   component: StayPage,
 });

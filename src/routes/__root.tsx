@@ -79,10 +79,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Negi Cottage" },
-      { name: "description", content: "Premium Himalayan homestay in Kupa, Himachal Pradesh." },
+      { name: "description", content: "Premium Himalayan homestay in Kupa, Sangla Valley, Himachal Pradesh." },
       { name: "author", content: "Negi Cottage" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:site_name", content: "Negi Cottage Sangla" },
+      { property: "og:locale", content: "en_IN" },
+      { name: "geo.region", content: "IN-HP" },
+      { name: "geo.placename", content: "Kupa, Sangla Valley, Kinnaur" },
+      { name: "geo.position", content: "31.4333;78.2667" },
+      { name: "ICBM", content: "31.4333, 78.2667" },
     ],
     links: [
       {

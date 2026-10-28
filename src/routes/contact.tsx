@@ -22,9 +22,10 @@ export const Route = createFileRoute("/contact")({
         content: "Call or message Negi Cottage for availability and seasonal rates.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.negicottage.in/contact" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: "https://www.negicottage.in/contact" }],
   }),
   component: ContactPage,
 });

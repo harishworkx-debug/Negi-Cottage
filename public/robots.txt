@@ -13,6 +13,5 @@ Allow: /
 User-agent: *
 Allow: /
 
+# Canonical XML Sitemap on Production Domain
 Sitemap: https://www.negicottage.in/sitemap.xml
-Sitemap: http://www.negicottage.in/sitemap.xml
-

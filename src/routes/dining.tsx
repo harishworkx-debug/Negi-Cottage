@@ -22,9 +22,10 @@ export const Route = createFileRoute("/dining")({
           "Freshly prepared local dishes, steaming parathas, Kinnauri apple treats, and soothing mountain herbal teas.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.negicottage.in/dining" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/dining" }],
+    links: [{ rel: "canonical", href: "https://www.negicottage.in/dining" }],
   }),
   component: DiningPage,
 });

@@ -227,10 +227,10 @@ export const Route = createFileRoute("/")({
           "Plan your stay at Negi Cottage in Kupa, Sangla Valley, Kinnaur, Himachal Pradesh. Explore the local mountains, discover the valley and contact us for room availability and bookings.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "https://www.negicottage.in/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://www.negicottage.in/" }],
     scripts: [
       { type: "application/ld+json", children: JSON.stringify(structuredData) },
       { type: "application/ld+json", children: JSON.stringify(faqStructuredData) },

@@ -33,9 +33,10 @@ export const Route = createFileRoute("/gallery")({
           "Browse authentic photographs of Negi Cottage, Sangla Valley: apple orchards, snowy winter views, comfortable rooms, and warm Himachali dining.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.negicottage.in/gallery" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/gallery" }],
+    links: [{ rel: "canonical", href: "https://www.negicottage.in/gallery" }],
   }),
   component: GalleryPage,
 });

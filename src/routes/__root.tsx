@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { WelcomeCurtain } from "../components/welcome-curtain";
 
 function NotFoundComponent() {
   return (
@@ -96,7 +97,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.png", type: "image/x-icon" },
       { rel: "icon", href: "/apple-touch-icon", type: "image/x-icon" },
       { rel: "sitemap", type: "application/xml", href: "/sitemap.xml" },
-
     ],
   }),
   shellComponent: RootShell,
@@ -124,6 +124,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      {/* Luxury Himalayan Opening Splash Screen (Plays for ~3.4s on initial visit) */}
+      <WelcomeCurtain />
+
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>

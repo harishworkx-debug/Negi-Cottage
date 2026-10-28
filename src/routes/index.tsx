@@ -32,6 +32,7 @@ import familyRoomImage from "@/assets/family-room.png";
 import mountainImage from "@/assets/negi-cottage-mountains.png";
 import exteriorImage from "@/assets/negi-cottage-exterior.png";
 import entranceImage from "@/assets/negi-cottage-entrance.png";
+import nightSnowViewImage from "@/assets/night-snow-view.png";
 import sunriseImage from "@/assets/negi-retreat-sunrise.jpg";
 import snowImage from "@/assets/snow-view.png";
 import bornfireImage from "@/assets/bornfire.png";
@@ -544,8 +545,8 @@ function Index() {
             <Reveal className="relative">
               <div className="editorial-frame aspect-[4/5] w-full rounded-2xl overflow-hidden shadow-xl border border-border">
                 <img
-                  src={exteriorImage}
-                  alt="Negi Cottage set amongst apple orchards in Kupa"
+                  src={nightSnowViewImage}
+                  alt="Negi Cottage night snow view in Kupa, Sangla Valley"
                   loading="lazy"
                   decoding="async"
                   className="h-full w-full object-cover object-center"

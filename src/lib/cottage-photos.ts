@@ -24,6 +24,7 @@ import pineTrail from "@/assets/negi-retreat-pine-trail.jpg";
 import sunrise from "@/assets/negi-retreat-sunrise.jpg";
 import nightView from "@/assets/night-view.png";
 import nightView1 from "@/assets/night-view1.png";
+import nightSnowView from "@/assets/night-snow-view.png";
 import outsideview from "@/assets/outsideview.png";
 import room from "@/assets/room.png";
 import room2 from "@/assets/room2.png";
@@ -45,6 +46,14 @@ export interface CottagePhoto {
 }
 
 export const allCottagePhotos: CottagePhoto[] = [
+  {
+    id: "night-snow-view",
+    src: nightSnowView,
+    title: "Snow-Covered Night at Negi Cottage",
+    description: "Quiet winter evening with pristine snow blankets, cedar trees, and warm mountain lights in Kupa.",
+    category: "winter",
+    tag: "Snow & Night",
+  },
   {
     id: "negi-cottage-mountains",
     src: negiCottageMountains,

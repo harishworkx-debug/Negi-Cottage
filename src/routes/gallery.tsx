@@ -1,42 +1,36 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, ChevronLeft, ChevronRight, X } from "lucide-react";
-import { useEffect, useState } from "react";
-import { PageFrame, PageHero, whatsappUrl } from "@/components/negi-layout";
+import { ArrowRight, ChevronLeft, ChevronRight, Filter, Sparkles, X } from "lucide-react";
+import { useEffect, useState, useMemo } from "react";
+import { PageFrame, PageHero, whatsappUrl, WhatsAppIcon } from "@/components/negi-layout";
+import { allCottagePhotos, type CottagePhoto } from "@/lib/cottage-photos";
 import mountain from "@/assets/negi-cottage-mountains.png";
-import balcony from "@/assets/negi-cottage-balcony.png";
-import dining from "@/assets/negi-cottage-dining.png";
-import entrance from "@/assets/negi-cottage-entrance.png";
-import exterior from "@/assets/negi-cottage-exterior.png";
-import familyRoom from "@/assets/negi-cottage-family-room.png";
-import orchard from "@/assets/negi-cottage-orchard.png";
-import roomView from "@/assets/negi-cottage-room-view.png";
-import room from "@/assets/negi-cottage-room.png";
-import sunrise from "@/assets/negi-retreat-sunrise.jpg";
-import pineTrail from "@/assets/negi-retreat-pine-trail.jpg";
-import eveningLights from "@/assets/negi-retreat-evening-lights.jpg";
 
-const photos = [
-  [mountain, "Kinner Kailash views"],
-  [orchard, "Apple orchard mornings"],
-  [balcony, "A balcony above the valley"],
-  [exterior, "The cottage in Kupa"],
-  [roomView, "Rooms with a view"],
-  [familyRoom, "Space for slow family time"],
-  [dining, "Warm Himachali dining"],
-  [entrance, "A warm welcome"],
-  [room, "Comfortable mountain rest"],
-  [sunrise, "Sunrise over the valley"],
-  [pineTrail, "Quiet pine trail"],
-  [eveningLights, "Cottage lights at blue hour"],
-] as const;
+type FilterCategory = "all" | "rooms" | "dining" | "views" | "winter" | "outdoor" | "experience";
+
+const categoryFilters: { id: FilterCategory; label: string }[] = [
+  { id: "all", label: "All Photos (36)" },
+  { id: "rooms", label: "Rooms & Suites" },
+  { id: "views", label: "Mountain Panoramas" },
+  { id: "winter", label: "Snow & Winter" },
+  { id: "dining", label: "Dining & Food" },
+  { id: "experience", label: "Bonfire & Night" },
+  { id: "outdoor", label: "Garden & Orchards" },
+];
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
     meta: [
-      { title: "Gallery | Negi Cottage, Kupa" },
+      { title: "Visual Gallery (36 Photos) | Negi Cottage, Kupa" },
       {
         name: "description",
-        content: "See the rooms, orchard, dining room and mountain views at Negi Cottage in Kupa.",
+        content:
+          "Explore the complete 36-photo gallery of Negi Cottage in Kupa: deluxe rooms, apple orchards, snowy mountain vistas, traditional dining, and evening bonfires.",
+      },
+      { property: "og:title", content: "Negi Cottage Complete Photo Gallery" },
+      {
+        property: "og:description",
+        content:
+          "Browse 36 authentic photographs of Negi Cottage, Sangla Valley: apple orchards, snowy winter views, comfortable rooms, and warm Himachali dining.",
       },
     ],
     links: [{ rel: "canonical", href: "/gallery" }],
@@ -45,16 +39,28 @@ export const Route = createFileRoute("/gallery")({
 });
 
 function GalleryPage() {
-  const [activePhoto, setActivePhoto] = useState<number | null>(null);
-  const movePhoto = (direction: number) =>
-    setActivePhoto((current) =>
-      current === null ? null : (current + direction + photos.length) % photos.length,
-    );
+  const [selectedCategory, setSelectedCategory] = useState<FilterCategory>("all");
+  const [activePhotoIndex, setActivePhotoIndex] = useState<number | null>(null);
+
+  const filteredPhotos = useMemo(() => {
+    if (selectedCategory === "all") return allCottagePhotos;
+    return allCottagePhotos.filter((p) => p.category === selectedCategory);
+  }, [selectedCategory]);
+
+  const activePhoto: CottagePhoto | null =
+    activePhotoIndex !== null ? filteredPhotos[activePhotoIndex] ?? null : null;
+
+  const movePhoto = (direction: number) => {
+    setActivePhotoIndex((current) => {
+      if (current === null) return null;
+      return (current + direction + filteredPhotos.length) % filteredPhotos.length;
+    });
+  };
 
   useEffect(() => {
-    if (activePhoto === null) return;
+    if (activePhotoIndex === null) return;
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setActivePhoto(null);
+      if (event.key === "Escape") setActivePhotoIndex(null);
       if (event.key === "ArrowLeft") movePhoto(-1);
       if (event.key === "ArrowRight") movePhoto(1);
     };
@@ -64,95 +70,200 @@ function GalleryPage() {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [activePhoto]);
+  }, [activePhotoIndex, filteredPhotos.length]);
 
   return (
     <PageFrame>
       <PageHero
         image={mountain}
-        imageAlt="Himalayan peaks around Negi Cottage"
-        eyebrow="A sense of place"
-        title="The cottage, in frames."
-        copy="A glimpse of the rooms, orchard paths, local dining and wide Himalayan skies that make a stay at Negi Cottage feel different."
+        imageAlt="Himalayan peaks and apple orchards around Negi Cottage"
+        eyebrow="Kinnaur Photo Archive · 36 Curated Frames"
+        title="Every corner, framed by the Himalayas."
+        copy="Explore all 36 authentic photographs of Negi Cottage—from cozy wood-panelled rooms and crisp snowy winters to apple orchard walks and evening bonfires under starry skies."
       />
+
       <section className="section-pad bg-background">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <div className="gallery-grid">
-            {photos.map(([image, label], index) => (
-              <figure key={label} className={`gallery-item gallery-item-${index + 1} group`}>
+          {/* Category Filter Controls */}
+          <div className="mb-10 flex flex-wrap items-center justify-between gap-4 border-b border-border pb-6">
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              <Filter className="h-4 w-4 text-gold-dark" />
+              <span>Filter Gallery:</span>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {categoryFilters.map((tab) => {
+                const count =
+                  tab.id === "all"
+                    ? allCottagePhotos.length
+                    : allCottagePhotos.filter((p) => p.category === tab.id).length;
+                const isActive = selectedCategory === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    type="button"
+                    onClick={() => {
+                      setSelectedCategory(tab.id);
+                      setActivePhotoIndex(null);
+                    }}
+                    className={`rounded-full px-4 py-2 text-xs font-semibold tracking-wider transition-all duration-300 ${
+                      isActive
+                        ? "bg-forest text-gold shadow-md"
+                        : "border border-border bg-card text-foreground/80 hover:border-gold hover:text-foreground"
+                    }`}
+                  >
+                    {tab.label} ({count})
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Photo Masonry Grid */}
+          <div className="columns-1 gap-6 sm:columns-2 lg:columns-3 xl:columns-4">
+            {filteredPhotos.map((photo, index) => (
+              <figure
+                key={photo.id}
+                className="group relative mb-6 break-inside-avoid overflow-hidden rounded-xl border border-border/80 bg-card shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:border-gold/50"
+              >
                 <button
                   type="button"
-                  onClick={() => setActivePhoto(index)}
-                  className="relative block h-full w-full overflow-hidden text-left"
-                  aria-label={`Open ${label} in lightbox`}
+                  onClick={() => setActivePhotoIndex(index)}
+                  className="relative block w-full overflow-hidden text-left cursor-pointer"
+                  aria-label={`Open ${photo.title} in lightbox`}
                 >
-                  <img
-                    src={image}
-                    alt={label}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                  />
-                  <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-5 pb-5 pt-12 text-sm font-semibold text-white">
-                    {label}
-                  </figcaption>
-                  <span className="gallery-open-hint">View</span>
+                  <div className="overflow-hidden bg-muted/40">
+                    <img
+                      src={photo.src}
+                      alt={photo.title}
+                      loading="lazy"
+                      className="w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                  </div>
+
+                  {/* Badge */}
+                  <span className="absolute left-3 top-3 rounded-md bg-forest/85 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-gold backdrop-blur-sm shadow-sm">
+                    {photo.tag}
+                  </span>
+
+                  {/* Information Overlay */}
+                  <div className="p-4 sm:p-5">
+                    <h3 className="font-display text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                      {photo.title}
+                    </h3>
+                    <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground line-clamp-2">
+                      {photo.description}
+                    </p>
+                    <div className="mt-3 flex items-center justify-between text-[11px] font-medium text-gold-dark border-t border-border/50 pt-2.5">
+                      <span>Click to expand</span>
+                      <span className="inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                        View Photo &rarr;
+                      </span>
+                    </div>
+                  </div>
                 </button>
               </figure>
             ))}
           </div>
-          <div className="mt-16 flex flex-col items-start justify-between gap-6 border-t border-border pt-10 sm:flex-row sm:items-center">
+
+          {/* Enquiry CTA Bar */}
+          <div className="mt-16 flex flex-col items-start justify-between gap-6 rounded-2xl bg-forest p-8 text-forest-foreground sm:flex-row sm:items-center sm:p-12 shadow-xl">
             <div>
-              <p className="eyebrow">Like what you see?</p>
-              <h2 className="mt-3 font-display text-4xl">Let’s plan your mountain days.</h2>
+              <p className="eyebrow text-gold">Ready to experience this in person?</p>
+              <h2 className="mt-2 font-display text-3xl sm:text-4xl text-forest-foreground">
+                Plan your stay at Negi Cottage today.
+              </h2>
+              <p className="mt-2 max-w-xl text-sm text-forest-foreground/75 leading-relaxed">
+                Contact us on WhatsApp for direct booking, current apple season rates, and personalized travel recommendations for Sangla Valley.
+              </p>
             </div>
-            <a href={whatsappUrl} target="_blank" rel="noreferrer" className="button-forest">
-              Enquire on WhatsApp <ArrowRight className="h-4 w-4" />
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="button-gold shrink-0 px-6 py-3.5 text-sm font-semibold"
+            >
+              <WhatsAppIcon className="h-5 w-5" /> Enquire on WhatsApp
             </a>
           </div>
         </div>
       </section>
-      {activePhoto !== null && (
+
+      {/* Fullscreen Lightbox Modal */}
+      {activePhoto !== null && activePhotoIndex !== null && (
         <div
-          className="lightbox fixed inset-0 z-50 grid place-items-center p-4"
+          className="lightbox fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6"
           role="dialog"
           aria-modal="true"
           aria-label="Photo gallery lightbox"
         >
+          {/* Close button */}
           <button
             type="button"
-            onClick={() => setActivePhoto(null)}
-            className="absolute right-5 top-5 z-10 grid h-12 w-12 place-items-center rounded-full border border-hero-foreground/30 text-hero-foreground"
+            onClick={() => setActivePhotoIndex(null)}
+            className="absolute right-4 top-4 z-20 grid h-11 w-11 place-items-center rounded-full bg-black/60 text-white backdrop-blur-md transition hover:bg-black/80"
             aria-label="Close gallery"
           >
-            <X />
+            <X className="h-6 w-6" />
           </button>
+
+          {/* Prev button */}
           <button
             type="button"
             onClick={() => movePhoto(-1)}
-            className="absolute left-3 z-10 grid h-12 w-12 place-items-center rounded-full bg-hero-foreground/10 text-hero-foreground sm:left-7"
+            className="absolute left-3 sm:left-6 z-20 grid h-12 w-12 place-items-center rounded-full bg-black/60 text-white backdrop-blur-md transition hover:bg-black/90 hover:scale-110"
             aria-label="Previous image"
           >
-            <ChevronLeft />
+            <ChevronLeft className="h-7 w-7" />
           </button>
-          <div className="max-w-5xl text-center">
-            <img
-              src={photos[activePhoto][0]}
-              alt={photos[activePhoto][1]}
-              className="max-h-[78vh] max-w-[92vw] object-contain shadow-2xl"
-            />
-            <p className="mt-5 text-sm font-semibold uppercase tracking-[0.16em] text-hero-foreground">
-              {photos[activePhoto][1]}
-            </p>
-            <p className="mt-2 text-xs tracking-[0.2em] text-hero-foreground/60">
-              {activePhoto + 1} / {photos.length} · Use ← → to browse
-            </p>
+
+          {/* Modal Container */}
+          <div className="relative flex max-h-[92vh] max-w-5xl flex-col items-center overflow-hidden rounded-2xl bg-black/80 p-4 text-center text-white backdrop-blur-xl border border-white/10 shadow-2xl">
+            <div className="relative max-h-[68vh] w-full overflow-hidden rounded-xl">
+              <img
+                src={activePhoto.src}
+                alt={activePhoto.title}
+                className="mx-auto max-h-[68vh] w-auto max-w-full rounded-xl object-contain"
+              />
+            </div>
+
+            <div className="mt-4 max-w-2xl px-2">
+              <div className="flex items-center justify-center gap-2">
+                <span className="rounded bg-gold/20 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-gold">
+                  {activePhoto.tag}
+                </span>
+                <span className="text-xs text-white/50">
+                  {activePhotoIndex + 1} of {filteredPhotos.length}
+                </span>
+              </div>
+              <h3 className="mt-2 font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                {activePhoto.title}
+              </h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-white/80">
+                {activePhoto.description}
+              </p>
+
+              <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2 text-xs font-bold text-forest transition hover:bg-gold-light"
+                >
+                  <WhatsAppIcon className="h-4 w-4" /> Book this experience on WhatsApp
+                </a>
+                <span className="text-xs text-white/40">Use ← → arrow keys to navigate</span>
+              </div>
+            </div>
           </div>
+
+          {/* Next button */}
           <button
             type="button"
             onClick={() => movePhoto(1)}
-            className="absolute right-3 z-10 grid h-12 w-12 place-items-center rounded-full bg-hero-foreground/10 text-hero-foreground sm:right-7"
+            className="absolute right-3 sm:right-6 z-20 grid h-12 w-12 place-items-center rounded-full bg-black/60 text-white backdrop-blur-md transition hover:bg-black/90 hover:scale-110"
             aria-label="Next image"
           >
-            <ChevronRight />
+            <ChevronRight className="h-7 w-7" />
           </button>
         </div>
       )}

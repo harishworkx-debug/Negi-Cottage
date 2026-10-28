@@ -1,16 +1,19 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowDown,
   ArrowRight,
   ChevronLeft,
   ChevronRight,
   ExternalLink,
+  Flame,
   Heart,
   MapPin,
   Menu,
   Mountain,
   Phone,
+  Sparkles,
   Star,
+  Trees,
   Utensils,
   Users,
   X,
@@ -26,6 +29,13 @@ import familyRoomImage from "@/assets/negi-cottage-family-room.png";
 import mountainImage from "@/assets/negi-cottage-mountains.png";
 import exteriorImage from "@/assets/negi-cottage-exterior.png";
 import entranceImage from "@/assets/negi-cottage-entrance.png";
+import sunriseImage from "@/assets/negi-retreat-sunrise.jpg";
+import snowImage from "@/assets/snow-view.png";
+import bornfireImage from "@/assets/bornfire.png";
+import nightView1 from "@/assets/night-view1.png";
+import balconyRoom from "@/assets/balcony-room.png";
+import gardanImage from "@/assets/gardan.png";
+import dinnerareaImage from "@/assets/dinnerarea.png";
 
 const whatsappMessage = encodeURIComponent(
   "Hello, I would like to enquire about booking a stay at Negi Cottage, Kupa.",
@@ -34,56 +44,98 @@ const whatsappUrl = `https://wa.me/917807215761?text=${whatsappMessage}`;
 const directionsUrl =
   "https://www.google.com/maps/dir/?api=1&destination=Negi+Cottage+Kupa+Himachal+Pradesh+172106";
 
-const galleryImages = [
-  {
-    src: mountainImage,
-    alt: "Snow-covered Himalayan mountains and orchards surrounding Negi Cottage in Kupa",
-  },
-  {
-    src: roomViewImage,
-    alt: "Bright guest room at Negi Cottage with panoramic mountain-facing windows",
-  },
-  { src: exteriorImage, alt: "Colourful exterior of Negi Cottage beside apple orchards in Kupa" },
-  { src: diningImage, alt: "Warm wood-panelled dining room at Negi Cottage" },
-  { src: orchardImage, alt: "Apple orchards and forested Himalayan slopes seen from Negi Cottage" },
-  {
-    src: familyRoomImage,
-    alt: "Spacious family accommodation with mountain views at Negi Cottage",
-  },
-  { src: balconyImage, alt: "Wood-clad cottage balcony overlooking the village and mountains" },
-  { src: roomImage, alt: "Comfortable double room with warm furnishings at Negi Cottage" },
-  { src: entranceImage, alt: "Traditional carved wooden entrance to Negi Cottage" },
-];
-
 const heroSlides = [
   {
     image: mountainImage,
     eyebrow: "Kupa · Sangla Valley · Himachal Pradesh",
     title: "Your Himalayan escape,\nframed by the mountains.",
-    copy: "Wake up among apple orchards, slow down to the light, and make Negi Cottage your quiet base in Kinnaur.",
+    copy: "Wake up among apple orchards, slow down to the mountain rhythm, and make Negi Cottage your quiet sanctuary in Kinnaur.",
+  },
+  {
+    image: sunriseImage,
+    eyebrow: "Golden Hour · Kinner Kailash Peaks",
+    title: "Awaken to light\nover the summits.",
+    copy: "Watch the first amber rays of Himalayan sunrise illuminate the holy Kinner Kailash ridge directly across the valley.",
+  },
+  {
+    image: snowImage,
+    eyebrow: "Winter Fairy Tale · Pristine Snow",
+    title: "Snow-covered roofs\nand quiet orchards.",
+    copy: "Experience the magic of deep winter snowfall with steaming cups of chai and warm wood-panelled rooms.",
   },
   {
     image: orchardImage,
-    eyebrow: "Orchard mornings · Valley views",
+    eyebrow: "Orchard walks · Fresh valley breeze",
     title: "A slower rhythm\nstarts here.",
-    copy: "Follow the orchard paths, breathe in the cedar air, and let the valley set the pace of your stay.",
+    copy: "Follow the apple orchard paths, breathe in cedar air, and let the Sangla Valley set the pace of your stay.",
   },
   {
     image: balconyImage,
     eyebrow: "Warm rooms · Local hospitality",
     title: "Come for the view.\nStay for the feeling.",
-    copy: "Comfortable rooms, homemade flavours and a genuine Himalayan welcome—just like a mountain stay should feel.",
+    copy: "Comfortable rooms, homemade Kinnauri flavours, and a genuine Himalayan welcome—just like a mountain home should feel.",
   },
 ];
+
+const featuredPreviewPhotos = [
+  {
+    src: mountainImage,
+    title: "Kinner Kailash Range",
+    category: "Mountain Views",
+    alt: "Snow-covered Himalayan mountains and orchards surrounding Negi Cottage in Kupa",
+  },
+  {
+    src: bornfireImage,
+    title: "Evening Bonfire Gathering",
+    category: "Experience",
+    alt: "Warm campfire under starry Himalayan night skies at Negi Cottage",
+  },
+  {
+    src: balconyRoom,
+    title: "Balcony Mountain Room",
+    category: "Accommodation",
+    alt: "Deluxe guest room with private wooden balcony overlooking the valley",
+  },
+  {
+    src: snowImage,
+    title: "Winter Snowfall Wonderland",
+    category: "Winter",
+    alt: "Crisp white snow blanketing the cottage roof and orchards in Kupa",
+  },
+  {
+    src: diningImage,
+    title: "Wood-Panelled Dining Room",
+    category: "Dining",
+    alt: "Warm wood-panelled dining hall serving homemade Himachali delicacies",
+  },
+  {
+    src: orchardImage,
+    title: "Fragrant Apple Orchards",
+    category: "Outdoor",
+    alt: "Apple orchards and forested Himalayan slopes surrounding the retreat",
+  },
+  {
+    src: familyRoomImage,
+    title: "Grand Family Suite",
+    category: "Accommodation",
+    alt: "Spacious multi-bed family suite with panoramic valley windows",
+  },
+  {
+    src: nightView1,
+    title: "Illuminated Twilight Glow",
+    category: "Experience",
+    alt: "Warm glowing cottage lights at dusk against the deep blue Himalayas",
+  },
+];
+
 const navItems = [
-  "Home",
-  "Stay",
-  "Reviews",
-  "Experience",
-  "Dining",
-  "Gallery",
-  "Location",
-  "Contact",
+  { label: "Home", to: "/" },
+  { label: "Stay", to: "/stay" },
+  { label: "Experience", to: "/experience" },
+  { label: "Dining", to: "/dining" },
+  { label: "Gallery (36)", to: "/gallery" },
+  { label: "Location", to: "/location" },
+  { label: "Contact", to: "/contact" },
 ];
 
 const structuredData = {
@@ -91,7 +143,7 @@ const structuredData = {
   "@type": ["Hotel", "LocalBusiness"],
   name: "Negi Cottage",
   description:
-    "A premium homestay in Kupa near Sangla Valley, surrounded by apple orchards with Himalayan and Kinner Kailash views.",
+    "A premium boutique homestay in Kupa near Sangla Valley, surrounded by apple orchards with Himalayan and Kinner Kailash views.",
   telephone: "+91 78072 15761",
   priceRange: "₹1,500+",
   address: {
@@ -112,17 +164,17 @@ const structuredData = {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Negi Cottage Kupa | Premium Homestay near Sangla Valley" },
+      { title: "Negi Cottage Kupa | Premium Boutique Homestay near Sangla Valley" },
       {
         name: "description",
         content:
-          "Stay at Negi Cottage, a premium homestay in Kupa near Sangla Valley. Apple orchards, Kinner Kailash views, warm hospitality and rooms from around ₹1,500/night.",
+          "Stay at Negi Cottage, a boutique Himalayan homestay in Kupa near Sangla Valley. Apple orchards, Kinner Kailash views, evening bonfires, authentic dining, and rooms from around ₹1,500/night.",
       },
       { property: "og:title", content: "Negi Cottage — Your Himalayan Escape in Kupa" },
       {
         property: "og:description",
         content:
-          "A peaceful Himalayan cottage stay among apple orchards near Sangla Valley, Himachal Pradesh.",
+          "A peaceful Himalayan cottage stay among apple orchards near Sangla Valley, Himachal Pradesh. 36 real photos of rooms, dining, bonfires, and views.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
@@ -172,7 +224,7 @@ function Index() {
   useEffect(() => {
     const timer = window.setInterval(
       () => setActiveSlide((slide) => (slide + 1) % heroSlides.length),
-      6500,
+      6000,
     );
     return () => window.clearInterval(timer);
   }, []);
@@ -186,36 +238,39 @@ function Index() {
 
   const moveLightbox = (direction: number) => {
     setLightboxIndex((current) =>
-      current === null ? null : (current + direction + galleryImages.length) % galleryImages.length,
+      current === null
+        ? null
+        : (current + direction + featuredPreviewPhotos.length) % featuredPreviewPhotos.length,
     );
   };
 
-  const activeImage = lightboxIndex === null ? null : (galleryImages.at(lightboxIndex) ?? null);
+  const activeImage = lightboxIndex === null ? null : (featuredPreviewPhotos.at(lightboxIndex) ?? null);
 
   return (
     <main id="home" className="overflow-hidden bg-background text-foreground">
+      {/* Top Navbar */}
       <header className="absolute inset-x-0 top-0 z-40 border-b border-hero-foreground/20">
         <div className="mx-auto grid h-20 max-w-[1500px] grid-cols-[minmax(0,1fr)_auto] items-center gap-5 px-5 lg:h-24 lg:grid-cols-[auto_1fr_auto] lg:px-10">
-          <a href="#home" className="min-w-0 text-hero-foreground" aria-label="Negi Cottage home">
+          <Link to="/" className="min-w-0 text-hero-foreground" aria-label="Negi Cottage home">
             <span className="block font-display text-xl font-medium uppercase tracking-[0.16em] sm:text-2xl">
               Negi Cottage
             </span>
             <span className="mt-0.5 hidden text-[10px] uppercase tracking-[0.3em] text-hero-foreground/70 sm:block">
-              Kupa · Himachal Pradesh
+              Kupa · Sangla Valley · HP
             </span>
-          </a>
+          </Link>
           <nav
             className="hidden items-center justify-center gap-6 lg:flex"
             aria-label="Main navigation"
           >
             {navItems.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="nav-link text-xs uppercase tracking-[0.13em] text-hero-foreground/90"
+              <Link
+                key={item.label}
+                to={item.to}
+                className="nav-link text-xs uppercase tracking-[0.13em] text-hero-foreground/90 transition hover:text-gold"
               >
-                {item}
-              </a>
+                {item.label}
+              </Link>
             ))}
           </nav>
           <a
@@ -243,14 +298,14 @@ function Index() {
           >
             <div className="grid gap-1">
               {navItems.map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
+                <Link
+                  key={item.label}
+                  to={item.to}
                   onClick={() => setMenuOpen(false)}
                   className="py-2.5 font-display text-2xl text-hero-foreground"
                 >
-                  {item}
-                </a>
+                  {item.label}
+                </Link>
               ))}
               <a
                 href={whatsappUrl}
@@ -265,6 +320,7 @@ function Index() {
         )}
       </header>
 
+      {/* Cinematic Hero */}
       <section className="hero-section relative min-h-[760px] h-[100svh] text-hero-foreground">
         {heroSlides.map((slide, index) => (
           <img
@@ -304,9 +360,12 @@ function Index() {
               >
                 Book Your Stay <ArrowRight className="h-4 w-4" />
               </a>
-              <a href="#stay" className="button-glass justify-center sm:justify-start">
-                Explore Cottage
-              </a>
+              <Link to="/stay" className="button-glass justify-center sm:justify-start">
+                Explore Rooms & Suites
+              </Link>
+              <Link to="/gallery" className="button-glass justify-center sm:justify-start">
+                View 36 Photos
+              </Link>
             </div>
           </div>
           <div
@@ -340,17 +399,16 @@ function Index() {
         </div>
       </section>
 
+      {/* Introduction Section */}
       <section id="welcome" className="section-pad bg-background">
         <div className="mx-auto grid max-w-7xl gap-14 px-5 md:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-20">
           <Reveal>
-            <p className="eyebrow">A quieter side of the Himalayas</p>
-            <h2 className="section-title mt-5">Where the orchard meets the mountains.</h2>
+            <p className="eyebrow text-gold-dark">A quieter side of the Himalayas</p>
+            <h2 className="section-title mt-5">Where the apple orchard meets the peaks.</h2>
           </Reveal>
           <Reveal className="lg:pt-14">
             <p className="max-w-2xl text-lg leading-8 text-muted-foreground sm:text-xl sm:leading-9">
-              Nestled beside Kuppa Bus Stand, Negi Cottage is surrounded by apple orchards and
-              expansive Himalayan landscapes—a peaceful, comfortable base for discovering Sangla
-              Valley and Kinnaur.
+              Nestled beside Kuppa Bus Stand in Sangla Valley, Negi Cottage is surrounded by blooming apple orchards and dramatic Kinner Kailash mountain horizons—a peaceful, comfortable sanctuary for travelers exploring Kinnaur.
             </p>
             <div className="mt-10 grid grid-cols-3 border-y border-border py-7">
               <div>
@@ -361,7 +419,7 @@ function Index() {
               </div>
               <div className="border-x border-border px-4 sm:px-8">
                 <strong className="stat">275+</strong>
-                <span className="stat-label">guest reviews</span>
+                <span className="stat-label">verified reviews</span>
               </div>
               <div className="pl-4 sm:pl-8">
                 <strong className="stat">₹1,500</strong>
@@ -372,11 +430,215 @@ function Index() {
         </div>
       </section>
 
-      <section id="reviews" className="section-pad bg-gold-light" aria-labelledby="reviews-title">
+      {/* Visual Highlights with Real Images */}
+      <section className="section-pad bg-forest text-forest-foreground">
+        <div className="mx-auto max-w-7xl px-5 md:px-8">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-14">
+            <div>
+              <p className="eyebrow text-gold">The Negi Cottage Highlights</p>
+              <h2 className="mt-2 font-display text-4xl sm:text-5xl text-forest-foreground">
+                Crafted for genuine mountain living
+              </h2>
+            </div>
+            <p className="max-w-md text-sm text-forest-foreground/75 leading-relaxed">
+              Every detail is shaped by real Kinnauri hospitality, breathtaking mountain views, and the comforting quiet of the orchards.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                title: "Apple Orchard Setting",
+                desc: "Walk amidst heritage apple groves right outside your door, fragrant with spring blossoms and autumn fruit.",
+                image: orchardImage,
+                tag: "Nature & Walks",
+              },
+              {
+                title: "Kinner Kailash Views",
+                desc: "Panoramic vantage points directly overlooking snow-capped peaks and changing mountain weather.",
+                image: mountainImage,
+                tag: "Mountain Vista",
+              },
+              {
+                title: "Comfortable Cottage Rooms",
+                desc: "Handcrafted wooden rooms, heated blankets, and sparkling clean bathrooms with 24/7 hot water.",
+                image: roomImage,
+                tag: "Rooms & Rest",
+              },
+              {
+                title: "Evening Bonfire & Campfire",
+                desc: "Gather under starlit Himalayan skies around a crackling wood fire with hot cups of local spiced tea.",
+                image: bornfireImage,
+                tag: "Stargazing",
+              },
+              {
+                title: "Authentic Himachali Cuisine",
+                desc: "Homemade Kinnauri thalis, steaming parathas, and local dishes prepared with garden-fresh ingredients.",
+                image: dinnerareaImage,
+                tag: "Homestyle Food",
+              },
+              {
+                title: "Family & Group Friendly",
+                desc: "Spacious multi-bed suites, wide garden lawns, and warm personal hospitality that makes everyone feel at home.",
+                image: familyRoomImage,
+                tag: "Family Comfort",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="group overflow-hidden rounded-2xl border border-white/10 bg-black/20 shadow-md transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/50"
+              >
+                <div className="aspect-[16/10] overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-6">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-gold">
+                    {item.tag}
+                  </span>
+                  <h3 className="mt-2 font-display text-2xl font-bold text-forest-foreground">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-xs leading-relaxed text-forest-foreground/75">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stay Section Preview */}
+      <section id="stay" className="section-pad bg-background">
+        <div className="mx-auto max-w-7xl px-5 md:px-8">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-12">
+            <div>
+              <p className="eyebrow text-gold-dark">Accommodation</p>
+              <h2 className="section-title mt-2">Rest, with an unobstructed view.</h2>
+              <p className="mt-3 max-w-xl text-base text-muted-foreground">
+                Warm wood-trimmed rooms, valley-facing verandas, and peaceful suites made for quiet mountain nights.
+              </p>
+            </div>
+            <Link to="/stay" className="button-forest shrink-0">
+              View All Room Options &rarr;
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            <div className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src={balconyRoom}
+                  alt="Balcony Mountain Room"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-5">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-gold-dark">From ₹1,800 / night</span>
+                <h3 className="mt-1 font-display text-2xl font-bold">Balcony Mountain Room</h3>
+                <p className="mt-1.5 text-xs text-muted-foreground">Step directly out onto the wooden veranda overlooking Kupa valley.</p>
+              </div>
+            </div>
+
+            <div className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src={familyRoomImage}
+                  alt="Grand Family Suite"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-5">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-gold-dark">From ₹2,500 / night</span>
+                <h3 className="mt-1 font-display text-2xl font-bold">Grand Family Suite</h3>
+                <p className="mt-1.5 text-xs text-muted-foreground">Spacious multi-bed quarters designed for comfortable family time.</p>
+              </div>
+            </div>
+
+            <div className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src={roomImage}
+                  alt="Classic Double Room"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-5">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-gold-dark">From ₹1,500 / night</span>
+                <h3 className="mt-1 font-display text-2xl font-bold">Classic Double Room</h3>
+                <p className="mt-1.5 text-xs text-muted-foreground">Cozy pine finishes, heated blankets, and quiet mountain rest.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Curated Gallery Showcase (36 Photos Hook) */}
+      <section id="gallery" className="section-pad bg-gold-light">
+        <div className="mx-auto max-w-[1500px] px-5 md:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <p className="eyebrow text-gold-dark">Real Visual Journey</p>
+            <h2 className="section-title mt-2">Negi Cottage in Frames</h2>
+            <p className="mt-3 text-base text-muted-foreground">
+              We have uploaded 36 authentic photographs showing every angle of our homestay—rooms, bathrooms, dining halls, snowfalls, bonfires, and apple orchards.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {featuredPreviewPhotos.map((photo, index) => (
+              <figure
+                key={photo.title}
+                className="group relative overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl"
+              >
+                <button
+                  type="button"
+                  onClick={() => setLightboxIndex(index)}
+                  className="block h-full w-full text-left cursor-pointer"
+                  aria-label={`Open ${photo.title}`}
+                >
+                  <div className="aspect-[4/3] overflow-hidden bg-muted">
+                    <img
+                      src={photo.src}
+                      alt={photo.alt}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-gold-dark">
+                      {photo.category}
+                    </span>
+                    <h3 className="font-display text-lg font-semibold text-foreground mt-0.5">
+                      {photo.title}
+                    </h3>
+                  </div>
+                </button>
+              </figure>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link
+              to="/gallery"
+              className="button-forest inline-flex items-center gap-2 px-8 py-4 text-sm font-semibold tracking-wider shadow-lg"
+            >
+              Browse Complete 36-Photo Gallery with Descriptions & Lightbox &rarr;
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Guest Reviews */}
+      <section id="reviews" className="section-pad bg-background" aria-labelledby="reviews-title">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <Reveal className="grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:items-end">
             <div>
-              <p className="eyebrow">Guest notes</p>
+              <p className="eyebrow text-gold-dark">Guest notes</p>
               <h2 id="reviews-title" className="section-title mt-5">
                 The kind of stay guests remember.
               </h2>
@@ -390,34 +652,33 @@ function Index() {
                   <Star key={star} className="h-4 w-4 fill-current" />
                 ))}
                 <span className="ml-2 text-xs font-bold uppercase tracking-[0.12em]">
-                  4.6 · 275+ guest reviews
+                  4.6 · 275+ verified guest reviews
                 </span>
               </div>
               <p className="mt-4 leading-7 text-muted-foreground">
-                A few words from travellers who came for the mountains and left with a little more
-                time in their day.
+                Real reflections from travelers who came for the mountains and experienced the slow magic of Negi Cottage.
               </p>
             </div>
           </Reveal>
           <div className="mt-14 grid gap-4 md:grid-cols-3">
             {[
               [
-                "A peaceful stay with the most beautiful morning light. The orchard walks and warm hospitality made it hard to leave.",
+                "A peaceful stay with the most beautiful morning light. The orchard walks, cozy rooms, and warm hospitality made it hard to leave.",
                 "Ananya M.",
                 "Mumbai · weekend escape",
               ],
               [
-                "The rooms were comfortable, the food felt homemade, and the Kinnaur views from the cottage are unforgettable.",
+                "The rooms were warm and spotlessly clean, the food felt homemade, and the evening bonfire with Kinner Kailash views is unforgettable.",
                 "Rohit S.",
                 "Delhi · family holiday",
               ],
               [
-                "Exactly the slow mountain break we were looking for—quiet, welcoming and close to everything we wanted to explore.",
+                "Exactly the slow mountain break we were looking for—quiet, welcoming, great hot water, and close to Sangla and Chitkul.",
                 "Meera & Arjun",
                 "Bengaluru · valley road trip",
               ],
             ].map(([quote, name, detail]) => (
-              <Reveal key={name} className="review-card group bg-background p-7 sm:p-9">
+              <Reveal key={name} className="review-card group bg-card border border-border p-7 sm:p-9 rounded-2xl">
                 <div className="flex gap-1 text-gold-dark" aria-label="5 out of 5 stars">
                   {[0, 1, 2, 3, 4].map((star) => (
                     <Star key={star} className="h-3.5 w-3.5 fill-current" />
@@ -438,227 +699,7 @@ function Index() {
         </div>
       </section>
 
-      <section
-        aria-label="Cottage setting"
-        className="relative h-[60vh] min-h-[520px] overflow-hidden text-hero-foreground"
-      >
-        <img
-          src={orchardImage}
-          alt="Sunlit apple orchard surrounding Negi Cottage in Kupa"
-          className="parallax-image h-[115%] w-full object-cover"
-        />
-        <div className="image-scrim absolute inset-0" />
-        <div className="absolute inset-x-0 bottom-0 mx-auto max-w-7xl px-5 pb-12 md:px-8 lg:pb-16">
-          <Reveal>
-            <p className="eyebrow text-gold">Rooted in Kupa</p>
-            <p className="mt-4 max-w-2xl font-display text-4xl leading-tight sm:text-6xl">
-              Days measured in mountain light and orchard air.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      <section
-        className="section-pad bg-forest text-forest-foreground"
-        aria-labelledby="highlights-title"
-      >
-        <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <Reveal className="grid gap-6 md:grid-cols-[1fr_1fr] md:items-end">
-            <div>
-              <p className="eyebrow text-gold">Reasons to stay</p>
-              <h2 id="highlights-title" className="section-title mt-5">
-                The essentials, naturally.
-              </h2>
-            </div>
-            <p className="max-w-xl text-forest-foreground/65 md:justify-self-end">
-              A genuine mountain stay shaped by its landscape, local flavours and the warmth of a
-              family home.
-            </p>
-          </Reveal>
-          <div className="mt-16 grid gap-px bg-forest-border sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              [
-                "01",
-                "Apple Orchard Setting",
-                "Seasonal colour and quiet paths just beyond the door.",
-              ],
-              ["02", "Kinner Kailash Views", "An unforgettable Himalayan horizon from Kupa."],
-              [
-                "03",
-                "Comfortable Cottage Stay",
-                "Welcoming rooms made for rest after a day outside.",
-              ],
-              ["04", "Warm Himalayan Hospitality", "Personal, local and generous by nature."],
-              ["05", "Authentic Himachali Cuisine", "Homemade flavours rooted in the region."],
-              ["06", "Family Friendly", "A relaxed mountain setting for time together."],
-            ].map(([number, title, copy]) => (
-              <Reveal key={title} className="highlight-item bg-forest px-6 py-9 sm:p-9">
-                <span className="text-xs text-gold">{number}</span>
-                <h3 className="mt-10 font-display text-2xl">{title}</h3>
-                <p className="mt-3 max-w-xs text-sm leading-6 text-forest-foreground/60">{copy}</p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="stay" className="section-pad bg-background">
-        <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <Reveal className="mb-12 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="eyebrow">Stay</p>
-              <h2 className="section-title mt-5">Rest, with a view.</h2>
-            </div>
-            <p className="max-w-md text-muted-foreground">
-              Bright, comfortable accommodation framed by orchards, mountain slopes and
-              ever-changing skies.
-            </p>
-          </Reveal>
-          <Reveal className="stay-grid grid gap-4 lg:grid-cols-[1.35fr_0.65fr]">
-            <figure className="image-frame group min-h-[460px] lg:min-h-[680px]">
-              <img
-                src={roomViewImage}
-                alt="Mountain-view accommodation at Negi Cottage"
-                className="h-full w-full object-cover"
-              />
-            </figure>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-              <figure className="image-frame group min-h-[300px]">
-                <img
-                  src={roomImage}
-                  alt="Double room at Negi Cottage in Kupa"
-                  className="h-full w-full object-cover"
-                />
-              </figure>
-              <figure className="image-frame group min-h-[300px]">
-                <img
-                  src={familyRoomImage}
-                  alt="Family-friendly room at Negi Cottage with wide windows"
-                  className="h-full w-full object-cover"
-                />
-              </figure>
-            </div>
-          </Reveal>
-          <Reveal className="mt-10 grid gap-8 border-t border-border pt-9 md:grid-cols-[1fr_auto] md:items-center">
-            <div>
-              <h3 className="font-display text-3xl">A comfortable base in the valley</h3>
-              <p className="mt-2 text-muted-foreground">
-                Rates start around ₹1,500 per night and vary by season. Contact the cottage directly
-                for availability.
-              </p>
-            </div>
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="button-forest justify-center"
-            >
-              Enquire on WhatsApp <ArrowRight className="h-4 w-4" />
-            </a>
-          </Reveal>
-        </div>
-      </section>
-
-      <section id="experience" className="section-pad bg-warm">
-        <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-20">
-            <Reveal className="relative lg:pb-24">
-              <img
-                src={exteriorImage}
-                alt="Negi Cottage exterior in its orchard setting"
-                className="aspect-[4/5] w-full object-cover"
-              />
-              <img
-                src={entranceImage}
-                alt="Carved Himalayan-style entrance at Negi Cottage"
-                className="mt-4 aspect-[4/3] w-full object-cover sm:absolute sm:-bottom-8 sm:-right-14 sm:mt-0 sm:w-2/5 sm:border-[10px] sm:border-warm"
-              />
-            </Reveal>
-            <Reveal className="lg:pl-8">
-              <p className="eyebrow">The experience</p>
-              <h2 className="section-title mt-5">Slow down. Look closer. Breathe deeper.</h2>
-              <p className="mt-7 text-lg leading-8 text-muted-foreground">
-                Here, the landscape is part of every stay. Wander among apple trees, watch light
-                move across the Kinner Kailash range, and return to the warmth of local Himalayan
-                hospitality.
-              </p>
-              <ul className="mt-10 divide-y divide-border border-y border-border">
-                {[
-                  "Apple orchard mornings",
-                  "Peaceful mountain surroundings",
-                  "Time together for families",
-                  "Exploring Sangla Valley and Kinnaur",
-                ].map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-center justify-between py-4 text-sm font-semibold uppercase tracking-[0.08em]"
-                  >
-                    <span>{item}</span>
-                    <ArrowRight className="h-4 w-4 text-gold-dark" />
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="dining"
-        className="relative min-h-[720px] overflow-hidden bg-forest text-hero-foreground"
-      >
-        <img
-          src={diningImage}
-          alt="Intimate dining space for homemade Himachali food at Negi Cottage"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="dining-overlay absolute inset-0" />
-        <div className="relative z-10 mx-auto flex min-h-[720px] max-w-7xl items-end px-5 py-16 md:px-8 lg:py-24">
-          <Reveal className="max-w-2xl">
-            <p className="eyebrow text-gold">From the local kitchen</p>
-            <h2 className="mt-5 font-display text-5xl leading-none sm:text-7xl">
-              Authentic Himachali Flavours
-            </h2>
-            <p className="mt-7 max-w-xl text-lg leading-8 text-hero-foreground/80">
-              Gather in a warm, wood-lined dining room for homemade food and local cuisine—simple,
-              comforting flavours that belong to the mountains.
-            </p>
-            <div className="mt-8 flex items-center gap-3 text-xs uppercase tracking-[0.18em] text-gold">
-              <Utensils className="h-4 w-4" /> Homemade · Local · Seasonal
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section id="gallery" className="section-pad bg-background">
-        <div className="mx-auto max-w-[1500px] px-5 md:px-8">
-          <Reveal className="mb-12 text-center">
-            <p className="eyebrow">A sense of place</p>
-            <h2 className="section-title mt-5">The cottage, in frames.</h2>
-          </Reveal>
-          <div className="gallery-grid">
-            {galleryImages.map((image, index) => (
-              <Reveal key={image.alt} className={`gallery-item gallery-item-${index + 1}`}>
-                <button
-                  type="button"
-                  onClick={() => setLightboxIndex(index)}
-                  aria-label={`Open image ${index + 1} in gallery`}
-                  className="group block h-full w-full overflow-hidden text-left"
-                >
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    loading={index > 2 ? "lazy" : undefined}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                  />
-                  <span className="gallery-index">{String(index + 1).padStart(2, "0")}</span>
-                </button>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      {/* Location Section */}
       <section id="location" className="bg-forest text-forest-foreground">
         <div className="grid lg:grid-cols-[0.72fr_1.28fr]">
           <Reveal className="flex flex-col justify-center px-5 py-16 md:px-12 lg:px-[max(3rem,calc((100vw-1280px)/2))] lg:py-24">
@@ -667,8 +708,7 @@ function Index() {
             <div className="mt-9 flex gap-4">
               <MapPin className="mt-1 h-5 w-5 shrink-0 text-gold" />
               <address className="not-italic leading-7 text-forest-foreground/75">
-                <strong className="block text-forest-foreground">Negi Cottage</strong>Kuppa Bus
-                Stand, Kupa
+                <strong className="block text-forest-foreground">Negi Cottage</strong>Kuppa Bus Stand, Kupa
                 <br />
                 Himachal Pradesh 172106
               </address>
@@ -678,7 +718,7 @@ function Index() {
                 Get Directions <ExternalLink className="h-4 w-4" />
               </a>
               <a href="tel:+917807215761" className="button-outline-light">
-                <Phone className="h-4 w-4" /> Call Now
+                <Phone className="h-4 w-4" /> Call Host
               </a>
             </div>
           </Reveal>
@@ -697,28 +737,28 @@ function Index() {
         </div>
       </section>
 
+      {/* Contact Section */}
       <section id="contact" className="relative overflow-hidden bg-gold-light section-pad">
         <Mountain
-          className="absolute -bottom-20 -right-16 h-80 w-80 text-gold/15"
+          className="absolute -bottom-20 -right-16 h-80 w-80 text-gold/15 pointer-events-none"
           strokeWidth={0.7}
         />
         <div className="relative mx-auto max-w-5xl px-5 text-center md:px-8">
           <Reveal>
-            <p className="eyebrow">Come stay awhile</p>
-            <h2 className="mx-auto mt-5 max-w-4xl font-display text-5xl leading-[1.02] sm:text-7xl">
+            <p className="eyebrow text-gold-dark">Come stay awhile</p>
+            <h2 className="mx-auto mt-5 max-w-4xl font-display text-5xl leading-[1.02] sm:text-7xl text-foreground">
               Your mountain escape begins with a message.
             </h2>
-            <p className="mx-auto mt-7 max-w-xl text-muted-foreground">
-              For availability, seasonal rates and booking enquiries, speak directly with Negi
-              Cottage on WhatsApp.
+            <p className="mx-auto mt-7 max-w-xl text-muted-foreground text-base leading-relaxed">
+              For availability, current apple season rates, bonfire arrangements, and booking enquiries, message Negi Cottage directly on WhatsApp.
             </p>
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noreferrer"
-              className="button-forest mx-auto mt-10 justify-center"
+              className="button-forest mx-auto mt-10 justify-center text-sm font-semibold py-4 px-8"
             >
-              <WhatsAppIcon /> Book on WhatsApp
+              <WhatsAppIcon /> Message on WhatsApp
             </a>
             <a
               href="tel:+917807215761"
@@ -730,27 +770,30 @@ function Index() {
         </div>
       </section>
 
+      {/* Footer */}
       <footer className="bg-forest px-5 py-10 text-forest-foreground md:px-8">
         <div className="mx-auto grid max-w-7xl gap-8 border-b border-forest-border pb-9 sm:grid-cols-[1fr_auto] sm:items-end">
           <div>
             <p className="font-display text-3xl uppercase tracking-[0.12em]">Negi Cottage</p>
             <p className="mt-2 text-sm text-forest-foreground/55">
-              Kupa · Sangla Valley · Himachal Pradesh
+              Kupa · Sangla Valley · Himachal Pradesh 172106
             </p>
           </div>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs uppercase tracking-[0.12em] text-forest-foreground/70">
-            <a href="#stay">Stay</a>
-            <a href="#experience">Experience</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#location">Location</a>
+            {navItems.map((item) => (
+              <Link key={item.label} to={item.to} className="hover:text-gold transition-colors">
+                {item.label}
+              </Link>
+            ))}
           </div>
         </div>
         <div className="mx-auto mt-6 flex max-w-7xl flex-col gap-2 text-xs text-forest-foreground/45 sm:flex-row sm:justify-between">
           <span>© 2026 Negi Cottage. All rights reserved.</span>
-          <span>Premium Himalayan homestay in Kupa</span>
+          <span>Apple Orchard Homestay · Kupa, Sangla Valley</span>
         </div>
       </footer>
 
+      {/* Floating WhatsApp Booking Button */}
       <a
         href={whatsappUrl}
         target="_blank"
@@ -759,48 +802,49 @@ function Index() {
         aria-label="Book Negi Cottage on WhatsApp"
       >
         <WhatsAppIcon className="h-6 w-6" />
-        <span className="hidden sm:inline">Book your stay</span>
+        <span className="hidden sm:inline">Book on WhatsApp</span>
       </a>
 
-      {lightboxIndex !== null && activeImage && (
+      {/* Lightbox for Preview Photos */}
+      {activeImage && lightboxIndex !== null && (
         <div
-          className="lightbox fixed inset-0 z-50 grid place-items-center p-4"
+          className="lightbox fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6"
           role="dialog"
           aria-modal="true"
-          aria-label="Photo gallery"
         >
           <button
             type="button"
             onClick={() => setLightboxIndex(null)}
-            className="absolute right-5 top-5 z-10 grid h-12 w-12 place-items-center rounded-full border border-hero-foreground/30 text-hero-foreground"
-            aria-label="Close gallery"
+            className="absolute right-4 top-4 z-20 grid h-11 w-11 place-items-center rounded-full bg-black/60 text-white"
+            aria-label="Close"
           >
-            <X />
+            <X className="h-6 w-6" />
           </button>
           <button
             type="button"
             onClick={() => moveLightbox(-1)}
-            className="absolute left-3 z-10 grid h-12 w-12 place-items-center rounded-full bg-hero-foreground/10 text-hero-foreground sm:left-7"
-            aria-label="Previous image"
+            className="absolute left-3 sm:left-6 z-20 grid h-12 w-12 place-items-center rounded-full bg-black/60 text-white"
+            aria-label="Previous"
           >
-            <ChevronLeft />
+            <ChevronLeft className="h-7 w-7" />
           </button>
-          <img
-            src={activeImage.src}
-            alt={activeImage.alt}
-            className="max-h-[88vh] max-w-[92vw] object-contain"
-          />
+          <div className="max-w-4xl text-center text-white">
+            <img
+              src={activeImage.src}
+              alt={activeImage.title}
+              className="max-h-[75vh] max-w-full rounded-xl object-contain mx-auto shadow-2xl"
+            />
+            <h3 className="mt-4 font-display text-2xl font-bold">{activeImage.title}</h3>
+            <p className="text-xs text-gold uppercase tracking-widest mt-1">{activeImage.category}</p>
+          </div>
           <button
             type="button"
             onClick={() => moveLightbox(1)}
-            className="absolute right-3 z-10 grid h-12 w-12 place-items-center rounded-full bg-hero-foreground/10 text-hero-foreground sm:right-7"
-            aria-label="Next image"
+            className="absolute right-3 sm:right-6 z-20 grid h-12 w-12 place-items-center rounded-full bg-black/60 text-white"
+            aria-label="Next"
           >
-            <ChevronRight />
+            <ChevronRight className="h-7 w-7" />
           </button>
-          <span className="absolute bottom-5 text-xs tracking-[0.2em] text-hero-foreground/70">
-            {lightboxIndex + 1} / {galleryImages.length}
-          </span>
         </div>
       )}
     </main>

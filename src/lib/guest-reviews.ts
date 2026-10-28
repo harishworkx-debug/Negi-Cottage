@@ -427,3 +427,4 @@ export const allGoogleReviews: GuestReview[] = [
     tags: ["apple orchards", "mountain view", "cozy rooms"],
   },
 ];
+

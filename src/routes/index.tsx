@@ -828,8 +828,19 @@ function Index() {
             ))}
           </div>
         </div>
-        <div className="mx-auto mt-6 flex max-w-7xl flex-col gap-2 text-xs text-forest-foreground/45 sm:flex-row sm:justify-between">
+        <div className="mx-auto mt-6 flex max-w-7xl flex-col gap-2 text-xs text-forest-foreground/50 sm:flex-row sm:items-center sm:justify-between">
           <span>© 2026 Negi Cottage. All rights reserved.</span>
+          <span>
+            Powered by{" "}
+            <a
+              href="https://www.techhim.online/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gold font-medium hover:underline transition-colors"
+            >
+              TechHim Solutions
+            </a>
+          </span>
           <span>Apple Orchard Homestay · Kupa, Sangla Valley</span>
         </div>
       </footer>

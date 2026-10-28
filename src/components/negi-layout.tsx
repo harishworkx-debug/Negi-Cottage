@@ -66,7 +66,21 @@ export function SiteFooter() {
           {navItems.slice(1).map((item) => <Link key={item.to} to={item.to}>{item.label}</Link>)}
         </div>
       </div>
-      <div className="mx-auto mt-6 flex max-w-7xl flex-col gap-2 text-xs text-forest-foreground/45 sm:flex-row sm:justify-between"><span>© 2026 Negi Cottage. All rights reserved.</span><span>Premium Himalayan homestay in Kupa</span></div>
+      <div className="mx-auto mt-6 flex max-w-7xl flex-col gap-2 text-xs text-forest-foreground/50 sm:flex-row sm:items-center sm:justify-between">
+        <span>© 2026 Negi Cottage. All rights reserved.</span>
+        <span>
+          Powered by{" "}
+          <a
+            href="https://www.techhim.online/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gold font-medium hover:underline transition-colors"
+          >
+            TechHim Solutions
+          </a>
+        </span>
+        <span>Premium Himalayan homestay in Kupa</span>
+      </div>
     </footer>
   );
 }

@@ -1,6 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, MapPin, Menu, Phone, Star, X } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
+import BusinessSchema from "./BusinessSchema";
+
+export { BusinessSchema };
 
 export const whatsappMessage = encodeURIComponent(
   "Hello, I would like to enquire about booking a stay at Negi Cottage, Kupa.",

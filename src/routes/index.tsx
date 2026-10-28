@@ -183,30 +183,6 @@ const faqStructuredData = {
   })),
 };
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": ["Hotel", "LocalBusiness"],
-  name: "Negi Cottage Sangla",
-  alternateName: "Negi Cottage Home Stay",
-  description:
-    "A peaceful boutique homestay in Sangla Valley, Kinnaur Himachal Pradesh. Surrounded by apple orchards with snow-capped Kinner Kailash views, authentic Kinnauri dining, and rooms from ₹1,500/night.",
-  telephone: "+91 78072 15761",
-  priceRange: "₹1,500+",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Kuppa Bus Stand, Kupa",
-    addressRegion: "Himachal Pradesh",
-    postalCode: "172106",
-    addressCountry: "IN",
-  },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.6",
-    reviewCount: "279",
-    bestRating: "5",
-  },
-};
-
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -233,7 +209,6 @@ export const Route = createFileRoute("/")({
     ],
     links: [{ rel: "canonical", href: "https://www.negicottage.in/" }],
     scripts: [
-      { type: "application/ld+json", children: JSON.stringify(structuredData) },
       { type: "application/ld+json", children: JSON.stringify(faqStructuredData) },
     ],
   }),

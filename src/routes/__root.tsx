@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
+import BusinessSchema from "../components/BusinessSchema";
 import {
   Outlet,
   Link,
@@ -143,6 +144,9 @@ function RootComponent() {
 
   return (
     <HelmetProvider>
+      {/* Universal Google-compliant LodgingBusiness Schema */}
+      <BusinessSchema />
+
       <QueryClientProvider client={queryClient}>
         {/* Luxury Himalayan Opening Splash Screen (Plays for ~3.4s on initial visit) */}
         <WelcomeCurtain />

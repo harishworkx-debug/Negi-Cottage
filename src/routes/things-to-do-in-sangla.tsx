@@ -309,7 +309,7 @@ function ThingsToDoPage() {
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Link to="/stay" className="button-gold text-xs font-bold">
-                View Rooms & Rates (From ₹1,500)
+                View Rooms & Rates (From ₹1,500 · EP Plan)
               </Link>
               <a
                 href={whatsappUrl}

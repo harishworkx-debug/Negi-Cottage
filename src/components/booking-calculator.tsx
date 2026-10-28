@@ -3,9 +3,9 @@ import { useMemo, useState } from "react";
 import { WhatsAppIcon } from "@/components/negi-layout";
 
 const roomOptions = [
-  { id: "classic", label: "Classic Mountain Room", rate: 1500, desc: "Pine-trimmed double room, mountain silence & warmth" },
-  { id: "balcony", label: "Balcony Mountain Room", rate: 1800, desc: "Private wooden balcony facing apple orchards & peaks" },
-  { id: "family", label: "Grand Family Suite", rate: 2500, desc: "Spacious multi-bed suite for 3 to 5 guests" },
+  { id: "single", label: "Single Room", rate: 1500, desc: "Cozy single room with attached hot geyser bath (EP Plan · Room Only)" },
+  { id: "double", label: "Double Room", rate: 2000, desc: "Pine-trimmed double room with balcony / valley views (EP Plan · Room Only)" },
+  { id: "family", label: "4-Bedded Family Room", rate: 3000, desc: "Spacious 4-bedded suite for family and group stays (EP Plan · Room Only)" },
 ] as const;
 
 function formatDate(value: string) {
@@ -22,7 +22,7 @@ export function BookingCalculator() {
   const tomorrow = new Date(Date.now() + 86400000).toISOString().slice(0, 10);
   const [checkIn, setCheckIn] = useState(today);
   const [checkOut, setCheckOut] = useState(tomorrow);
-  const [room, setRoom] = useState<(typeof roomOptions)[number]["id"]>("balcony");
+  const [room, setRoom] = useState<(typeof roomOptions)[number]["id"]>("double");
   const [guests, setGuests] = useState(2);
 
   const selectedRoom = roomOptions.find((option) => option.id === room) ?? roomOptions[0];
@@ -40,11 +40,11 @@ export function BookingCalculator() {
   const enquiryUrl = `https://wa.me/917807215761?text=${encodeURIComponent(
     `Hello, I would like to enquire about booking a stay at Negi Cottage, Kupa.\n• Check-in: ${formatDate(
       checkIn,
-    )}\n• Check-out: ${formatDate(checkOut)}\n• Room: ${selectedRoom.label} (₹${selectedRoom.rate.toLocaleString("en-IN")}/night)\n• Guests: ${guests} guest${
+    )}\n• Check-out: ${formatDate(checkOut)}\n• Room: ${selectedRoom.label} (₹${selectedRoom.rate.toLocaleString("en-IN")}/night · EP Plan - Room Only)\n• Guests: ${guests} guest${
       guests > 1 ? "s" : ""
     }\n• Duration: ${nights || 1} night${nights === 1 ? "" : "s"}\n• Estimated Total: ₹${total.toLocaleString(
       "en-IN",
-    )}\nCould you please confirm availability?`,
+    )} (EP Plan - Room Only)\nCould you please confirm availability?`,
   )}`;
 
   return (
@@ -52,17 +52,22 @@ export function BookingCalculator() {
       {/* Top Header */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-border/80 pb-6">
         <div>
-          <span className="eyebrow text-terracotta">Direct Homestay Rates</span>
+          <span className="eyebrow text-terracotta">Direct Homestay Rates · EP Plan</span>
           <h3 className="mt-1 font-display text-3xl sm:text-4xl font-normal text-foreground">
             Estimate Your Stay
           </h3>
           <p className="mt-1 text-xs text-muted-foreground">
-            Transparent pricing with zero middleman commissions. Speak directly with the host.
+            Transparent pricing with zero middleman commissions (EP Plan: Room Only). Speak directly with the host.
           </p>
         </div>
-        <div className="flex items-center gap-2 self-start sm:self-center rounded-full bg-soft-sand px-3.5 py-1.5 text-xs font-semibold text-forest">
-          <Sparkles className="h-3.5 w-3.5 text-terracotta" />
-          <span>Starting from ₹1,500 / night</span>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 self-start sm:self-center">
+          <span className="rounded-full bg-forest/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-forest">
+            EP Plan (Room Only)
+          </span>
+          <div className="flex items-center gap-1.5 rounded-full bg-soft-sand px-3 py-1 text-xs font-semibold text-forest">
+            <Sparkles className="h-3.5 w-3.5 text-terracotta" />
+            <span>Single: ₹1,500 · Double: ₹2,000 · 4-Bed: ₹3,000</span>
+          </div>
         </div>
       </div>
 
@@ -162,7 +167,7 @@ export function BookingCalculator() {
             )}
           </div>
           <p className="mt-1 text-[11px] text-muted-foreground">
-            *Subject to seasonal availability. No advance payment required for initial inquiry.
+            *EP Plan (European Plan) includes room stay only. Fresh home-cooked Himachali meals available upon order.
           </p>
         </div>
 

@@ -25,18 +25,18 @@ export const Route = createFileRoute("/stay")({
       {
         name: "description",
         content:
-          "Looking for places to stay in Sangla? Negi Cottage offers the best budget homestay and family stay in Sangla Valley. Clean rooms with attached hot geysers, mountain balconies, and family suites from ₹1,500/night.",
+          "Looking for places to stay in Sangla? Negi Cottage offers the best homestay rooms in Sangla Valley: Single room at ₹1,500, Double room at ₹2,000, 4-Bedded suite at ₹3,000/night (EP Plan - Room Only). Clean rooms with attached 24/7 hot geysers.",
       },
       {
         name: "keywords",
         content:
-          "Hotel in Sangla Valley, Budget homestay in Sangla, Places to stay in Sangla, Family stay in Sangla Valley, Homestay in Sangla Valley, Negi Cottage rooms",
+          "Hotel in Sangla Valley, Budget homestay in Sangla, Places to stay in Sangla, Family stay in Sangla Valley, Homestay in Sangla Valley, Negi Cottage rooms, EP plan homestay Sangla",
       },
       { property: "og:title", content: "Places to Stay in Sangla — Budget Homestay & Hotel in Sangla Valley" },
       {
         property: "og:description",
         content:
-          "Authentic rooms and family suites in Sangla Valley with orchard balconies, Kinner Kailash views, 24/7 hot water, and home-cooked meals from ₹1,500/night.",
+          "Authentic rooms and family suites in Sangla Valley: Single ₹1,500, Double ₹2,000, 4-Bedded ₹3,000/night (EP Plan · Room Only) with orchard balconies, Kinner Kailash views, and 24/7 hot geysers.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://www.negicottage.in/stay" },
@@ -49,69 +49,72 @@ export const Route = createFileRoute("/stay")({
 
 const roomTiers = [
   {
-    title: "Balcony & Scenic Window Rooms",
-    tag: "Guest Favorite in Sangla",
-    price: "From ₹1,800 / night",
-    prefillMessage: "Hello, I would like to book a Balcony Mountain Room at Negi Cottage, Kupa.",
+    title: "Single Mountain Room",
+    tag: "Single Room · EP Plan (₹1,500)",
+    price: "₹1,500 / night",
+    plan: "EP Plan (Room Only)",
+    prefillMessage: "Hello, I would like to book a Single Room at Negi Cottage, Kupa (₹1,500/night EP Plan).",
     description:
-      "Bright, morning-facing rooms featuring direct wooden balcony access or wide picture windows overlooking snow-capped Kinner Kailash ridges and blooming apple orchards. Perfect for couples and writers seeking tranquil mountain views.",
+      "Cozy, pine-trimmed single room designed for solo travelers, backpackers, and peaceful remote work stays. Features clean wooden interiors, attached private bathroom with 24/7 hot water geyser, and tranquil apple orchard surroundings.",
     images: [
-      { src: balconyRoom, title: "Balcony Mountain Room", desc: "Private step-out wooden balcony facing the valley." },
+      { src: room, title: "Single Mountain Room", desc: "Quiet retreat with warm bedding and pine timber trim." },
+      { src: room3, title: "Pine-Accented Bedroom", desc: "Cozy mountain hideaway for solo travelers and backpackers." },
+      { src: room4, title: "Orchard Wing Room", desc: "Peaceful corner facing the gentle apple orchard breeze." },
+      { src: negiCottageRoom, title: "Traditional Wooden Room", desc: "Wood-panelled charm with genuine local hospitality." },
+    ],
+    amenities: [
+      "Comfortable single bed with fresh mountain linen",
+      "Attached private washroom with 24/7 hot water geyser",
+      "Warm Himalayan woollen quilts & heavy blankets",
+      "Power sockets with phone/laptop charging points",
+      "Direct access to apple orchard garden walkways",
+      "EP Plan: Room only (meals available fresh upon order)",
+    ],
+  },
+  {
+    title: "Double Mountain Room (Balcony / Scenic View)",
+    tag: "Double Room · EP Plan (₹2,000)",
+    price: "₹2,000 / night",
+    plan: "EP Plan (Room Only)",
+    prefillMessage: "Hello, I would like to book a Double Room at Negi Cottage, Kupa (₹2,000/night EP Plan).",
+    description:
+      "Spacious, morning-facing double room featuring direct wooden step-out balcony access or wide picture windows overlooking snow-capped Kinner Kailash ridges and blooming apple orchards. Ideal for couples and friends seeking mountain serenity.",
+    images: [
+      { src: balconyRoom, title: "Balcony Mountain Room", desc: "Private step-out wooden veranda facing the valley." },
       { src: windowRoom, title: "Scenic Window Suite", desc: "Large windows framing alpine peaks and morning light." },
       { src: roomView, title: "Orchard Vista Room", desc: "Wake up to misty ridgelines and pine-covered slopes." },
       { src: room2, title: "Sunlit Mountain Suite", desc: "Ample natural daylight and warm wooden accents." },
     ],
     amenities: [
-      "Valley & orchard view wooden balcony",
+      "Valley & orchard view wooden step-out balcony",
+      "Spacious double bed with plush mattress & warm quilts",
       "Attached private washroom with 24/7 hot water geyser",
-      "Warm Himalayan woollen quilts & heavy blankets",
       "Morning tea / coffee served in bed upon request",
-      "Power sockets with phone/camera charging points",
-      "Fresh daily linen & housekeeping service",
+      "Panoramic views of snow-capped Kinner Kailash summits",
+      "EP Plan: Room only (meals available fresh upon order)",
     ],
   },
   {
-    title: "Grand Family Suites",
-    tag: "Best Family Stay in Sangla Valley",
-    price: "From ₹2,500 / night",
-    prefillMessage: "Hello, I would like to enquire about the Grand Family Suite for our family/group at Negi Cottage, Kupa.",
+    title: "4-Bedded Grand Family Suite",
+    tag: "4-Bedded Suite · EP Plan (₹3,000)",
+    price: "₹3,000 / night",
+    plan: "EP Plan (Room Only)",
+    prefillMessage: "Hello, I would like to book a 4-Bedded Family Room at Negi Cottage, Kupa (₹3,000/night EP Plan).",
     description:
-      "Expansive multi-bed chambers crafted specifically for parents traveling with children or small trekking groups exploring the Sangla Valley together in comfort. Generous floor plan with ample space for mountain luggage and winter gear.",
+      "Expansive 4-bedded suite crafted specifically for parents traveling with children, family vacations, or small trekking groups exploring the Sangla Valley together in comfort. Generous floor plan with ample luggage space for winter gear.",
     images: [
-      { src: familyRoom, title: "Grand Family Suite", desc: "Expansive layout with multiple beds and seating space." },
+      { src: familyRoom, title: "Grand Family Suite", desc: "Expansive layout with 4 beds and seating space." },
       { src: familyRoom1, title: "Master Bed Section", desc: "Extra wide beds with plush mattresses and warm linens." },
       { src: familyRoom2, title: "Family Lounge & Sleeping Area", desc: "Quiet seating nook for evening chai and card games." },
       { src: negiCottageFamilyRoom, title: "Upper Family Quarters", desc: "Top floor panoramic windows capturing full valley vistas." },
     ],
     amenities: [
-      "Comfortably accommodates 3 to 5 guests",
-      "Multiple beds with plush mattresses & heavy quilts",
+      "Comfortably accommodates up to 4 guests",
+      "4 beds with plush mattresses & heavy Himalayan quilts",
       "Ensuite bathroom with high-capacity fast geysers",
       "Spacious room layout for luggage, trekking gear & boots",
       "Quiet family-friendly environment close to dining hall",
-      "Extra blankets and hot water bottles on chill nights",
-    ],
-  },
-  {
-    title: "Classic Mountain Comfort Rooms",
-    tag: "Budget Homestay in Sangla (From ₹1,500)",
-    price: "From ₹1,500 / night",
-    prefillMessage: "Hello, I would like to book a Classic Mountain Room at Negi Cottage, Kupa.",
-    description:
-      "Traditional pine-trimmed rooms that celebrate the rustic simplicity and soothing peace of an authentic Himalayan homestay. Silent, peaceful, and warm throughout the chill mountain nights.",
-    images: [
-      { src: room, title: "Classic Double Room", desc: "Quiet retreat with warm bedding and pine timber trim." },
-      { src: room3, title: "Pine-Accented Bedroom", desc: "Cozy mountain hideaway for couples and solo travelers." },
-      { src: room4, title: "Orchard Wing Room", desc: "Peaceful corner facing the gentle apple orchard breeze." },
-      { src: negiCottageRoom, title: "Traditional Wooden Room", desc: "Wood-panelled charm with genuine local hospitality." },
-    ],
-    amenities: [
-      "Comfortable spring/foam double mattress",
-      "Ensuite private bathroom with running hot water",
-      "Warm wooden ceiling panels & local textiles",
-      "Daily housekeeping & fresh mountain towels",
-      "Quick access to the dining hall and garden lawn",
-      "Fast host assistance for travel planning",
+      "EP Plan: Room only (meals available fresh upon order)",
     ],
   },
 ];
@@ -138,12 +141,12 @@ function StayPage() {
         <div className="mx-auto max-w-[1440px] px-6 md:px-10">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between border-b border-border pb-10">
             <div>
-              <p className="eyebrow text-terracotta">Budget Homestay in Sangla · Real Photos</p>
+              <p className="eyebrow text-terracotta">Budget Homestay in Sangla · Real Photos · EP Plan</p>
               <h2 className="mt-2 font-display text-4xl sm:text-5xl lg:text-6xl text-foreground font-normal">
                 Places to Stay in Sangla Valley
               </h2>
               <p className="mt-4 max-w-2xl text-base text-muted-foreground leading-relaxed">
-                If you are comparing hotels in Sangla Valley and looking for genuine mountain peace, Negi Cottage provides a top-rated budget homestay and family stay in Sangla Valley with clean heated rooms, attached washrooms with 24/7 geysers, and orchard balconies starting from ₹1,500/night.
+                If you are comparing hotels in Sangla Valley and looking for genuine mountain peace, Negi Cottage provides a top-rated homestay with transparent European Plan rates (EP: Room Only) — Single room at ₹1,500, Double room at ₹2,000, and 4-Bedded suite at ₹3,000 per night. Clean rooms, attached 24/7 hot geysers, and orchard balconies.
               </p>
             </div>
             <a href={whatsappUrl} target="_blank" rel="noreferrer" className="button-forest shrink-0">

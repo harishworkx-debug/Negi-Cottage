@@ -310,7 +310,7 @@ function TravelGuidePage() {
               Stay with Us at Negi Cottage, Kupa
             </h3>
             <p className="mt-4 text-sm sm:text-base text-white/80 max-w-2xl mx-auto leading-relaxed">
-              Warm mountain hospitality, authentic home-cooked thalis, 24/7 hot geysers, and private apple orchard balconies from ₹1,500/night.
+              Warm mountain hospitality, authentic home-cooked thalis, 24/7 hot geysers, and private apple orchard balconies from ₹1,500/night (EP Plan: Room Only).
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Link to="/stay" className="button-gold text-xs font-bold">

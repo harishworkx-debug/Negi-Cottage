@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CheckCircle2, Filter, Heart, MessageSquare, Search, Sparkles, Star, ThumbsUp, Users } from "lucide-react";
 import { useState, useMemo } from "react";
 import { PageFrame, PageHero, whatsappUrl, WhatsAppIcon } from "@/components/negi-layout";
+import SEO from "@/components/SEO";
 import { allGoogleReviews, googleReviewsStats, type GuestReview } from "@/lib/guest-reviews";
 import mountain from "@/assets/negi-cottage-mountains.png";
 
@@ -61,6 +62,12 @@ function ReviewsPage() {
 
   return (
     <PageFrame>
+      <SEO
+        title="Guest Reviews (4.6★ · 279 Reviews) | Negi Cottage, Sangla Valley"
+        description="Read genuine Google reviews for Negi Cottage in Kupa, Sangla Valley. Rated 4.6/5 from 279+ guests praising apple orchards, Kinner Kailash views, clean rooms, and warm hospitality."
+        path="/reviews"
+        image="/images/negi-cottage-cover.png"
+      />
       <PageHero
         image={mountain}
         imageAlt="Kinner Kailash mountains and orchards seen from Negi Cottage"

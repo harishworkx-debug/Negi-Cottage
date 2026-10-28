@@ -11,6 +11,7 @@ export const directionsUrl = "https://www.google.com/maps/dir/?api=1&destination
 const navItems = [
   { label: "Home", to: "/" as const },
   { label: "Stay", to: "/stay" as const },
+  { label: "Reviews", to: "/reviews" as const },
   { label: "Experience", to: "/experience" as const },
   { label: "Dining", to: "/dining" as const },
   { label: "Gallery", to: "/gallery" as const },

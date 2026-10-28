@@ -341,3 +341,4 @@ export const viewPhotos = allCottagePhotos.filter((p) => p.category === "views")
 export const winterPhotos = allCottagePhotos.filter((p) => p.category === "winter");
 export const outdoorPhotos = allCottagePhotos.filter((p) => p.category === "outdoor");
 export const experiencePhotos = allCottagePhotos.filter((p) => p.category === "experience");
+

@@ -131,6 +131,7 @@ const featuredPreviewPhotos = [
 const navItems = [
   { label: "Home", to: "/" },
   { label: "Stay", to: "/stay" },
+  { label: "Reviews", to: "/reviews" },
   { label: "Experience", to: "/experience" },
   { label: "Dining", to: "/dining" },
   { label: "Gallery (36)", to: "/gallery" },
@@ -156,7 +157,7 @@ const structuredData = {
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "4.6",
-    reviewCount: "275",
+    reviewCount: "279",
     bestRating: "5",
   },
 };
@@ -418,8 +419,8 @@ function Index() {
                 </span>
               </div>
               <div className="border-x border-border px-4 sm:px-8">
-                <strong className="stat">275+</strong>
-                <span className="stat-label">verified reviews</span>
+                <strong className="stat">279</strong>
+                <span className="stat-label">Google reviews</span>
               </div>
               <div className="pl-4 sm:pl-8">
                 <strong className="stat">₹1,500</strong>
@@ -638,7 +639,7 @@ function Index() {
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <Reveal className="grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:items-end">
             <div>
-              <p className="eyebrow text-gold-dark">Guest notes</p>
+              <p className="eyebrow text-gold-dark">Verified Google Reviews</p>
               <h2 id="reviews-title" className="section-title mt-5">
                 The kind of stay guests remember.
               </h2>
@@ -652,49 +653,89 @@ function Index() {
                   <Star key={star} className="h-4 w-4 fill-current" />
                 ))}
                 <span className="ml-2 text-xs font-bold uppercase tracking-[0.12em]">
-                  4.6 · 275+ verified guest reviews
+                  4.6 · 279 Google reviews
                 </span>
               </div>
               <p className="mt-4 leading-7 text-muted-foreground">
-                Real reflections from travelers who came for the mountains and experienced the slow magic of Negi Cottage.
+                Read direct Google feedback from families, solo travelers, and groups who stayed with us amidst the apple orchards of Kupa.
               </p>
             </div>
           </Reveal>
-          <div className="mt-14 grid gap-4 md:grid-cols-3">
+
+          {/* Popular Google Topics tags */}
+          <div className="mt-8 flex flex-wrap items-center gap-2 border-y border-border py-4">
+            <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground mr-2">Top Mentions:</span>
             {[
-              [
-                "A peaceful stay with the most beautiful morning light. The orchard walks, cozy rooms, and warm hospitality made it hard to leave.",
-                "Ananya M.",
-                "Mumbai · weekend escape",
-              ],
-              [
-                "The rooms were warm and spotlessly clean, the food felt homemade, and the evening bonfire with Kinner Kailash views is unforgettable.",
-                "Rohit S.",
-                "Delhi · family holiday",
-              ],
-              [
-                "Exactly the slow mountain break we were looking for—quiet, welcoming, great hot water, and close to Sangla and Chitkul.",
-                "Meera & Arjun",
-                "Bengaluru · valley road trip",
-              ],
-            ].map(([quote, name, detail]) => (
-              <Reveal key={name} className="review-card group bg-card border border-border p-7 sm:p-9 rounded-2xl">
-                <div className="flex gap-1 text-gold-dark" aria-label="5 out of 5 stars">
-                  {[0, 1, 2, 3, 4].map((star) => (
-                    <Star key={star} className="h-3.5 w-3.5 fill-current" />
-                  ))}
+              "Apple Orchards (28)",
+              "Mountain View (10)",
+              "Cozy Rooms (7)",
+              "Homely Atmosphere (6)",
+              "Cottage (5)",
+              "Clean Toilet (4)",
+              "Humble Host (4)",
+              "Bonfire (3)",
+            ].map((tag) => (
+              <span key={tag} className="rounded-full bg-muted/60 px-3 py-1 text-xs font-medium text-foreground/80">
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {[
+              {
+                quote:
+                  "Awesome experience received by our group of 9 senior citizens! Checked in at night, the owner helped carry luggage from the road. Welcomed with hot tea & veg pakoras followed by delicious dinner. Greeted next morning with snow-capped Kinnar-Kailash range and golden apple orchards. Strongly recommend!",
+                name: "Anup Chaudhuri",
+                detail: "Local Guide · 26 reviews · October 2026",
+                highlight: "Senior Citizens Group",
+              },
+              {
+                quote:
+                  "One of the most scenic stays of our Kinnaur trip. Family room with two large beds and two bathrooms, exceptionally neat and clean. Views of apple orchards on one side and snow mountains on the other. Open rooftop terrace offers a 360-degree view. Friendly hosts!",
+                name: "Rupesh Kumar",
+                detail: "Local Guide · 112 reviews · Family Vacation",
+                highlight: "Family Suite with 2 Bathrooms",
+              },
+              {
+                quote:
+                  "One of my dreams came to life smelling apple fragrance everywhere. Surrounded by apple and pear trees—just like heaven. 10 out of 10 for cleanliness and hygiene. Clean western washroom, delicious food, and super humble staff.",
+                name: "Avinash Devadiga",
+                detail: "Local Guide · 23 reviews · Family Stay",
+                highlight: "10/10 Cleanliness & Food",
+              },
+            ].map((r) => (
+              <Reveal key={r.name} className="review-card group flex flex-col justify-between bg-card border border-border p-7 sm:p-9 rounded-2xl shadow-xs hover:border-gold/50 transition-colors">
+                <div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex gap-1 text-gold-dark" aria-label="5 out of 5 stars">
+                      {[0, 1, 2, 3, 4].map((star) => (
+                        <Star key={star} className="h-3.5 w-3.5 fill-current" />
+                      ))}
+                    </div>
+                    <span className="rounded bg-gold-light/60 px-2 py-0.5 text-[10px] font-semibold text-forest">
+                      {r.highlight}
+                    </span>
+                  </div>
+                  <blockquote className="mt-6 text-sm leading-relaxed text-foreground/90">
+                    “{r.quote}”
+                  </blockquote>
                 </div>
-                <blockquote className="mt-8 font-display text-2xl leading-tight">
-                  “{quote}”
-                </blockquote>
-                <div className="mt-8 border-t border-border pt-5">
-                  <p className="text-sm font-bold">{name}</p>
-                  <p className="mt-1 text-xs uppercase tracking-[0.12em] text-muted-foreground">
-                    {detail}
-                  </p>
+                <div className="mt-8 border-t border-border pt-4">
+                  <p className="text-sm font-bold text-foreground">{r.name}</p>
+                  <p className="mt-0.5 text-xs text-muted-foreground">{r.detail}</p>
                 </div>
               </Reveal>
             ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link
+              to="/reviews"
+              className="button-forest inline-flex items-center gap-2 px-8 py-3.5 text-sm font-semibold tracking-wider shadow-md"
+            >
+              Read All 279+ Google Reviews with Topics & Filters &rarr;
+            </Link>
           </div>
         </div>
       </section>

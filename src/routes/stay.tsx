@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Bed, CheckCircle2, Coffee, Flame, Heart, ShieldCheck, Sparkles, Sun, Wifi, Wind } from "lucide-react";
 import { BookingCalculator } from "@/components/booking-calculator";
 import { PageFrame, PageHero, whatsappUrl, WhatsAppIcon } from "@/components/negi-layout";
+import SEO from "@/components/SEO";
 import balconyRoom from "@/assets/balcony-room.png";
 import windowRoom from "@/assets/window-room.png";
 import roomView from "@/assets/negi-cottage-room-view.png";
@@ -118,6 +119,12 @@ const roomTiers = [
 function StayPage() {
   return (
     <PageFrame>
+      <SEO
+        title="Places to Stay in Sangla | Budget Homestay & Hotel in Sangla Valley"
+        description="Looking for places to stay in Sangla? Negi Cottage offers the best budget homestay and family stay in Sangla Valley. Clean rooms with attached hot geysers, mountain balconies, and family suites from ₹1,500/night."
+        path="/stay"
+        image="/images/negi-cottage-cover.png"
+      />
       <PageHero
         image={roomView}
         imageAlt="Mountain-view guest room at Negi Cottage"

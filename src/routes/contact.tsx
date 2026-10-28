@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CheckCircle2, Clock, HelpCircle, MapPin, MessageSquare, Phone, ShieldCheck, Wifi } from "lucide-react";
 import { BookingCalculator } from "@/components/booking-calculator";
 import { PageFrame, PageHero, whatsappUrl, WhatsAppIcon } from "@/components/negi-layout";
+import SEO from "@/components/SEO";
 import entrance from "@/assets/negi-cottage-entrance.png";
 import balcony from "@/assets/balcony.png";
 import gardan from "@/assets/gardan.png";
@@ -60,6 +61,12 @@ const travelFaqs = [
 function ContactPage() {
   return (
     <PageFrame>
+      <SEO
+        title="Contact & Booking | Negi Cottage, Kupa, Sangla Valley"
+        description="Contact Negi Cottage directly on WhatsApp or by phone for availability, seasonal rates, and booking enquiries. Kuppa Bus Stand, Sangla Valley, HP."
+        path="/contact"
+        image="/images/negi-cottage-cover.png"
+      />
       <PageHero
         image={entrance}
         imageAlt="Welcoming carved entrance to Negi Cottage"

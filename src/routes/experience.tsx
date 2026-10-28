@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Calendar, CheckCircle2, Clock, Compass, Flame, MapPin, Moon, Mountain, Sparkles, Sun, Trees, Wind } from "lucide-react";
 import { PageFrame, PageHero, whatsappUrl, WhatsAppIcon } from "@/components/negi-layout";
+import SEO from "@/components/SEO";
 import orchard from "@/assets/negi-cottage-orchard.png";
 import bornfire from "@/assets/bornfire.png";
 import nightView from "@/assets/night-view.png";
@@ -45,6 +46,12 @@ export const Route = createFileRoute("/experience")({
 function ExperiencePage() {
   return (
     <PageFrame>
+      <SEO
+        title="Things to Do in Sangla Valley & Kinnaur Travel Guide | Negi Cottage"
+        description="Complete Sangla Valley travel guide and top things to do in Sangla Valley, Kinnaur: apple orchard walks, Kamru Fort hikes, Chitkul day trips, evening bonfires, and a curated 4-day Kinnaur travel itinerary."
+        path="/experience"
+        image="/images/negi-cottage-cover.png"
+      />
       <PageHero
         image={orchard}
         imageAlt="Apple orchards and Himalayan slopes around Negi Cottage"

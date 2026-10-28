@@ -14,6 +14,7 @@ import {
   Trees,
 } from "lucide-react";
 import { PageFrame, PageHero, whatsappUrl, WhatsAppIcon } from "@/components/negi-layout";
+import SEO from "@/components/SEO";
 import mountain from "@/assets/negi-cottage-mountains.png";
 import orchard from "@/assets/negi-cottage-orchard.png";
 import bornfire from "@/assets/bornfire.png";
@@ -196,6 +197,12 @@ const attractions = [
 function ThingsToDoPage() {
   return (
     <PageFrame>
+      <SEO
+        title="Top Things to Do in Sangla Valley | Complete Sightseeing Guide"
+        description="Discover the best things to do in Sangla Valley: Kamru Fort, Chitkul (Last Village of India), Baspa River trails, apple orchard strolls, Bering Nag temple, and alpine viewpoints curated by Negi Cottage."
+        path="/things-to-do-in-sangla"
+        image="/images/negi-cottage-cover.png"
+      />
       <PageHero
         image={mountain}
         imageAlt="Panoramic mountain landscape of Sangla Valley"

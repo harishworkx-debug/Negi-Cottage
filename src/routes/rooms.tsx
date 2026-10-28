@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Bed, CheckCircle2, Coffee, Flame, Heart, ShieldCheck, Sparkles, Sun, Wifi, Wind } from "lucide-react";
 import { BookingCalculator } from "@/components/booking-calculator";
 import { PageFrame, PageHero, whatsappUrl, WhatsAppIcon } from "@/components/negi-layout";
+import SEO from "@/components/SEO";
 import balconyRoom from "@/assets/balcony-room.png";
 import windowRoom from "@/assets/window-room.png";
 import roomView from "@/assets/negi-cottage-room-view.png";
@@ -127,6 +128,12 @@ const generalAmenities = [
 function RoomsPage() {
   return (
     <PageFrame>
+      <SEO
+        title="Rooms & Accommodation | Negi Cottage, Sangla Valley Kinnaur"
+        description="Explore clean, wood-lined rooms and family suites at Negi Cottage in Kupa, Sangla Valley. Balcony mountain rooms, 24/7 hot geysers, apple orchard views, starting from ₹1,500/night."
+        path="/rooms"
+        image="/images/negi-cottage-cover.png"
+      />
       <PageHero
         image={roomView}
         imageAlt="Mountain-view guest room at Negi Cottage"

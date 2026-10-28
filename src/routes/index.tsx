@@ -39,6 +39,7 @@ import nightView1 from "@/assets/night-view1.png";
 import balconyRoom from "@/assets/balcony-room.png";
 import gardanImage from "@/assets/gardan.png";
 import dinnerarea1Image from "@/assets/dinnerarea1.png";
+import SEO from "@/components/SEO";
 
 const whatsappMessage = encodeURIComponent(
   "Hello, I would like to enquire about booking a stay at Negi Cottage, Kupa.",
@@ -349,6 +350,12 @@ function Index() {
 
   return (
     <main id="home" className="min-h-screen bg-background text-foreground pb-16 lg:pb-0">
+      <SEO
+        title="Negi Cottage, Sangla Valley | Stay in Kinnaur, Himachal"
+        description="Plan your stay at Negi Cottage in Kupa, Sangla Valley, Kinnaur, Himachal Pradesh. Explore the local mountains, discover the valley and contact us for room availability and bookings."
+        path="/"
+        image="/images/negi-cottage-cover.png"
+      />
       {/* Editorial Fixed Navbar */}
       <header
         className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 ${

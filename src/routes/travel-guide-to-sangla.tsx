@@ -24,6 +24,7 @@ import {
   Wind,
 } from "lucide-react";
 import { PageFrame, PageHero, whatsappUrl, WhatsAppIcon } from "@/components/negi-layout";
+import SEO from "@/components/SEO";
 import mountain from "@/assets/negi-cottage-mountains.png";
 import snowView from "@/assets/snow-view.png";
 import sunrise from "@/assets/negi-retreat-sunrise.jpg";
@@ -128,6 +129,12 @@ const transportOptions = [
 function TravelGuidePage() {
   return (
     <PageFrame>
+      <SEO
+        title="Sangla Valley Travel Guide | Planning & Practical Information"
+        description="Complete Sangla Valley travel guide: how to reach from Delhi/Shimla, best season to visit, road conditions, permits, mobile connectivity, ATMs, packing list, and 4-day Kinnaur itineraries."
+        path="/travel-guide-to-sangla"
+        image="/images/negi-cottage-cover.png"
+      />
       <PageHero
         image={sunrise}
         imageAlt="Sunrise over snow peaks in Sangla Valley"

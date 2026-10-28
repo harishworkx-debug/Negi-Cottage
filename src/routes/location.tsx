@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Car, Compass, ExternalLink, MapPin, Navigation, Phone, ShieldCheck } from "lucide-react";
 import { PageFrame, PageHero, directionsUrl, whatsappUrl, WhatsAppIcon } from "@/components/negi-layout";
+import SEO from "@/components/SEO";
 import mountain from "@/assets/negi-cottage-mountains.png";
 import exterior from "@/assets/negi-cottage-exterior.png";
 import entrance from "@/assets/negi-cottage-entrance.png";
@@ -60,6 +61,12 @@ const routeGuides = [
 function LocationPage() {
   return (
     <PageFrame>
+      <SEO
+        title="Homestay near Kamru Fort | Location & Route Guide, Sangla Valley"
+        description="Looking for a homestay near Kamru Fort? Negi Cottage is located in Kupa, just 3 km (6 mins) from historic Kamru Fort, Sangla bazaar, and Baspa River, offering private roadside car parking and apple orchard peace."
+        path="/location"
+        image="/images/negi-cottage-cover.png"
+      />
       <PageHero
         image={mountain}
         imageAlt="Snowy Himalayan landscape around Kupa"

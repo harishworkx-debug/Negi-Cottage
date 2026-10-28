@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { HelmetProvider } from "react-helmet-async";
 import {
   Outlet,
   Link,
@@ -141,12 +142,14 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      {/* Luxury Himalayan Opening Splash Screen (Plays for ~3.4s on initial visit) */}
-      <WelcomeCurtain />
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        {/* Luxury Himalayan Opening Splash Screen (Plays for ~3.4s on initial visit) */}
+        <WelcomeCurtain />
 
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
-    </QueryClientProvider>
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+      </QueryClientProvider>
+    </HelmetProvider>
   );
 }

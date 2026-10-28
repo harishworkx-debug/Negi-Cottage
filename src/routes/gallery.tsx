@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Filter, Sparkles, X } from "lucide-react";
 import { useEffect, useState, useMemo } from "react";
 import { PageFrame, PageHero, whatsappUrl, WhatsAppIcon } from "@/components/negi-layout";
+import SEO from "@/components/SEO";
 import { allCottagePhotos, type CottagePhoto } from "@/lib/cottage-photos";
 import mountain from "@/assets/negi-cottage-mountains.png";
 
@@ -77,6 +78,12 @@ function GalleryPage() {
 
   return (
     <PageFrame>
+      <SEO
+        title="Visual Gallery | Negi Cottage, Kupa, Sangla"
+        description="Explore the complete photo gallery of Negi Cottage in Kupa: deluxe rooms, apple orchards, snowy mountain vistas, traditional dining, and evening bonfires."
+        path="/gallery"
+        image="/images/negi-cottage-cover.png"
+      />
       <PageHero
         image={mountain}
         imageAlt="Himalayan peaks and apple orchards around Negi Cottage"

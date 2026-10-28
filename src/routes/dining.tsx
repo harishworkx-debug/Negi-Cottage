@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CheckCircle2, Coffee, Flame, Heart, Sparkles, Utensils, Wheat } from "lucide-react";
 import { PageFrame, PageHero, whatsappUrl, WhatsAppIcon } from "@/components/negi-layout";
+import SEO from "@/components/SEO";
 import negiCottageDining from "@/assets/negi-cottage-dining.png";
 import gardan from "@/assets/gardan.png";
 import dinnerarea1 from "@/assets/dinnerarea1.png";
@@ -91,6 +92,12 @@ const menuDelicacies = [
 function DiningPage() {
   return (
     <PageFrame>
+      <SEO
+        title="Authentic Himachali Dining & Cuisine | Negi Cottage, Kupa, Sangla"
+        description="Enjoy wholesome home-cooked Himachali and Kinnauri delicacies in the warm wood-panelled dining hall at Negi Cottage in Kupa, Sangla Valley."
+        path="/dining"
+        image="/images/negi-cottage-cover.png"
+      />
       <PageHero
         image={negiCottageDining}
         imageAlt="Wood-panelled dining room at Negi Cottage"

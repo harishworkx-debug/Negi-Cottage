@@ -130,7 +130,7 @@ const navItems = [
   { label: "Reviews", to: "/reviews" },
   { label: "Experience", to: "/experience" },
   { label: "Dining", to: "/dining" },
-  { label: "Gallery (36)", to: "/gallery" },
+  { label: "Gallery", to: "/gallery" },
   { label: "Location", to: "/location" },
   { label: "Contact", to: "/contact" },
 ];
@@ -892,7 +892,7 @@ function Index() {
       <section id="gallery" className="section-pad bg-background">
         <div className="mx-auto max-w-[1440px] px-6 md:px-10 lg:px-12">
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <p className="eyebrow">Kinnaur in Frames · 36 Curated Photos</p>
+            <p className="eyebrow">Kinnaur in Frames · Authentic Homestay</p>
             <h2 className="section-title mt-2">Every Corner, Captured.</h2>
             <p className="mt-3 text-base text-muted-foreground">
               Explore authentic photographs of our rooms, bathrooms, snowy balconies, apple orchards, and peaceful mountain moments.
@@ -937,7 +937,7 @@ function Index() {
               to="/gallery"
               className="button-forest inline-flex items-center gap-2 px-8 py-3.5 text-xs font-bold tracking-wider"
             >
-              Browse Complete 36-Photo Gallery with Descriptions &rarr;
+              Browse Complete Photo Gallery &rarr;
             </Link>
           </div>
         </div>

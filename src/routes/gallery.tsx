@@ -20,17 +20,17 @@ const categoryFilters: { id: FilterCategory; label: string }[] = [
 export const Route = createFileRoute("/gallery")({
   head: () => ({
     meta: [
-      { title: "Visual Gallery (36 Photos) | Negi Cottage, Kupa, Sangla" },
+      { title: "Visual Gallery | Negi Cottage, Kupa, Sangla" },
       {
         name: "description",
         content:
-          "Explore the complete 36-photo gallery of Negi Cottage in Kupa: deluxe rooms, apple orchards, snowy mountain vistas, traditional dining, and evening bonfires.",
+          "Explore the complete photo gallery of Negi Cottage in Kupa: deluxe rooms, apple orchards, snowy mountain vistas, traditional dining, and evening bonfires.",
       },
       { property: "og:title", content: "Negi Cottage Complete Photo Gallery" },
       {
         property: "og:description",
         content:
-          "Browse 36 authentic photographs of Negi Cottage, Sangla Valley: apple orchards, snowy winter views, comfortable rooms, and warm Himachali dining.",
+          "Browse authentic photographs of Negi Cottage, Sangla Valley: apple orchards, snowy winter views, comfortable rooms, and warm Himachali dining.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -79,9 +79,9 @@ function GalleryPage() {
       <PageHero
         image={mountain}
         imageAlt="Himalayan peaks and apple orchards around Negi Cottage"
-        eyebrow="Kinnaur Photo Archive · 36 Curated Frames"
+        eyebrow="Kinnaur Photo Archive · Curated Frames"
         title="Every corner, framed by the Himalayas."
-        copy="Explore all 36 authentic photographs of Negi Cottage—from cozy wood-panelled rooms and crisp snowy winters to apple orchard walks and evening bonfires under starry skies."
+        copy="Explore authentic photographs of Negi Cottage—from cozy wood-panelled rooms and crisp snowy winters to apple orchard walks and evening bonfires under starry skies."
       />
 
       <section className="section-pad bg-background">
@@ -94,10 +94,6 @@ function GalleryPage() {
             </div>
             <div className="flex flex-wrap gap-2">
               {categoryFilters.map((tab) => {
-                const count =
-                  tab.id === "all"
-                    ? allCottagePhotos.length
-                    : allCottagePhotos.filter((p) => p.category === tab.id).length;
                 const isActive = selectedCategory === tab.id;
                 return (
                   <button
@@ -113,7 +109,7 @@ function GalleryPage() {
                         : "border border-border bg-card text-foreground/80 hover:border-forest hover:text-foreground"
                     }`}
                   >
-                    {tab.label} ({count})
+                    {tab.label}
                   </button>
                 );
               })}

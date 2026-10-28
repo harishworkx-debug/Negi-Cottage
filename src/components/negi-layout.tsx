@@ -21,10 +21,51 @@ export const navItems = [
   { label: "Contact", to: "/contact" as const },
 ];
 
-export function WhatsAppIcon({ className = "h-5 w-5" }: { className?: string }) {
+export function OfficialWhatsAppLogo({
+  size = 32,
+  className = "",
+}: {
+  size?: number;
+  className?: string;
+}) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
-      <path d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.15 1.6 5.95L.06 24l6.3-1.65a11.9 11.9 0 0 0 5.7 1.45h.01C18.63 23.8 24 18.46 24 11.9c0-3.18-1.24-6.17-3.48-8.42ZM12.07 21.8h-.01a9.88 9.88 0 0 1-5.04-1.38l-.36-.21-3.74.98 1-3.64-.24-.37a9.87 9.87 0 0 1-1.52-5.28c0-5.46 4.45-9.9 9.92-9.9a9.84 9.84 0 0 1 7.01 2.9A9.83 9.83 0 0 1 22 11.9c0 5.46-4.46 9.9-9.93 9.9Zm5.44-7.42c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48a9.02 9.02 0 0 1-1.66-2.06c-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.27.5 1.7.63.72.23 1.36.2 1.88.12.57-.08 1.76-.72 2-1.42.25-.7.25-1.31.18-1.44-.08-.12-.28-.2-.58-.34Z" />
+    <svg
+      viewBox="0 0 32 32"
+      width={size}
+      height={size}
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ display: "inline-block", verticalAlign: "middle", flexShrink: 0 }}
+      aria-hidden="true"
+    >
+      <circle cx="16" cy="16" r="16" fill="#25D366" />
+      <path
+        fill="#FFFFFF"
+        d="M16 4.8C9.82 4.8 4.8 9.82 4.8 16c0 2.14.6 4.14 1.63 5.86L5 27l5.32-1.4a11.16 11.16 0 0 0 5.68 1.54c6.18 0 11.2-5.02 11.2-11.2S22.18 4.8 16 4.8zm0 2.05c5.05 0 9.15 4.1 9.15 9.15s-4.1 9.15-9.15 9.15c-1.74 0-3.37-.49-4.75-1.34l-.34-.2-3.52.92.94-3.43-.22-.35A9.11 9.11 0 0 1 6.85 16c0-5.05 4.1-9.15 9.15-9.15zm-3.64 4.09c-.2 0-.44.07-.67.33-.23.26-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.12.18 1.76 2.69 4.26 3.77.6.26 1.06.41 1.43.53.6.19 1.15.16 1.57.1.48-.07 1.48-.6 1.69-1.19.21-.59.21-1.1.15-1.2-.06-.11-.23-.17-.48-.3-.25-.12-1.48-.73-1.71-.82-.23-.08-.4-.13-.57.13-.17.25-.65.82-.8 1-.15.17-.29.19-.54.07-.25-.12-1.06-.39-2.02-1.25-.75-.67-1.26-1.51-1.41-1.76-.15-.26-.02-.4.11-.53.11-.11.25-.29.38-.44.13-.14.17-.25.26-.42.08-.17.04-.32-.02-.44-.06-.12-.57-1.36-.78-1.87-.2-.49-.41-.43-.57-.44-.14-.01-.31-.01-.48-.01z"
+      />
+    </svg>
+  );
+}
+
+export function WhatsAppIcon({
+  className = "h-5 w-5",
+  size = 20,
+}: {
+  className?: string;
+  size?: number;
+}) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      fill="currentColor"
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ display: "inline-block", verticalAlign: "middle", flexShrink: 0 }}
+      aria-hidden="true"
+    >
+      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2ZM12.04 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.16 12.04 20.16C10.66 20.16 9.3 19.81 8.1 19.14L7.81 18.97L4.69 19.79L5.52 16.75L5.34 16.45C4.6 15.28 4.21 13.91 4.21 11.91C4.21 7.37 7.91 3.67 12.04 3.67ZM8.79 7.35C8.63 7.35 8.41 7.41 8.22 7.62C8.03 7.83 7.49 8.34 7.49 9.37C7.49 10.4 8.24 11.39 8.35 11.53C8.45 11.67 9.8 13.75 11.88 14.65C12.38 14.86 12.76 14.99 13.06 15.08C13.56 15.24 14.02 15.22 14.38 15.16C14.79 15.1 15.63 14.65 15.8 14.16C15.98 13.67 15.98 13.25 15.92 13.16C15.87 13.07 15.73 13.01 15.52 12.91C15.31 12.8 14.26 12.28 14.06 12.21C13.87 12.14 13.73 12.1 13.59 12.31C13.45 12.52 13.05 13 12.93 13.14C12.81 13.28 12.69 13.3 12.48 13.19C12.27 13.09 11.59 12.87 10.79 12.15C10.16 11.59 9.74 10.9 9.61 10.69C9.49 10.48 9.6 10.37 9.71 10.27C9.8 10.18 9.91 10.03 10.02 9.91C10.12 9.79 10.16 9.7 10.23 9.56C10.3 9.42 10.26 9.3 10.21 9.2C10.16 9.1 9.75 8.09 9.58 7.67C9.41 7.27 9.24 7.32 9.11 7.32C8.99 7.31 8.84 7.31 8.79 7.31L8.79 7.35Z" />
     </svg>
   );
 }
@@ -86,10 +127,10 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
             href={whatsappUrl}
             target="_blank"
             rel="noreferrer"
-            className="button-gold text-xs py-2.5 px-6 font-bold shrink-0"
+            className="inline-flex items-center gap-2 rounded-full bg-[#25D366] hover:bg-[#20BA5A] text-white text-xs py-2 px-5 font-bold uppercase tracking-wider shadow-md transition-all hover:scale-105 shrink-0"
           >
-            <WhatsAppIcon className="h-4 w-4 text-white" />
-            <span>Book Your Stay</span>
+            <OfficialWhatsAppLogo size={20} />
+            <span>WhatsApp</span>
           </a>
         </div>
 
@@ -255,7 +296,7 @@ export function FloatingBooking() {
         aria-label="Chat with Negi Cottage on WhatsApp"
         title="Chat on WhatsApp"
       >
-        <WhatsAppIcon className="h-7 w-7 sm:h-8 sm:w-8 text-white drop-shadow-sm" />
+        <OfficialWhatsAppLogo size={36} />
       </a>
 
       {/* Mobile Fixed Bottom Action Bar */}
@@ -273,7 +314,7 @@ export function FloatingBooking() {
           rel="noreferrer"
           className="flex-1 flex items-center justify-center gap-2 rounded-full bg-[#25D366] hover:bg-[#20BA5A] py-3 text-xs font-bold uppercase tracking-wider text-white shadow-lg transition"
         >
-          <WhatsAppIcon className="h-4 w-4 text-white" />
+          <OfficialWhatsAppLogo size={20} />
           <span>WhatsApp</span>
         </a>
       </div>

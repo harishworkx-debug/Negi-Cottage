@@ -292,9 +292,9 @@ function Index() {
               href={whatsappUrl}
               target="_blank"
               rel="noreferrer"
-              className="button-forest text-xs py-2.5 px-6 font-bold"
+              className="button-gold text-xs py-2.5 px-6 font-bold shrink-0"
             >
-              <WhatsAppIcon className="h-4 w-4 text-terracotta" />
+              <WhatsAppIcon className="h-4 w-4 text-white" />
               <span>Book Your Stay</span>
             </a>
           </div>
@@ -337,9 +337,9 @@ function Index() {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="button-forest w-full justify-center text-xs py-3.5"
+                  className="button-gold w-full justify-center text-xs py-3.5 font-bold"
                 >
-                  <WhatsAppIcon className="h-4 w-4 text-terracotta" /> Book on WhatsApp
+                  <WhatsAppIcon className="h-4 w-4 text-white" /> Book on WhatsApp
                 </a>
                 <a
                   href={phoneUrl}
@@ -401,10 +401,10 @@ function Index() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="button-forest text-xs py-3.5 px-7"
+                className="button-gold text-xs py-3.5 px-8 font-bold"
               >
                 <span>Book Your Stay</span>
-                <ArrowRight className="h-4 w-4 text-terracotta" />
+                <ArrowRight className="h-4 w-4 text-white" />
               </a>
               <a href="#stay" className="button-glass text-xs py-3.5 px-6">
                 Explore the Cottage

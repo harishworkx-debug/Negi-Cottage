@@ -170,9 +170,9 @@ export function BookingCalculator() {
           href={enquiryUrl}
           target="_blank"
           rel="noreferrer"
-          className="button-forest shrink-0 text-center"
+          className="button-gold shrink-0 text-center"
         >
-          <WhatsAppIcon className="h-4 w-4 text-terracotta" />
+          <WhatsAppIcon className="h-4 w-4 text-white" />
           <span>Confirm on WhatsApp &rarr;</span>
         </a>
       </div>

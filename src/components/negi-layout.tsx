@@ -86,9 +86,9 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
             href={whatsappUrl}
             target="_blank"
             rel="noreferrer"
-            className="button-forest text-xs py-2.5 px-6 font-bold"
+            className="button-gold text-xs py-2.5 px-6 font-bold shrink-0"
           >
-            <WhatsAppIcon className="h-4 w-4 text-terracotta" />
+            <WhatsAppIcon className="h-4 w-4 text-white" />
             <span>Book Your Stay</span>
           </a>
         </div>
@@ -259,21 +259,21 @@ export function FloatingBooking() {
       </a>
 
       {/* Mobile Fixed Bottom Action Bar */}
-      <div className="fixed inset-x-0 bottom-0 z-40 flex items-center gap-2 border-t border-forest-border/40 bg-forest/98 p-2.5 shadow-2xl backdrop-blur-lg lg:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-40 flex items-center gap-2.5 border-t border-forest-border/40 bg-forest/98 p-2.5 shadow-2xl backdrop-blur-lg lg:hidden">
         <a
           href={phoneUrl}
-          className="flex-1 flex items-center justify-center gap-2 rounded-full border border-white/20 bg-black/20 py-2.5 text-xs font-bold uppercase tracking-wider text-white"
+          className="flex-1 flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 py-3 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-white/20"
         >
-          <Phone className="h-3.5 w-3.5 text-terracotta" />
+          <Phone className="h-3.5 w-3.5 text-gold" />
           <span>Call</span>
         </a>
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noreferrer"
-          className="flex-1 flex items-center justify-center gap-2 rounded-full bg-terracotta py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow-md"
+          className="button-gold flex-1 justify-center py-3 text-xs font-bold shadow-lg"
         >
-          <WhatsAppIcon className="h-4 w-4" />
+          <WhatsAppIcon className="h-4 w-4 text-white" />
           <span>WhatsApp</span>
         </a>
       </div>

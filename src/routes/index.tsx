@@ -265,20 +265,22 @@ function WhatsAppIcon({
   );
 }
 
-function Reveal({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return <div className={`reveal ${className}`}>{children}</div>;
-}
-
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      const currentScroll = window.scrollY;
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      setScrolled(currentScroll > 40);
+      if (totalScroll > 0) {
+        setScrollProgress(Math.min(100, Math.max(0, (currentScroll / totalScroll) * 100)));
+      }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
@@ -286,7 +288,9 @@ function Index() {
   }, []);
 
   useEffect(() => {
-    const elements = document.querySelectorAll(".reveal, .reveal-scale");
+    const selector =
+      ".reveal, .reveal-up, .reveal-scale, .reveal-left, .reveal-right, .reveal-fade";
+    const elements = document.querySelectorAll(selector);
     const observer = new IntersectionObserver(
       (entries) =>
         entries.forEach((entry) => {
@@ -295,7 +299,7 @@ function Index() {
             observer.unobserve(entry.target);
           }
         }),
-      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
     );
     elements.forEach((element) => observer.observe(element));
     return () => observer.disconnect();
@@ -335,6 +339,17 @@ function Index() {
         path="/"
         image="/images/negi-cottage-cover.png"
       />
+
+      {/* Luxury Golden Scroll Progress Indicator at Top of Viewport */}
+      <div
+        className="fixed top-0 left-0 right-0 h-[2.5px] z-[60] bg-transparent pointer-events-none"
+        aria-hidden="true"
+      >
+        <div
+          className="h-full bg-gradient-to-r from-[#C5A059] via-[#F4E3A1] to-[#C5A059] transition-all duration-75 ease-out shadow-[0_0_10px_rgba(197,160,89,0.9)]"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
       {/* Editorial Fixed Navbar */}
       <header
         className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 ${
@@ -545,7 +560,7 @@ function Index() {
         <div className="mx-auto max-w-[1440px] px-6 md:px-10 lg:px-12">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-20">
             {/* Visual Side */}
-            <Reveal className="relative">
+            <div className="relative reveal-scale">
               <div className="editorial-frame aspect-[4/5] w-full rounded-2xl overflow-hidden shadow-xl border border-border">
                 <img
                   src={nightSnowViewImage}
@@ -557,7 +572,7 @@ function Index() {
               </div>
 
               {/* Overlapping entrance accent badge */}
-              <div className="mt-4 sm:absolute sm:-bottom-8 sm:-right-8 sm:mt-0 sm:w-1/2 rounded-xl overflow-hidden shadow-2xl border-4 border-background bg-card">
+              <div className="mt-4 sm:absolute sm:-bottom-8 sm:-right-8 sm:mt-0 sm:w-1/2 rounded-xl overflow-hidden shadow-2xl border-4 border-background bg-card reveal-up reveal-delay-2">
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
                     src={entranceImage}
@@ -574,22 +589,22 @@ function Index() {
                   <p className="text-xs text-charcoal font-medium">Hand-carved wooden entrance</p>
                 </div>
               </div>
-            </Reveal>
+            </div>
 
             {/* Editorial Copy Side */}
-            <Reveal className="lg:pl-6">
-              <span className="eyebrow">Negi Cottage Sangla · Kinnaur, Himachal Pradesh</span>
-              <h2 className="section-title mt-3">The Best Homestay in Sangla Valley for Apple Orchards & Mountain Peace.</h2>
+            <div className="lg:pl-6">
+              <span className="eyebrow block reveal-up">Negi Cottage Sangla · Kinnaur, Himachal Pradesh</span>
+              <h2 className="section-title mt-3 reveal-up reveal-delay-1">The Best Homestay in Sangla Valley for Apple Orchards & Mountain Peace.</h2>
 
-              <p className="mt-6 text-base text-muted-foreground leading-relaxed sm:text-lg">
+              <p className="mt-6 text-base text-muted-foreground leading-relaxed sm:text-lg reveal-up reveal-delay-2">
                 Nestled peacefully in Kupa just 2 km before Sangla town, Negi Cottage Sangla is widely cherished as one of the best homestays in Sangla Valley. A traditional wooden cottage in Kinnaur Himachal Pradesh surrounded by private apple orchards and unobstructed snow-capped Himalayan peaks.
               </p>
-              <p className="mt-4 text-base text-muted-foreground leading-relaxed">
+              <p className="mt-4 text-base text-muted-foreground leading-relaxed reveal-up reveal-delay-3">
                 Run by Mr. Ajit Negi and his family, this is not an impersonal commercial hotel, but a warm, authentic homestay in Sangla Valley where you wake to birdsong, breathe in pure pine air, and enjoy home-cooked Himachali meals prepared with organic garden vegetables.
               </p>
 
               {/* Verified Highlight Metrics Row */}
-              <div className="mt-10 grid grid-cols-3 border-y border-border py-6">
+              <div className="mt-10 grid grid-cols-3 border-y border-border py-6 reveal-scale reveal-delay-3">
                 <div>
                   <strong className="stat">4.6</strong>
                   <span className="stat-label">
@@ -606,7 +621,7 @@ function Index() {
                 </div>
               </div>
 
-              <div className="mt-8 flex flex-wrap gap-4">
+              <div className="mt-8 flex flex-wrap gap-4 reveal-up reveal-delay-4">
                 <a href={whatsappUrl} target="_blank" rel="noreferrer" className="button-forest">
                   <WhatsAppIcon className="h-4 w-4 text-terracotta" />
                   <span>Enquire on WhatsApp</span>
@@ -615,7 +630,7 @@ function Index() {
                   Discover the Experience
                 </Link>
               </div>
-            </Reveal>
+            </div>
           </div>
         </div>
       </section>
@@ -623,7 +638,7 @@ function Index() {
       {/* 3. Signature Experiences (Asymmetric Editorial Layout) */}
       <section id="experiences" className="section-pad bg-soft-sand/70">
         <div className="mx-auto max-w-[1440px] px-6 md:px-10 lg:px-12">
-          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between mb-14 border-b border-border/80 pb-8">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between mb-14 border-b border-border/80 pb-8 reveal-up">
             <div>
               <p className="eyebrow">Signature Experiences</p>
               <h2 className="section-title mt-2">Days shaped by nature and warmth.</h2>
@@ -636,7 +651,7 @@ function Index() {
           {/* Asymmetric Grid */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
             {/* Feature Card 1: Apple Orchard Walks (Spans 7 cols) */}
-            <div className="group md:col-span-7 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl reveal card-hover-luxury">
+            <div className="group md:col-span-7 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl reveal-scale card-hover-luxury">
               <div className="aspect-[16/10] overflow-hidden bg-muted">
                 <img
                   src={orchardImage}
@@ -659,7 +674,7 @@ function Index() {
             </div>
 
             {/* Feature Card 2: Kinner Kailash Views (Spans 5 cols) */}
-            <div className="group md:col-span-5 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl reveal reveal-delay-1 card-hover-luxury">
+            <div className="group md:col-span-5 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl reveal-scale reveal-delay-1 card-hover-luxury">
               <div className="aspect-[4/3] overflow-hidden bg-muted">
                 <img
                   src={mountainImage}
@@ -682,7 +697,7 @@ function Index() {
             </div>
 
             {/* Feature Card 3: Evening Bonfires (Spans 4 cols) */}
-            <div className="group md:col-span-4 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl reveal reveal-delay-1 card-hover-luxury">
+            <div className="group md:col-span-4 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl reveal-scale reveal-delay-1 card-hover-luxury">
               <div className="aspect-[4/3] overflow-hidden bg-muted">
                 <img
                   src={bornfireImage}
@@ -705,7 +720,7 @@ function Index() {
             </div>
 
             {/* Feature Card 4: Homemade Himachali Cuisine (Spans 4 cols) */}
-            <div className="group md:col-span-4 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl reveal reveal-delay-2 card-hover-luxury">
+            <div className="group md:col-span-4 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl reveal-scale reveal-delay-2 card-hover-luxury">
               <div className="aspect-[4/3] overflow-hidden bg-muted">
                 <img
                   src={diningImage}
@@ -728,7 +743,7 @@ function Index() {
             </div>
 
             {/* Feature Card 5: Family & Group Accommodation (Spans 4 cols) */}
-            <div className="group md:col-span-4 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl reveal reveal-delay-3 card-hover-luxury">
+            <div className="group md:col-span-4 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl reveal-scale reveal-delay-3 card-hover-luxury">
               <div className="aspect-[4/3] overflow-hidden bg-muted">
                 <img
                   src={familyRoomImage}
@@ -756,7 +771,7 @@ function Index() {
       {/* 4. Accommodation Showcase (Spacious & Refined) */}
       <section id="stay" className="section-pad bg-background">
         <div className="mx-auto max-w-[1440px] px-6 md:px-10 lg:px-12">
-          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between mb-16 border-b border-border pb-8">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between mb-16 border-b border-border pb-8 reveal-up">
             <div>
               <p className="eyebrow">Accommodation</p>
               <h2 className="section-title mt-2">Rest, with an unobstructed view.</h2>
@@ -882,7 +897,7 @@ function Index() {
         <div className="mx-auto max-w-[1440px] px-6 md:px-10 lg:px-12">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             {/* Left Copy */}
-            <div>
+            <div className="reveal-left">
               <p className="eyebrow">From the Homestay Kitchen</p>
               <h2 className="section-title mt-2">Authentic Himachali Flavours.</h2>
               <p className="mt-5 text-base text-muted-foreground leading-relaxed sm:text-lg">
@@ -890,7 +905,7 @@ function Index() {
               </p>
 
               <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="rounded-xl border border-border bg-card p-4">
+                <div className="rounded-xl border border-border bg-card p-4 reveal-up card-hover-luxury">
                   <Utensils className="h-5 w-5 text-terracotta" />
                   <h4 className="font-display text-lg font-bold text-charcoal mt-2">
                     Home-Cooked Thalis
@@ -899,7 +914,7 @@ function Index() {
                     Local dal, seasonal organic sabzi, fresh rotis, and mountain chutneys.
                   </p>
                 </div>
-                <div className="rounded-xl border border-border bg-card p-4">
+                <div className="rounded-xl border border-border bg-card p-4 reveal-up reveal-delay-1 card-hover-luxury">
                   <Sparkles className="h-5 w-5 text-terracotta" />
                   <h4 className="font-display text-lg font-bold text-charcoal mt-2">
                     Jain Food Available
@@ -910,7 +925,7 @@ function Index() {
                 </div>
               </div>
 
-              <div className="mt-8">
+              <div className="mt-8 reveal-up reveal-delay-2">
                 <Link to="/dining" className="button-forest text-xs">
                   Read Dining Details & Food Menu &rarr;
                 </Link>
@@ -919,22 +934,22 @@ function Index() {
 
             {/* Right Images */}
             <div className="grid grid-cols-2 gap-4">
-              <div className="editorial-frame aspect-[3/4] rounded-2xl overflow-hidden shadow-md">
+              <div className="editorial-frame aspect-[3/4] rounded-2xl overflow-hidden shadow-md reveal-scale card-hover-luxury">
                 <img
                   src={diningImage}
                   alt="Wood panelled dining hall at Negi Cottage"
                   loading="lazy"
                   decoding="async"
-                  className="h-full w-full object-cover hover:scale-105 transition-transform duration-700"
+                  className="h-full w-full object-cover hover:scale-105 transition-transform duration-700 img-zoom-hover"
                 />
               </div>
-              <div className="editorial-frame aspect-[3/4] rounded-2xl overflow-hidden shadow-md mt-8">
+              <div className="editorial-frame aspect-[3/4] rounded-2xl overflow-hidden shadow-md mt-8 reveal-scale reveal-delay-1 card-hover-luxury">
                 <img
                   src={dinnerarea1Image}
                   alt="Cozy traditional dining lounge and seating"
                   loading="lazy"
                   decoding="async"
-                  className="h-full w-full object-cover hover:scale-105 transition-transform duration-700"
+                  className="h-full w-full object-cover hover:scale-105 transition-transform duration-700 img-zoom-hover"
                 />
               </div>
             </div>
@@ -945,7 +960,7 @@ function Index() {
       {/* 6. Curated Visual Gallery */}
       <section id="gallery" className="section-pad bg-background">
         <div className="mx-auto max-w-[1440px] px-6 md:px-10 lg:px-12">
-          <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="text-center max-w-2xl mx-auto mb-14 reveal-up">
             <p className="eyebrow">Kinnaur in Frames · Authentic Homestay</p>
             <h2 className="section-title mt-2">Every Corner, Captured.</h2>
             <p className="mt-3 text-base text-muted-foreground">
@@ -988,7 +1003,7 @@ function Index() {
             ))}
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-12 text-center reveal-up reveal-delay-1">
             <Link
               to="/gallery"
               className="button-forest inline-flex items-center gap-2 px-8 py-3.5 text-xs font-bold tracking-wider"
@@ -1002,7 +1017,7 @@ function Index() {
       {/* 7. Guest Reviews & Trust */}
       <section id="reviews" className="section-pad bg-soft-sand/70" aria-labelledby="reviews-title">
         <div className="mx-auto max-w-[1440px] px-6 md:px-10 lg:px-12">
-          <div className="grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:items-end">
+          <div className="grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:items-end reveal-up">
             <div>
               <p className="eyebrow">Verified Guest Feedback</p>
               <h2 id="reviews-title" className="section-title mt-2">
@@ -1028,7 +1043,7 @@ function Index() {
           </div>
 
           {/* Google Topic Pills */}
-          <div className="mt-8 flex flex-wrap items-center gap-2 border-y border-border py-4">
+          <div className="mt-8 flex flex-wrap items-center gap-2 border-y border-border py-4 reveal-fade reveal-delay-1">
             <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground mr-2">
               Popular Mentions:
             </span>
@@ -1078,7 +1093,7 @@ function Index() {
             ].map((r, idx) => (
               <div
                 key={r.name}
-                className={`group flex flex-col justify-between bg-card border border-border p-7 sm:p-8 rounded-2xl shadow-xs hover:border-terracotta/40 transition-all duration-300 hover:-translate-y-1 reveal card-hover-luxury ${
+                className={`group flex flex-col justify-between bg-card border border-border p-7 sm:p-8 rounded-2xl shadow-xs hover:border-terracotta/40 transition-all duration-300 hover:-translate-y-1 reveal-scale card-hover-luxury ${
                   idx === 1 ? "reveal-delay-1" : idx === 2 ? "reveal-delay-2" : ""
                 }`}
               >
@@ -1105,7 +1120,7 @@ function Index() {
             ))}
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-12 text-center reveal-up reveal-delay-1">
             <Link
               to="/reviews"
               className="button-forest inline-flex items-center gap-2 px-8 py-3.5 text-xs font-bold tracking-wider"
@@ -1120,7 +1135,7 @@ function Index() {
       {/* 7. Frequently Asked Questions (SEO & Traveler Information) */}
       <section id="faqs" className="section-pad bg-background border-t border-border" aria-labelledby="faqs-title">
         <div className="mx-auto max-w-[1440px] px-6 md:px-10 lg:px-12">
-          <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="text-center max-w-3xl mx-auto mb-14 reveal-up">
             <span className="eyebrow">Clear Guest Information · Negi Cottage</span>
             <h2 id="faqs-title" className="mt-2 font-display text-4xl sm:text-5xl lg:text-6xl text-foreground font-normal">
               Frequently Asked Questions
@@ -1136,7 +1151,9 @@ function Index() {
               return (
                 <div
                   key={faq.q}
-                  className="rounded-2xl border border-border bg-card transition-all duration-300 overflow-hidden shadow-xs hover:border-gold/50"
+                  className={`rounded-2xl border border-border bg-card transition-all duration-300 overflow-hidden shadow-xs hover:border-gold/50 reveal-up card-hover-luxury ${
+                    index % 2 === 1 ? "reveal-delay-1" : ""
+                  }`}
                 >
                   <button
                     type="button"
@@ -1166,7 +1183,7 @@ function Index() {
             })}
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-12 text-center reveal-scale reveal-delay-1">
             <p className="text-xs sm:text-sm text-muted-foreground">
               Have a specific requirement or planning a group trip? Ask Mr. Negi directly on WhatsApp:
             </p>
@@ -1191,8 +1208,8 @@ function Index() {
 
       {/* 8. Location Section */}
       <section id="location" className="bg-forest text-forest-foreground">
-        <div className="grid lg:grid-cols-[0.72fr_1.28fr]">
-          <div className="flex flex-col justify-center px-6 py-16 md:px-12 lg:px-16 lg:py-24">
+        <div className="grid lg:grid-cols-[0.72fr_1.28fr] overflow-hidden">
+          <div className="flex flex-col justify-center px-6 py-16 md:px-12 lg:px-16 lg:py-24 reveal-left">
             <p className="eyebrow text-terracotta">Location & Directions</p>
             <h2 className="mt-3 font-display text-4xl sm:text-5xl text-forest-foreground font-normal">
               In the heart of Kupa.
@@ -1223,7 +1240,7 @@ function Index() {
             </div>
           </div>
 
-          <div className="min-h-[420px] bg-muted lg:min-h-[600px]">
+          <div className="min-h-[420px] bg-muted lg:min-h-[600px] reveal-right">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3404.2618068319944!2d78.24440711086206!3d31.43445865127477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390614d8c0b2125d%3A0x55fdf9e8aad17a56!2sNegi%20Cottage!5e0!3m2!1sen!2sin!4v1789809051469!5m2!1sen!2sin"
               width="600"
@@ -1249,7 +1266,7 @@ function Index() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/80 to-forest/90" />
 
-        <div className="relative z-10 mx-auto max-w-4xl px-6 text-center md:px-10">
+        <div className="relative z-10 mx-auto max-w-4xl px-6 text-center md:px-10 reveal-scale">
           <p className="eyebrow text-terracotta">Begin Your Journey</p>
           <h2 className="font-display text-4xl sm:text-6xl font-normal text-white mt-3 leading-tight">
             Your Himalayan Escape Awaits.

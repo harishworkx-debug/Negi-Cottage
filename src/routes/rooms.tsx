@@ -166,7 +166,7 @@ function RoomsPage() {
           {/* Room Tiers */}
           <div className="mt-14 space-y-20">
             {roomTiers.map((tier, idx) => (
-              <article key={tier.title} className="rounded-3xl border border-border bg-card p-6 sm:p-10 shadow-xs">
+              <article key={tier.title} className="rounded-3xl border border-border bg-card p-6 sm:p-10 shadow-xs reveal-scale card-hover-luxury">
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3 border-b border-border pb-6">
                   <div>
                     <div className="inline-flex items-center gap-2 rounded-full bg-forest/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-forest">
@@ -192,12 +192,12 @@ function RoomsPage() {
                 {/* 4 Photo Grid */}
                 <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                   {tier.images.map((img) => (
-                    <div key={img.title} className="group overflow-hidden rounded-2xl border border-border bg-soft-sand">
+                    <div key={img.title} className="group overflow-hidden rounded-2xl border border-border bg-soft-sand card-hover-luxury">
                       <div className="aspect-[4/3] overflow-hidden">
                         <img
                           src={img.src}
                           alt={img.title}
-                          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 img-zoom-hover"
                           loading="lazy"
                           decoding="async"
                         />

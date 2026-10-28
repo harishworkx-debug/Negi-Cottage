@@ -387,8 +387,52 @@ export function PageFrame({
   children: ReactNode;
   overlayHeader?: boolean;
 }) {
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScroll > 0) {
+        setScrollProgress(Math.min(100, Math.max(0, (currentScroll / totalScroll) * 100)));
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const selector =
+      ".reveal, .reveal-up, .reveal-scale, .reveal-left, .reveal-right, .reveal-fade";
+    const elements = document.querySelectorAll(selector);
+    const observer = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        }),
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+    );
+    elements.forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <main className="min-h-screen bg-background text-foreground pb-16 lg:pb-0">
+      {/* Luxury Golden Scroll Progress Indicator */}
+      <div
+        className="fixed top-0 left-0 right-0 h-[2.5px] z-[60] bg-transparent pointer-events-none"
+        aria-hidden="true"
+      >
+        <div
+          className="h-full bg-gradient-to-r from-[#C5A059] via-[#F4E3A1] to-[#C5A059] transition-all duration-75 ease-out shadow-[0_0_10px_rgba(197,160,89,0.9)]"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
+
       <SiteHeader overlay={overlayHeader} />
       {children}
       <SiteFooter />

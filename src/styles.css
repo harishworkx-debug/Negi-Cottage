@@ -406,26 +406,54 @@
   -webkit-backdrop-filter: blur(16px);
 }
 
-/* Scroll reveal helpers */
-.reveal {
+/* High-End Scroll Reveal & Motion System */
+.reveal,
+.reveal-up {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(42px);
   transition:
-    opacity 800ms cubic-bezier(0.16, 1, 0.3, 1),
-    transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 750ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 750ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
-.reveal.is-visible {
+.reveal.is-visible,
+.reveal-up.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-42px);
+  transition:
+    opacity 750ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 750ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(42px);
+  transition:
+    opacity 750ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 750ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .reveal-scale {
   opacity: 0;
-  transform: scale(0.96) translateY(24px);
+  transform: scale(0.92) translateY(32px);
   transition:
-    opacity 850ms cubic-bezier(0.16, 1, 0.3, 1),
-    transform 850ms cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 800ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 .reveal-scale.is-visible {
@@ -433,17 +461,29 @@
   transform: scale(1) translateY(0);
 }
 
+.reveal-fade {
+  opacity: 0;
+  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
+}
+.reveal-fade.is-visible {
+  opacity: 1;
+}
+
 .reveal-delay-1 {
-  transition-delay: 100ms;
+  transition-delay: 90ms;
 }
 .reveal-delay-2 {
-  transition-delay: 200ms;
+  transition-delay: 180ms;
 }
 .reveal-delay-3 {
-  transition-delay: 300ms;
+  transition-delay: 270ms;
 }
 .reveal-delay-4 {
-  transition-delay: 400ms;
+  transition-delay: 360ms;
+}
+.reveal-delay-5 {
+  transition-delay: 450ms;
 }
 
 /* Luxury Card Hover & Depth Effects */

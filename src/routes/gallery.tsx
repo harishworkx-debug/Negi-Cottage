@@ -129,7 +129,7 @@ function GalleryPage() {
             {filteredPhotos.map((photo, index) => (
               <figure
                 key={photo.id}
-                className="group relative mb-6 break-inside-avoid overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:border-forest/40"
+                className="group relative mb-6 break-inside-avoid overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:border-forest/40 reveal-scale card-hover-luxury"
               >
                 <button
                   type="button"
@@ -143,7 +143,7 @@ function GalleryPage() {
                       alt={photo.title}
                       loading="lazy"
                       decoding="async"
-                      className="w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 img-zoom-hover"
                     />
                   </div>
 

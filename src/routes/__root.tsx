@@ -99,6 +99,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "geo.placename", content: "Kupa, Sangla Valley, Kinnaur" },
       { name: "geo.position", content: "31.4333;78.2667" },
       { name: "ICBM", content: "31.4333, 78.2667" },
+      { name: "theme-color", content: "#0D3327" },
     ],
     links: [
       {
@@ -113,6 +114,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.png", type: "image/x-icon" },
       { rel: "icon", href: "/apple-touch-icon", type: "image/x-icon" },
       { rel: "sitemap", type: "application/xml", href: "/sitemap.xml" },
+      { rel: "manifest", href: "/site.webmanifest" },
     ],
   }),
   shellComponent: RootShell,

@@ -10,16 +10,22 @@ import view from "@/assets/view.png";
 export const Route = createFileRoute("/location")({
   head: () => ({
     meta: [
-      { title: "Location & Directions | Negi Cottage, Kupa, Sangla Valley" },
+      { title: "Homestay near Kamru Fort | Location & Route Guide, Sangla Valley" },
       {
         name: "description",
         content:
-          "Find Negi Cottage at Kuppa Bus Stand, Kupa, Himachal Pradesh 172106. View actual photographs of the property exterior, entrance, and road accessibility.",
+          "Looking for a homestay near Kamru Fort? Negi Cottage is located in Kupa, just 3 km (6 mins) from historic Kamru Fort, Sangla bazaar, and Baspa River, offering private roadside car parking and apple orchard peace.",
       },
-      { property: "og:title", content: "Find Negi Cottage in Kupa" },
+      {
+        name: "keywords",
+        content:
+          "Homestay near Kamru Fort, Negi Cottage location, how to reach Sangla Valley, Kupa Sangla distance, Sangla to Chitkul route, Kamru Fort hotel",
+      },
+      { property: "og:title", content: "Homestay near Kamru Fort & Sangla Valley | Negi Cottage" },
       {
         property: "og:description",
-        content: "Directions, map, and property photos for Negi Cottage near Sangla Valley.",
+        content:
+          "Directions, route distances, and property accessibility for Negi Cottage near Kamru Fort, Sangla, and Chitkul.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -37,9 +43,9 @@ const routeGuides = [
     highlight: "Smooth paved highway alongside the Sutlej river gorge with sweeping valley views.",
   },
   {
-    title: "To Sangla Town & Kamru Fort",
+    title: "Homestay near Kamru Fort & Sangla Town",
     distance: "3 km · ~6 minutes",
-    route: "Quick drive or scenic valley walk from Negi Cottage to Sangla main market, ATMs, local bakeries, and ancient Kamru Fort.",
+    route: "Negi Cottage is one of the closest and most scenic homestays near Kamru Fort. Take a quick 6-minute drive or peaceful valley walk to the ancient 15th-century wooden fortress, Badrinarayan Temple, and Sangla market.",
     highlight: "Daily convenience stores located just steps away from the cottage gate.",
   },
   {
@@ -56,8 +62,8 @@ function LocationPage() {
       <PageHero
         image={mountain}
         imageAlt="Snowy Himalayan landscape around Kupa"
-        eyebrow="Prime Valley Location · Kinnaur"
-        title="In the heart of Kupa."
+        eyebrow="Homestay near Kamru Fort · Sangla Valley"
+        title="In the peaceful heart of Kupa."
         copy="Easily accessible right beside Kuppa Bus Stand, perfectly positioned between Sangla and Chitkul with sweeping mountain views all around."
       />
 

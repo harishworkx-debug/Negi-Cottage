@@ -20,17 +20,22 @@ import bathroom1 from "@/assets/bathroom1.png";
 export const Route = createFileRoute("/stay")({
   head: () => ({
     meta: [
-      { title: "Stay at Negi Cottage | Deluxe Rooms & Family Suites in Kupa, Sangla" },
+      { title: "Places to Stay in Sangla | Budget Homestay & Hotel in Sangla Valley" },
       {
         name: "description",
         content:
-          "Explore genuine photo tours of accommodations at Negi Cottage, Kupa: Balcony Mountain Rooms, Deluxe Suites, Grand Family Suites, and clean ensuite bathrooms with 24/7 hot water geysers.",
+          "Looking for places to stay in Sangla? Negi Cottage offers the best budget homestay and family stay in Sangla Valley. Clean rooms with attached hot geysers, mountain balconies, and family suites from ₹1,500/night.",
       },
-      { property: "og:title", content: "Rooms & Suites at Negi Cottage, Sangla Valley" },
+      {
+        name: "keywords",
+        content:
+          "Hotel in Sangla Valley, Budget homestay in Sangla, Places to stay in Sangla, Family stay in Sangla Valley, Homestay in Sangla Valley, Negi Cottage rooms",
+      },
+      { property: "og:title", content: "Places to Stay in Sangla — Budget Homestay & Hotel in Sangla Valley" },
       {
         property: "og:description",
         content:
-          "Authentic Himalayan homestay rooms with orchard balconies, Kinner Kailash views, and modern comforts. Starting from around ₹1,500/night.",
+          "Authentic rooms and family suites in Sangla Valley with orchard balconies, Kinner Kailash views, 24/7 hot water, and home-cooked meals from ₹1,500/night.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -43,7 +48,7 @@ export const Route = createFileRoute("/stay")({
 const roomTiers = [
   {
     title: "Balcony & Scenic Window Rooms",
-    tag: "Guest Favorite",
+    tag: "Guest Favorite in Sangla",
     price: "From ₹1,800 / night",
     prefillMessage: "Hello, I would like to book a Balcony Mountain Room at Negi Cottage, Kupa.",
     description:
@@ -65,7 +70,7 @@ const roomTiers = [
   },
   {
     title: "Grand Family Suites",
-    tag: "Ideal for Groups & Families",
+    tag: "Best Family Stay in Sangla Valley",
     price: "From ₹2,500 / night",
     prefillMessage: "Hello, I would like to enquire about the Grand Family Suite for our family/group at Negi Cottage, Kupa.",
     description:
@@ -87,7 +92,7 @@ const roomTiers = [
   },
   {
     title: "Classic Mountain Comfort Rooms",
-    tag: "Cozy & Great Value",
+    tag: "Budget Homestay in Sangla (From ₹1,500)",
     price: "From ₹1,500 / night",
     prefillMessage: "Hello, I would like to book a Classic Mountain Room at Negi Cottage, Kupa.",
     description:
@@ -115,9 +120,9 @@ function StayPage() {
       <PageHero
         image={roomView}
         imageAlt="Mountain-view guest room at Negi Cottage"
-        eyebrow="Authentic Mountain Accommodation · Kupa"
+        eyebrow="Places to Stay in Sangla · Kinnaur"
         title="Rest with a view of the peaks."
-        copy="Wake up to birdsong in the apple orchards, inhale the crisp Himalayan air from your wooden balcony, and sleep deeply in clean, heated mountain rooms."
+        copy="Whether you are searching for a serene hotel in Sangla Valley, an authentic homestay in Sangla Valley, or a comfortable family stay in Sangla Valley on a sensible budget, Negi Cottage welcomes you."
       />
 
       {/* Intro Overview */}
@@ -125,12 +130,12 @@ function StayPage() {
         <div className="mx-auto max-w-[1440px] px-6 md:px-10">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between border-b border-border pb-10">
             <div>
-              <p className="eyebrow text-terracotta">Real Photographs · Real Homestay</p>
+              <p className="eyebrow text-terracotta">Budget Homestay in Sangla · Real Photos</p>
               <h2 className="mt-2 font-display text-4xl sm:text-5xl lg:text-6xl text-foreground font-normal">
-                Our Rooms & Suites
+                Places to Stay in Sangla Valley
               </h2>
               <p className="mt-4 max-w-2xl text-base text-muted-foreground leading-relaxed">
-                Every photograph below is taken directly inside Negi Cottage. We take immense pride in sparkling cleanliness, warm Kinnauri hospitality, and unobstructed Himalayan mountain views.
+                If you are comparing hotels in Sangla Valley and looking for genuine mountain peace, Negi Cottage provides a top-rated budget homestay and family stay in Sangla Valley with clean heated rooms, attached washrooms with 24/7 geysers, and orchard balconies starting from ₹1,500/night.
               </p>
             </div>
             <a href={whatsappUrl} target="_blank" rel="noreferrer" className="button-forest shrink-0">

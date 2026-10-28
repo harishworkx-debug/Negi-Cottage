@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Compass, Flame, Moon, Mountain, Sparkles, Sun, Trees, Wind } from "lucide-react";
+import { ArrowRight, Calendar, CheckCircle2, Clock, Compass, Flame, MapPin, Moon, Mountain, Sparkles, Sun, Trees, Wind } from "lucide-react";
 import { PageFrame, PageHero, whatsappUrl, WhatsAppIcon } from "@/components/negi-layout";
 import orchard from "@/assets/negi-cottage-orchard.png";
 import bornfire from "@/assets/bornfire.png";
@@ -16,17 +16,22 @@ import sunrise from "@/assets/negi-retreat-sunrise.jpg";
 export const Route = createFileRoute("/experience")({
   head: () => ({
     meta: [
-      { title: "The Himalayan Experience | Negi Cottage, Kupa, Sangla" },
+      { title: "Things to Do in Sangla Valley & Kinnaur Travel Guide | Negi Cottage" },
       {
         name: "description",
         content:
-          "Discover apple orchard walks, magical evening bonfires, winter snowfall, and stargazing in Kinnaur at Negi Cottage in Sangla Valley.",
+          "Complete Sangla Valley travel guide and top things to do in Sangla Valley, Kinnaur: apple orchard walks, Kamru Fort hikes, Chitkul day trips, evening bonfires, and a curated 4-day Kinnaur travel itinerary.",
       },
-      { property: "og:title", content: "The Negi Cottage Himalayan Experience" },
+      {
+        name: "keywords",
+        content:
+          "Things to do in Sangla Valley, Sangla Valley travel guide, Kinnaur travel itinerary, Chitkul day trip, Kamru Fort hike, Baspa river walks, Sangla sightseeing",
+      },
+      { property: "og:title", content: "Things to Do in Sangla Valley & Kinnaur Travel Guide" },
       {
         property: "og:description",
         content:
-          "Bonfires, orchard strolls, snow-capped Kinner Kailash views, and authentic Kinnauri hospitality.",
+          "Curated local guide: Kamru Fort, Chitkul excursions, apple orchards, Baspa river walks, and Kinnaur travel itineraries curated by Negi Cottage.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -299,6 +304,167 @@ function ExperiencePage() {
           </div>
         </div>
       </section>
+
+      {/* Chapter 4: Sangla Valley Travel Guide & Top Things to Do */}
+      <section className="section-pad bg-soft-sand/70 border-t border-border">
+        <div className="mx-auto max-w-[1440px] px-6 md:px-10">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <span className="eyebrow">Sangla Valley Travel Guide</span>
+            <h2 className="mt-2 font-display text-4xl sm:text-5xl lg:text-6xl text-foreground font-normal">
+              Top Things to Do in Sangla Valley
+            </h2>
+            <p className="mt-4 text-base text-muted-foreground leading-relaxed">
+              Curated by the Negi family: the most scenic day excursions, heritage landmarks, and authentic mountain activities to experience while staying at Negi Cottage in Kupa.
+            </p>
+          </div>
+
+          {/* Things to Do Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md transition-all">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-terracotta">Heritage Landmark</span>
+              <h3 className="font-display text-2xl font-semibold text-foreground mt-1.5">
+                Explore Kamru Fort (3 km)
+              </h3>
+              <p className="mt-2.5 text-sm text-muted-foreground leading-relaxed">
+                A 15th-century wooden tower fortress entered through multiple carved timber gates. Houses the ancient Kamakhya Devi idol and offers 360-degree panoramic views of the entire Sangla Valley.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md transition-all">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-terracotta">Scenic Day Trip</span>
+              <h3 className="font-display text-2xl font-semibold text-foreground mt-1.5">
+                Day Excursion to Chitkul (24 km)
+              </h3>
+              <p className="mt-2.5 text-sm text-muted-foreground leading-relaxed">
+                Drive along the turquoise Baspa River through Rakchham meadows to the legendary last inhabited village on the Indo-Tibetan border. Enjoy riverside walks and tea at "Hindustan ka Aakhri Dhaba".
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md transition-all">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-terracotta">Orchard Life</span>
+              <h3 className="font-display text-2xl font-semibold text-foreground mt-1.5">
+                Apple Orchard Strolls
+              </h3>
+              <p className="mt-2.5 text-sm text-muted-foreground leading-relaxed">
+                Step right outside your room into private apple orchards. Spring brings fragrant white blossoms, while late summer and autumn (Aug-Oct) reveal branches laden with juicy Kinnauri apples.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md transition-all">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-terracotta">Glacial Waters</span>
+              <h3 className="font-display text-2xl font-semibold text-foreground mt-1.5">
+                Baspa River Walks & Angling
+              </h3>
+              <p className="mt-2.5 text-sm text-muted-foreground leading-relaxed">
+                Take the pine path down to the sparkling Baspa River. Famous for Himalayan brown and rainbow trout, pebble beach picnics, and peaceful riverside contemplation.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md transition-all">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-terracotta">Night Wonder</span>
+              <h3 className="font-display text-2xl font-semibold text-foreground mt-1.5">
+                Milky Way Bonfire Stargazing
+              </h3>
+              <p className="mt-2.5 text-sm text-muted-foreground leading-relaxed">
+                Free from urban light pollution at 2,600m altitude, gather around the crackling firewood flames in our courtyard to watch shooting stars and the Milky Way arch over snow peaks.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md transition-all">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-terracotta">Local Culture</span>
+              <h3 className="font-display text-2xl font-semibold text-foreground mt-1.5">
+                Bering Nag Temple & Bazaar
+              </h3>
+              <p className="mt-2.5 text-sm text-muted-foreground leading-relaxed">
+                Visit the exquisite wooden Nag temple in Sangla town, famous for the Fulaich festival in September, and browse village shops for traditional green Kinnauri caps, shawls, and pure pine honey.
+              </p>
+            </div>
+          </div>
+
+          {/* 4-Day Kinnaur Travel Itinerary */}
+          <div className="mt-16 rounded-3xl border border-border bg-card p-8 sm:p-12 shadow-md">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-6">
+              <div>
+                <span className="eyebrow text-terracotta">Recommended Road Trip Route</span>
+                <h3 className="mt-1 font-display text-3xl sm:text-4xl font-semibold text-foreground">
+                  4-Day Kinnaur Travel Itinerary
+                </h3>
+              </div>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-forest/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-forest">
+                <Clock className="h-3.5 w-3.5" /> Best Season: Apr – Nov
+              </span>
+            </div>
+
+            <div className="mt-8 space-y-8">
+              <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+                <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-forest text-gold shrink-0 font-display text-xl font-bold">
+                  01
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-display text-xl font-bold text-foreground">
+                    Day 1: Drive from Shimla to Sangla Valley / Kupa (225 km · ~7-8 hrs)
+                  </h4>
+                  <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
+                    Scenic highway journey via Narkanda, Rampur Bushahr, and Sutlej gorge to Karcham dam, turning into the emerald Baspa Valley. Check into Negi Cottage, unwind with steaming ginger chai, and enjoy an evening courtyard bonfire with home-cooked Himachali dinner.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+                <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-forest text-gold shrink-0 font-display text-xl font-bold">
+                  02
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-display text-xl font-bold text-foreground">
+                    Day 2: Kamru Fort, Sangla Bazaar & Orchard Walks
+                  </h4>
+                  <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
+                    Wake up to snow peak views from your wooden balcony. Hike up to ancient Kamru Fort (3 km), visit Badrinarayan temple, browse Sangla town's wood carving ateliers, and return to Negi Cottage for afternoon relaxation among apple trees.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+                <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-forest text-gold shrink-0 font-display text-xl font-bold">
+                  03
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-display text-xl font-bold text-foreground">
+                    Day 3: Day Excursion to Rakchham & Chitkul (24 km)
+                  </h4>
+                  <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
+                    Drive alongside the turquoise Baspa River past Rakchham's alpine meadows to Chitkul, the last village on the Indo-Tibetan border. Stroll along the riverbanks, photograph traditional wooden houses, and return to Negi Cottage for evening tea.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+                <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-forest text-gold shrink-0 font-display text-xl font-bold">
+                  04
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-display text-xl font-bold text-foreground">
+                    Day 4: Kalpa & Kinner Kailash Sunrise or Onward Journey
+                  </h4>
+                  <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
+                    Watch sunrise hit the holy Kinner Kailash summits. Either drive 45 km to Kalpa for the famous Roghi Suicide Point and apple orchards, or begin your relaxed return journey towards Shimla and Chandigarh.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-10 pt-6 border-t border-border flex flex-wrap items-center justify-between gap-4">
+              <p className="text-xs text-muted-foreground">
+                Need customized travel advice or local taxi assistance? Ask Mr. Negi directly.
+              </p>
+              <a href={whatsappUrl} target="_blank" rel="noreferrer" className="button-forest text-xs">
+                <WhatsAppIcon className="h-4 w-4 text-terracotta" /> Enquire Itinerary on WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </PageFrame>
   );
 }

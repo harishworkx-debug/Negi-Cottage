@@ -138,9 +138,10 @@ const navItems = [
 const structuredData = {
   "@context": "https://schema.org",
   "@type": ["Hotel", "LocalBusiness"],
-  name: "Negi Cottage",
+  name: "Negi Cottage Sangla",
+  alternateName: "Negi Cottage Home Stay",
   description:
-    "A boutique Himalayan retreat in Kupa near Sangla Valley, surrounded by apple orchards with Himalayan and Kinner Kailash views.",
+    "A peaceful boutique homestay in Sangla Valley, Kinnaur Himachal Pradesh. Surrounded by apple orchards with snow-capped Kinner Kailash views, authentic Kinnauri dining, and rooms from ₹1,500/night.",
   telephone: "+91 78072 15761",
   priceRange: "₹1,500+",
   address: {
@@ -161,17 +162,22 @@ const structuredData = {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Negi Cottage Kupa | Luxury Boutique Homestay near Sangla Valley" },
+      { title: "Negi Cottage Sangla | Best Homestay in Sangla Valley, Kinnaur Himachal Pradesh" },
       {
         name: "description",
         content:
-          "Negi Cottage is a premium boutique retreat in Kupa, Sangla Valley. Surrounded by apple orchards, Kinner Kailash views, evening bonfires, authentic Kinnauri dining, and rooms from ₹1,500/night.",
+          "Negi Cottage Sangla is a top-rated boutique homestay in Sangla Valley, Kinnaur Himachal Pradesh. Surrounded by private apple orchards, snow-capped Kinner Kailash views, evening bonfires, authentic Kinnauri food, and rooms from ₹1,500/night.",
       },
-      { property: "og:title", content: "Negi Cottage — A Slower Kind of Himalayan Escape" },
+      {
+        name: "keywords",
+        content:
+          "Negi Cottage Sangla, Homestay in Sangla Valley, Cottage in Kinnaur Himachal Pradesh, Best homestay in Sangla, Kupa homestay, Kinnaur homestay",
+      },
+      { property: "og:title", content: "Negi Cottage Sangla — Best Homestay in Sangla Valley, Kinnaur" },
       {
         property: "og:description",
         content:
-          "A peaceful boutique mountain retreat in Kupa, Sangla Valley, Himachal Pradesh. Authentic photography, 4.6★ Google rating, and direct WhatsApp booking.",
+          "Top-rated boutique cottage in Kinnaur Himachal Pradesh with apple orchards, snow-covered Kinner Kailash views, and authentic Kinnauri hospitality. 4.6★ Google rating.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
@@ -528,14 +534,14 @@ function Index() {
 
             {/* Editorial Copy Side */}
             <Reveal className="lg:pl-6">
-              <span className="eyebrow">The Homestay Setting · Kupa</span>
-              <h2 className="section-title mt-3">Where Apple Orchards Meet the Himalayas.</h2>
+              <span className="eyebrow">Negi Cottage Sangla · Kinnaur, Himachal Pradesh</span>
+              <h2 className="section-title mt-3">The Best Homestay in Sangla Valley for Apple Orchards & Mountain Peace.</h2>
 
               <p className="mt-6 text-base text-muted-foreground leading-relaxed sm:text-lg">
-                Nestled peacefully right beside Kuppa Bus Stand in Sangla Valley, Negi Cottage is a true mountain retreat surrounded by private apple orchards and snow-clad Himalayan horizons.
+                Nestled peacefully in Kupa just 2 km before Sangla town, Negi Cottage Sangla is widely cherished as one of the best homestays in Sangla Valley. A traditional wooden cottage in Kinnaur Himachal Pradesh surrounded by private apple orchards and unobstructed snow-capped Himalayan peaks.
               </p>
               <p className="mt-4 text-base text-muted-foreground leading-relaxed">
-                Run by Mr. Ajit Negi and his family, this is not an impersonal hotel, but a warm, authentic homestay where you wake to birdsong, breathe in pure pine air, and enjoy home-cooked Himachali meals prepared with love.
+                Run by Mr. Ajit Negi and his family, this is not an impersonal commercial hotel, but a warm, authentic homestay in Sangla Valley where you wake to birdsong, breathe in pure pine air, and enjoy home-cooked Himachali meals prepared with organic garden vegetables.
               </p>
 
               {/* Verified Highlight Metrics Row */}

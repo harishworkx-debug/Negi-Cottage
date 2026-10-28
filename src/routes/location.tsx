@@ -101,7 +101,7 @@ function LocationPage() {
                 <a href={directionsUrl} target="_blank" rel="noreferrer" className="button-gold">
                   Get Directions <ExternalLink className="h-4 w-4" />
                 </a>
-                <a href="tel:+917807215761" className="button-outline-light">
+                <a href="tel:+919816815761" className="button-outline-light">
                   <Phone className="h-4 w-4" /> Call Host
                 </a>
                 <a href={whatsappUrl} target="_blank" rel="noreferrer" className="button-outline-light">

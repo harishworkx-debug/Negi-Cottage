@@ -9,7 +9,7 @@ export const whatsappMessage = encodeURIComponent(
   "Hello, I would like to enquire about booking a stay at Negi Cottage, Kupa.",
 );
 export const whatsappUrl = `https://wa.me/917807215761?text=${whatsappMessage}`;
-export const phoneUrl = "tel:+917807215761";
+export const phoneUrl = "tel:+919816815761";
 export const directionsUrl =
   "https://www.google.com/maps/dir/?api=1&destination=Negi+Cottage+Kupa+Himachal+Pradesh+172106";
 
@@ -183,7 +183,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
                 href={phoneUrl}
                 className="button-outline-light w-full justify-center text-xs py-3"
               >
-                <Phone className="h-4 w-4" /> Call +91 78072 15761
+                <Phone className="h-4 w-4" /> Call +91 98168 15761
               </a>
             </div>
           </div>
@@ -267,7 +267,7 @@ export function SiteFooter() {
               <div className="flex items-center gap-2.5">
                 <Phone className="h-4 w-4 shrink-0 text-terracotta" />
                 <a href={phoneUrl} className="hover:text-terracotta transition-colors font-semibold">
-                  +91 78072 15761
+                  +91 98168 15761
                 </a>
               </div>
               <div className="pt-2">

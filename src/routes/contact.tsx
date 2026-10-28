@@ -110,10 +110,10 @@ function ContactPage() {
                 Call Negi Cottage
               </h2>
               <a
-                href="tel:+917807215761"
+                href="tel:+919816815761"
                 className="mt-3 block font-display text-3xl sm:text-4xl font-bold text-forest hover:text-pine transition-colors"
               >
-                +91 78072 15761
+                +91 98168 15761
               </a>
               <p className="mt-2 text-xs text-muted-foreground">
                 Available daily from 7:00 AM to 10:00 PM IST for road advice, route guidance, and room bookings.

@@ -8,7 +8,7 @@ export const lodgingBusinessSchema = {
   alternateName: "Negi Cottage Home Stay",
   url: "https://www.negicottage.in/",
   image: "https://www.negicottage.in/images/negi-cottage-cover.png",
-  telephone: "+917807215761",
+  telephone: "+919816815761",
   priceRange: "₹1,500 - ₹3,000",
   checkinTime: "12:00",
   checkoutTime: "11:00",

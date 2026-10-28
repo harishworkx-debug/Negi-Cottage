@@ -46,7 +46,7 @@ const whatsappMessage = encodeURIComponent(
   "Hello, I would like to enquire about booking a stay at Negi Cottage, Kupa.",
 );
 const whatsappUrl = `https://wa.me/917807215761?text=${whatsappMessage}`;
-const phoneUrl = "tel:+917807215761";
+const phoneUrl = "tel:+919816815761";
 const directionsUrl =
   "https://www.google.com/maps/dir/?api=1&destination=Negi+Cottage+Kupa+Himachal+Pradesh+172106";
 
@@ -147,7 +147,7 @@ const homeFaqs = [
   },
   {
     q: "How can I check room availability and book my stay?",
-    a: "You can check real-time availability and confirm your booking directly via WhatsApp or phone call at +91 78072 15761. Direct bookings carry zero middleman commission, best available tariffs, and instant confirmation from Mr. Negi.",
+    a: "You can check real-time availability and confirm your booking directly via WhatsApp at +91 78072 15761 or phone call at +91 98168 15761. Direct bookings carry zero middleman commission, best available tariffs, and instant confirmation from Mr. Negi.",
   },
   {
     q: "What meals and dining options are available at the homestay?",
@@ -445,7 +445,7 @@ function Index() {
                   href={phoneUrl}
                   className="button-outline-light w-full justify-center text-xs py-3"
                 >
-                  <Phone className="h-4 w-4" /> Call +91 78072 15761
+                  <Phone className="h-4 w-4" /> Call +91 98168 15761
                 </a>
               </div>
             </div>
@@ -1199,7 +1199,7 @@ function Index() {
               </a>
               <a href={phoneUrl} className="button-outline-forest text-xs font-bold">
                 <Phone className="h-3.5 w-3.5 text-gold" />
-                <span>Call +91 78072 15761</span>
+                <span>Call +91 98168 15761</span>
               </a>
             </div>
           </div>
@@ -1297,7 +1297,7 @@ function Index() {
               href={phoneUrl}
               className="text-xs font-semibold tracking-wider text-forest-foreground/80 hover:text-white underline decoration-terracotta underline-offset-8"
             >
-              Direct Host Line: +91 78072 15761
+              Direct Host Line: +91 98168 15761
             </a>
           </div>
         </div>
@@ -1372,7 +1372,7 @@ function Index() {
                 <div className="flex items-center gap-2.5">
                   <Phone className="h-4 w-4 shrink-0 text-terracotta" />
                   <a href={phoneUrl} className="hover:text-terracotta transition-colors font-semibold">
-                    +91 78072 15761
+                    +91 98168 15761
                   </a>
                 </div>
                 <div className="pt-2">

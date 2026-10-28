@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CheckCircle2, Coffee, Flame, Heart, Sparkles, Utensils, Wheat } from "lucide-react";
 import { PageFrame, PageHero, whatsappUrl, WhatsAppIcon } from "@/components/negi-layout";
 import negiCottageDining from "@/assets/negi-cottage-dining.png";
-import dinnerarea from "@/assets/dinnerarea.png";
+import gardan from "@/assets/gardan.png";
 import dinnerarea1 from "@/assets/dinnerarea1.png";
 import dinnerarea2 from "@/assets/dinnerarea2.png";
 
@@ -38,11 +38,11 @@ const diningHighlights = [
       "Handcrafted timber walls and warm mountain lighting create an intimate, cozy atmosphere where guests gather to share stories and savor homestyle cooking.",
   },
   {
-    image: dinnerarea,
-    title: "The Cottage Feast Table",
-    tag: "Homestyle Meals",
+    image: gardan,
+    title: "Organic Cottage Garden Harvest",
+    tag: "Farm to Table",
     description:
-      "Spacious dining table setup tailored for slow breakfasts and hearty family dinners after days spent exploring Kinnaur and Sangla Valley.",
+      "Fresh mountain vegetables, crisp greens, and organic herbs picked right from our adjacent garden to prepare healthy, nourishing home meals.",
   },
   {
     image: dinnerarea1,

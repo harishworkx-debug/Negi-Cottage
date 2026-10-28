@@ -36,7 +36,7 @@ import bornfireImage from "@/assets/bornfire.png";
 import nightView1 from "@/assets/night-view1.png";
 import balconyRoom from "@/assets/balcony-room.png";
 import gardanImage from "@/assets/gardan.png";
-import dinnerareaImage from "@/assets/dinnerarea.png";
+import dinnerarea1Image from "@/assets/dinnerarea1.png";
 
 const whatsappMessage = encodeURIComponent(
   "Hello, I would like to enquire about booking a stay at Negi Cottage, Kupa.",
@@ -878,8 +878,8 @@ function Index() {
               </div>
               <div className="editorial-frame aspect-[3/4] rounded-2xl overflow-hidden shadow-md mt-8">
                 <img
-                  src={dinnerareaImage}
-                  alt="Family dining table setting"
+                  src={dinnerarea1Image}
+                  alt="Cozy traditional dining lounge and seating"
                   className="h-full w-full object-cover hover:scale-105 transition-transform duration-700"
                 />
               </div>

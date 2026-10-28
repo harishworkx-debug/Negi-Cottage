@@ -3,35 +3,47 @@ import { useEffect, useState, useCallback } from "react";
 /**
  * WelcomeCurtain — Luxury Himalayan Opening Splash Screen
  * 
- * Runs for ~3.4 seconds on the user's first visit in a browser session.
+ * Directly displays on the very first frame when someone opens the website (no homepage flash).
  * Features:
  * - Deep Royal Emerald & Champagne Gold aesthetic
  * - Elegant Cormorant Garamond typography ("Negi Cottage", "Home Stay")
- * - Himalayan mountain peaks silhouette
- * - Smooth 3.2s golden progress indicator
- * - Instant "Enter / Skip →" button and tap-to-dismiss
+ * - Layered Himalayan mountain peaks silhouette
+ * - Direct welcome appearance without any progress/processing bar
+ * - Auto-dismiss after 3.2s, or instant dismiss on tap/click/Enter
  * - Smooth upward curtain slide transition
- * - Session storage persistence (won't annoyingly repeat during regular navigation)
+ * - Session storage persistence (won't repeat during internal page navigation)
  * - Testable anytime via ?intro=1 query parameter
  */
 export function WelcomeCurtain() {
-  const [shouldRender, setShouldRender] = useState(false);
+  const [shouldRender, setShouldRender] = useState(() => {
+    if (typeof window === "undefined") return true;
+    try {
+      const searchParams = new URLSearchParams(window.location.search);
+      if (searchParams.get("intro") === "1" || searchParams.get("intro") === "true") {
+        return true;
+      }
+      return window.sessionStorage.getItem("negi_intro_shown") !== "true";
+    } catch {
+      return true;
+    }
+  });
+
   const [isExiting, setIsExiting] = useState(false);
-  const [progress, setProgress] = useState(0);
 
   const dismiss = useCallback(() => {
     setIsExiting(true);
     if (typeof window !== "undefined") {
       try {
         window.sessionStorage.setItem("negi_intro_shown", "true");
+        document.documentElement.classList.add("intro-seen");
       } catch {
         // Ignore session storage errors (e.g. private browsing restrictions)
       }
     }
-    // Remove from DOM after transition completes (850ms)
+    // Remove from DOM after smooth upward curtain slide (800ms)
     setTimeout(() => {
       setShouldRender(false);
-    }, 850);
+    }, 800);
   }, []);
 
   useEffect(() => {
@@ -49,39 +61,16 @@ export function WelcomeCurtain() {
     }
 
     if (alreadySeen && !forceIntro) {
+      setShouldRender(false);
       return;
     }
 
-    setShouldRender(true);
-
-    // Smoothly animate progress bar from 0 to 100 over ~3200ms
-    const startTime = performance.now();
-    const duration = 3200; // 3.2 seconds
-    let animationFrameId: number;
-
-    const updateProgress = (now: number) => {
-      const elapsed = now - startTime;
-      const pct = Math.min(Math.floor((elapsed / duration) * 100), 100);
-      setProgress(pct);
-
-      if (elapsed < duration) {
-        animationFrameId = requestAnimationFrame(updateProgress);
-      } else {
-        // Automatically start curtain exit when loading reaches 100%
-        setTimeout(() => {
-          dismiss();
-        }, 200);
-      }
-    };
-
-    animationFrameId = requestAnimationFrame(updateProgress);
-
-    // Safety timeout to ensure curtain closes even on slow ticks (3800ms)
+    // Auto-dismiss smoothly after 3.2 seconds
     const timer = setTimeout(() => {
       dismiss();
-    }, 3800);
+    }, 3200);
 
-    // Keyboard ESC to skip
+    // Keyboard ESC/Enter/Space to skip immediately
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" || e.key === "Enter" || e.key === " ") {
         dismiss();
@@ -90,7 +79,6 @@ export function WelcomeCurtain() {
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
       clearTimeout(timer);
       window.removeEventListener("keydown", handleKeyDown);
     };
@@ -100,6 +88,7 @@ export function WelcomeCurtain() {
 
   return (
     <div
+      id="negi-welcome-curtain"
       role="dialog"
       aria-modal="true"
       aria-label="Welcome to Negi Cottage Home Stay"
@@ -110,7 +99,7 @@ export function WelcomeCurtain() {
           : "translate-y-0 opacity-100"
       }`}
       style={{
-        background: "radial-gradient(circle at 50% 40%, #0F382B 0%, #08241B 50%, #04120D 100%)",
+        background: "radial-gradient(circle at 50% 38%, #0F382B 0%, #08241B 52%, #03120D 100%)",
         transitionTimingFunction: "cubic-bezier(0.8, 0, 0.2, 1)",
       }}
     >
@@ -176,7 +165,7 @@ export function WelcomeCurtain() {
         </button>
       </div>
 
-      {/* Centerpiece: Welcome to Negi Cottage Home Stay */}
+      {/* Centerpiece: Pure Welcome to Negi Cottage Home Stay (No progress bar) */}
       <div className="relative z-10 flex flex-col items-center px-6 text-center max-w-2xl my-auto animate-hero-in">
         {/* Eyebrow badge */}
         <div className="inline-flex items-center gap-2.5 rounded-full border border-gold/30 bg-gold/10 px-4 py-1 text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.3em] text-gold shadow-sm">
@@ -208,35 +197,17 @@ export function WelcomeCurtain() {
         </p>
 
         <p className="mt-2 text-[11px] sm:text-xs text-white/55 tracking-[0.18em] uppercase font-sans">
-          Alt. 2,600m · Apple Orchards · Snow Peak Vistas · Riverside Serenity
+          Alt. 2,600m · Apple Orchards · Snow Peak Vistas · Pure Mountain Peace
         </p>
-
-        {/* Progress bar (fills across 3.2s) */}
-        <div className="w-56 sm:w-72 max-w-[80vw] mx-auto mt-8 sm:mt-10">
-          <div className="h-[3px] w-full overflow-hidden rounded-full bg-white/10 p-[0.5px]">
-            <div
-              className="h-full rounded-full transition-all duration-75 ease-out shadow-sm"
-              style={{
-                width: `${progress}%`,
-                background: "linear-gradient(90deg, #B8860B 0%, #D4AF37 50%, #F5E6C8 100%)",
-              }}
-            />
-          </div>
-          <div className="mt-2.5 flex items-center justify-between text-[10px] font-sans font-medium uppercase tracking-widest text-white/45">
-            <span>Entering Sanctuary</span>
-            <span>{progress}%</span>
-          </div>
-        </div>
       </div>
 
       {/* Bottom Footer Hint */}
       <div className="relative z-10 pb-8 sm:pb-10 text-center">
-        <p className="text-[11px] font-sans tracking-widest uppercase text-white/40 flex items-center justify-center gap-1.5">
-          <span>Click or tap anywhere to explore</span>
+        <p className="text-[11px] font-sans tracking-widest uppercase text-white/50 flex items-center justify-center gap-1.5 transition-opacity hover:text-white">
+          <span>Click anywhere to explore</span>
           <span className="inline-block animate-bounce">↓</span>
         </p>
       </div>
     </div>
   );
 }
-

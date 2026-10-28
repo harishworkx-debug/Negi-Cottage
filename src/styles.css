@@ -454,3 +454,8 @@
 .animate-hero-in {
   animation: hero-in 1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
+
+/* Prevent welcome curtain flashing on subsequent page navigations */
+html.intro-seen #negi-welcome-curtain {
+  display: none !important;
+}

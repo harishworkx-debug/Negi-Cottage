@@ -16,7 +16,10 @@ import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as LocationRouteImport } from './routes/location'
 import { Route as ReviewsRouteImport } from './routes/reviews'
+import { Route as RoomsRouteImport } from './routes/rooms'
 import { Route as StayRouteImport } from './routes/stay'
+import { Route as ThingsToDoInSanglaRouteImport } from './routes/things-to-do-in-sangla'
+import { Route as TravelGuideToSanglaRouteImport } from './routes/travel-guide-to-sangla'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -53,9 +56,24 @@ const ReviewsRoute = ReviewsRouteImport.update({
   path: '/reviews',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RoomsRoute = RoomsRouteImport.update({
+  id: '/rooms',
+  path: '/rooms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StayRoute = StayRouteImport.update({
   id: '/stay',
   path: '/stay',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThingsToDoInSanglaRoute = ThingsToDoInSanglaRouteImport.update({
+  id: '/things-to-do-in-sangla',
+  path: '/things-to-do-in-sangla',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TravelGuideToSanglaRoute = TravelGuideToSanglaRouteImport.update({
+  id: '/travel-guide-to-sangla',
+  path: '/travel-guide-to-sangla',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -67,7 +85,10 @@ export interface FileRoutesByFullPath {
   '/gallery': typeof GalleryRoute
   '/location': typeof LocationRoute
   '/reviews': typeof ReviewsRoute
+  '/rooms': typeof RoomsRoute
   '/stay': typeof StayRoute
+  '/things-to-do-in-sangla': typeof ThingsToDoInSanglaRoute
+  '/travel-guide-to-sangla': typeof TravelGuideToSanglaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -77,7 +98,10 @@ export interface FileRoutesByTo {
   '/gallery': typeof GalleryRoute
   '/location': typeof LocationRoute
   '/reviews': typeof ReviewsRoute
+  '/rooms': typeof RoomsRoute
   '/stay': typeof StayRoute
+  '/things-to-do-in-sangla': typeof ThingsToDoInSanglaRoute
+  '/travel-guide-to-sangla': typeof TravelGuideToSanglaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -88,7 +112,10 @@ export interface FileRoutesById {
   '/gallery': typeof GalleryRoute
   '/location': typeof LocationRoute
   '/reviews': typeof ReviewsRoute
+  '/rooms': typeof RoomsRoute
   '/stay': typeof StayRoute
+  '/things-to-do-in-sangla': typeof ThingsToDoInSanglaRoute
+  '/travel-guide-to-sangla': typeof TravelGuideToSanglaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -100,7 +127,10 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/location'
     | '/reviews'
+    | '/rooms'
     | '/stay'
+    | '/things-to-do-in-sangla'
+    | '/travel-guide-to-sangla'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -110,7 +140,10 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/location'
     | '/reviews'
+    | '/rooms'
     | '/stay'
+    | '/things-to-do-in-sangla'
+    | '/travel-guide-to-sangla'
   id:
     | '__root__'
     | '/'
@@ -120,7 +153,10 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/location'
     | '/reviews'
+    | '/rooms'
     | '/stay'
+    | '/things-to-do-in-sangla'
+    | '/travel-guide-to-sangla'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -131,7 +167,10 @@ export interface RootRouteChildren {
   GalleryRoute: typeof GalleryRoute
   LocationRoute: typeof LocationRoute
   ReviewsRoute: typeof ReviewsRoute
+  RoomsRoute: typeof RoomsRoute
   StayRoute: typeof StayRoute
+  ThingsToDoInSanglaRoute: typeof ThingsToDoInSanglaRoute
+  TravelGuideToSanglaRoute: typeof TravelGuideToSanglaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -185,11 +224,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReviewsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/rooms': {
+      id: '/rooms'
+      path: '/rooms'
+      fullPath: '/rooms'
+      preLoaderRoute: typeof RoomsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/stay': {
       id: '/stay'
       path: '/stay'
       fullPath: '/stay'
       preLoaderRoute: typeof StayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/things-to-do-in-sangla': {
+      id: '/things-to-do-in-sangla'
+      path: '/things-to-do-in-sangla'
+      fullPath: '/things-to-do-in-sangla'
+      preLoaderRoute: typeof ThingsToDoInSanglaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/travel-guide-to-sangla': {
+      id: '/travel-guide-to-sangla'
+      path: '/travel-guide-to-sangla'
+      fullPath: '/travel-guide-to-sangla'
+      preLoaderRoute: typeof TravelGuideToSanglaRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -203,7 +263,10 @@ const rootRouteChildren: RootRouteChildren = {
   GalleryRoute: GalleryRoute,
   LocationRoute: LocationRoute,
   ReviewsRoute: ReviewsRoute,
+  RoomsRoute: RoomsRoute,
   StayRoute: StayRoute,
+  ThingsToDoInSanglaRoute: ThingsToDoInSanglaRoute,
+  TravelGuideToSanglaRoute: TravelGuideToSanglaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

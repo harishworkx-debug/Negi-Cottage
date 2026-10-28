@@ -1322,6 +1322,24 @@ function Index() {
               </div>
             </div>
 
+            {/* Travel Guides & Local Sightseeing */}
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-terracotta mb-4">
+                Sangla Guides
+              </p>
+              <div className="flex flex-col gap-2.5 text-xs tracking-wider text-forest-foreground/80">
+                <Link to="/rooms" className="hover:text-terracotta transition-colors">
+                  Rooms & Suites
+                </Link>
+                <Link to="/things-to-do-in-sangla" className="hover:text-terracotta transition-colors">
+                  Things to Do in Sangla
+                </Link>
+                <Link to="/travel-guide-to-sangla" className="hover:text-terracotta transition-colors">
+                  Sangla Travel Guide
+                </Link>
+              </div>
+            </div>
+
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-terracotta mb-4">
                 Direct Contact

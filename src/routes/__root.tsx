@@ -139,11 +139,6 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `try{if(sessionStorage.getItem('negi_intro_shown')==='true'){document.documentElement.classList.add('intro-seen');}}catch(e){}`,
-          }}
-        />
       </head>
       <body>
         {children}

@@ -406,18 +406,112 @@
   -webkit-backdrop-filter: blur(16px);
 }
 
-/* Scroll reveal helper */
+/* Scroll reveal helpers */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(28px);
   transition:
-    opacity 750ms cubic-bezier(0.16, 1, 0.3, 1),
-    transform 750ms cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 800ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.96) translateY(24px);
+  transition:
+    opacity 850ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 850ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-scale.is-visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.reveal-delay-1 {
+  transition-delay: 100ms;
+}
+.reveal-delay-2 {
+  transition-delay: 200ms;
+}
+.reveal-delay-3 {
+  transition-delay: 300ms;
+}
+.reveal-delay-4 {
+  transition-delay: 400ms;
+}
+
+/* Luxury Card Hover & Depth Effects */
+.card-hover-luxury {
+  transition:
+    transform 450ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 450ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 350ms ease;
+  will-change: transform, box-shadow;
+}
+.card-hover-luxury:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -15px rgba(10, 36, 27, 0.16);
+  border-color: rgba(212, 175, 55, 0.45);
+}
+
+.img-zoom-hover {
+  transition: transform 850ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+.group:hover .img-zoom-hover {
+  transform: scale(1.06);
+}
+
+/* Hero Slide Text Animations */
+@keyframes slide-eyebrow-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-title-in {
+  from {
+    opacity: 0;
+    transform: translateY(26px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slide-copy-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-eyebrow {
+  animation: slide-eyebrow-in 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-slide-title {
+  animation: slide-title-in 750ms cubic-bezier(0.16, 1, 0.3, 1) 60ms both;
+}
+
+.animate-slide-copy {
+  animation: slide-copy-in 750ms cubic-bezier(0.16, 1, 0.3, 1) 140ms both;
 }
 
 /* Delicate editorial separators & borders */
@@ -455,8 +549,8 @@
   animation: hero-in 1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* Prevent welcome curtain flashing on subsequent page navigations */
-html.intro-seen #negi-welcome-curtain {
+/* Prevent welcome curtain flashing on subsequent page navigations (not while actively exiting) */
+html.intro-seen #negi-welcome-curtain:not([data-exiting="true"]) {
   display: none !important;
 }
 

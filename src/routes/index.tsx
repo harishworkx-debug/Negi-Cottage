@@ -286,13 +286,16 @@ function Index() {
   }, []);
 
   useEffect(() => {
-    const elements = document.querySelectorAll(".reveal");
+    const elements = document.querySelectorAll(".reveal, .reveal-scale");
     const observer = new IntersectionObserver(
       (entries) =>
-        entries.forEach(
-          (entry) => entry.isIntersecting && entry.target.classList.add("is-visible"),
-        ),
-      { threshold: 0.12 },
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        }),
+      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
     );
     elements.forEach((element) => observer.observe(element));
     return () => observer.disconnect();
@@ -458,7 +461,7 @@ function Index() {
           <div className="max-w-3xl animate-hero-in">
             {/* Location Label */}
             <p
-              className="mb-4 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.24em] text-terracotta"
+              className="mb-4 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.24em] text-terracotta animate-slide-eyebrow"
               key={`eyebrow-${activeSlide}`}
             >
               <span className="h-px w-8 bg-terracotta" /> {heroSlides[activeSlide].eyebrow}
@@ -466,7 +469,7 @@ function Index() {
 
             {/* Main Headline */}
             <h1
-              className="font-display text-4xl sm:text-6xl lg:text-[4.75rem] font-normal leading-[1.03] tracking-tight whitespace-pre-line text-white"
+              className="font-display text-4xl sm:text-6xl lg:text-[4.75rem] font-normal leading-[1.03] tracking-tight whitespace-pre-line text-white animate-slide-title"
               key={`title-${activeSlide}`}
             >
               {heroSlides[activeSlide].title}
@@ -474,7 +477,7 @@ function Index() {
 
             {/* Supporting Copy */}
             <p
-              className="mt-6 max-w-xl text-base leading-relaxed text-hero-foreground/90 sm:text-lg font-sans"
+              className="mt-6 max-w-xl text-base leading-relaxed text-hero-foreground/90 sm:text-lg font-sans animate-slide-copy"
               key={`copy-${activeSlide}`}
             >
               {heroSlides[activeSlide].copy}
@@ -633,13 +636,13 @@ function Index() {
           {/* Asymmetric Grid */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
             {/* Feature Card 1: Apple Orchard Walks (Spans 7 cols) */}
-            <div className="group md:col-span-7 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
+            <div className="group md:col-span-7 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl reveal card-hover-luxury">
               <div className="aspect-[16/10] overflow-hidden bg-muted">
                 <img
                   src={orchardImage}
                   alt="Apple orchard walks around Negi Cottage"
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 img-zoom-hover"
                 />
               </div>
               <div className="p-7">
@@ -656,13 +659,13 @@ function Index() {
             </div>
 
             {/* Feature Card 2: Kinner Kailash Views (Spans 5 cols) */}
-            <div className="group md:col-span-5 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
+            <div className="group md:col-span-5 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl reveal reveal-delay-1 card-hover-luxury">
               <div className="aspect-[4/3] overflow-hidden bg-muted">
                 <img
                   src={mountainImage}
                   alt="Kinner Kailash mountain views from Negi Cottage"
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 img-zoom-hover"
                 />
               </div>
               <div className="p-7">
@@ -679,13 +682,13 @@ function Index() {
             </div>
 
             {/* Feature Card 3: Evening Bonfires (Spans 4 cols) */}
-            <div className="group md:col-span-4 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
+            <div className="group md:col-span-4 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl reveal reveal-delay-1 card-hover-luxury">
               <div className="aspect-[4/3] overflow-hidden bg-muted">
                 <img
                   src={bornfireImage}
                   alt="Evening campfire and bonfire at Negi Cottage"
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 img-zoom-hover"
                 />
               </div>
               <div className="p-6">
@@ -702,13 +705,13 @@ function Index() {
             </div>
 
             {/* Feature Card 4: Homemade Himachali Cuisine (Spans 4 cols) */}
-            <div className="group md:col-span-4 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
+            <div className="group md:col-span-4 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl reveal reveal-delay-2 card-hover-luxury">
               <div className="aspect-[4/3] overflow-hidden bg-muted">
                 <img
                   src={diningImage}
                   alt="Wood-panelled dining room at Negi Cottage"
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 img-zoom-hover"
                 />
               </div>
               <div className="p-6">
@@ -725,13 +728,13 @@ function Index() {
             </div>
 
             {/* Feature Card 5: Family & Group Accommodation (Spans 4 cols) */}
-            <div className="group md:col-span-4 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
+            <div className="group md:col-span-4 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl reveal reveal-delay-3 card-hover-luxury">
               <div className="aspect-[4/3] overflow-hidden bg-muted">
                 <img
                   src={familyRoomImage}
                   alt="Grand Family Suite at Negi Cottage"
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 img-zoom-hover"
                 />
               </div>
               <div className="p-6">
@@ -808,7 +811,7 @@ function Index() {
             ].map((room, idx) => (
               <div
                 key={room.title}
-                className={`grid gap-8 lg:grid-cols-12 items-center rounded-3xl border border-border/80 bg-card p-6 sm:p-10 shadow-xs transition-all hover:shadow-md ${
+                className={`grid gap-8 lg:grid-cols-12 items-center rounded-3xl border border-border/80 bg-card p-6 sm:p-10 shadow-xs transition-all hover:shadow-md reveal-scale card-hover-luxury ${
                   idx % 2 === 1 ? "lg:grid-flow-dense" : ""
                 }`}
               >
@@ -822,7 +825,7 @@ function Index() {
                     src={room.image}
                     alt={room.title}
                     loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-700 hover:scale-105 img-zoom-hover"
                   />
                 </div>
 
@@ -954,7 +957,9 @@ function Index() {
             {featuredPreviewPhotos.map((photo, index) => (
               <figure
                 key={photo.title}
-                className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-xs transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl"
+                className={`group relative overflow-hidden rounded-2xl border border-border bg-card shadow-xs transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl reveal card-hover-luxury ${
+                  index % 4 === 1 ? "reveal-delay-1" : index % 4 === 2 ? "reveal-delay-2" : index % 4 === 3 ? "reveal-delay-3" : ""
+                }`}
               >
                 <button
                   type="button"
@@ -967,7 +972,7 @@ function Index() {
                       src={photo.src}
                       alt={photo.alt}
                       loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 img-zoom-hover"
                     />
                   </div>
                   <div className="p-4">
@@ -1070,10 +1075,12 @@ function Index() {
                 detail: "Local Guide · 23 reviews · Family Stay",
                 highlight: "10/10 Cleanliness & Food",
               },
-            ].map((r) => (
+            ].map((r, idx) => (
               <div
                 key={r.name}
-                className="group flex flex-col justify-between bg-card border border-border p-7 sm:p-8 rounded-2xl shadow-xs hover:border-terracotta/40 transition-all duration-300 hover:-translate-y-1"
+                className={`group flex flex-col justify-between bg-card border border-border p-7 sm:p-8 rounded-2xl shadow-xs hover:border-terracotta/40 transition-all duration-300 hover:-translate-y-1 reveal card-hover-luxury ${
+                  idx === 1 ? "reveal-delay-1" : idx === 2 ? "reveal-delay-2" : ""
+                }`}
               >
                 <div>
                   <div className="flex items-center justify-between">

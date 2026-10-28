@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowDown,
   ArrowRight,
+  CheckCircle2,
   ChevronLeft,
   ChevronRight,
   ExternalLink,
@@ -23,9 +24,9 @@ import { useEffect, useState } from "react";
 import balconyImage from "@/assets/negi-cottage-balcony.png";
 import roomViewImage from "@/assets/negi-cottage-room-view.png";
 import diningImage from "@/assets/negi-cottage-dining.png";
-import roomImage from "@/assets/negi-cottage-room.png";
+import roomImage from "@/assets/room.png";
 import orchardImage from "@/assets/negi-cottage-orchard.png";
-import familyRoomImage from "@/assets/negi-cottage-family-room.png";
+import familyRoomImage from "@/assets/family-room.png";
 import mountainImage from "@/assets/negi-cottage-mountains.png";
 import exteriorImage from "@/assets/negi-cottage-exterior.png";
 import entranceImage from "@/assets/negi-cottage-entrance.png";
@@ -41,6 +42,7 @@ const whatsappMessage = encodeURIComponent(
   "Hello, I would like to enquire about booking a stay at Negi Cottage, Kupa.",
 );
 const whatsappUrl = `https://wa.me/917807215761?text=${whatsappMessage}`;
+const phoneUrl = "tel:+917807215761";
 const directionsUrl =
   "https://www.google.com/maps/dir/?api=1&destination=Negi+Cottage+Kupa+Himachal+Pradesh+172106";
 
@@ -48,39 +50,33 @@ const heroSlides = [
   {
     image: mountainImage,
     eyebrow: "Kupa · Sangla Valley · Himachal Pradesh",
-    title: "Your Himalayan escape,\nframed by the mountains.",
-    copy: "Wake up among apple orchards, slow down to the mountain rhythm, and make Negi Cottage your quiet sanctuary in Kinnaur.",
+    title: "A Slower Kind of\nHimalayan Escape.",
+    copy: "Wake up to mountain horizons, wander through apple orchards, and experience the warmth of authentic Kinnauri hospitality.",
   },
   {
     image: sunriseImage,
     eyebrow: "Golden Hour · Kinner Kailash Peaks",
-    title: "Awaken to light\nover the summits.",
+    title: "Awaken to Light\nOver the Summits.",
     copy: "Watch the first amber rays of Himalayan sunrise illuminate the holy Kinner Kailash ridge directly across the valley.",
   },
   {
     image: snowImage,
-    eyebrow: "Winter Fairy Tale · Pristine Snow",
-    title: "Snow-covered roofs\nand quiet orchards.",
-    copy: "Experience the magic of deep winter snowfall with steaming cups of chai and warm wood-panelled rooms.",
+    eyebrow: "Winter Wonder · Pure White Snow",
+    title: "Snow-Dusted Roofs\nand Quiet Orchards.",
+    copy: "Experience the magic of peaceful winter snowfalls with hot chai, crackling evening fires, and warm heated rooms.",
   },
   {
     image: orchardImage,
-    eyebrow: "Orchard walks · Fresh valley breeze",
-    title: "A slower rhythm\nstarts here.",
-    copy: "Follow the apple orchard paths, breathe in cedar air, and let the Sangla Valley set the pace of your stay.",
-  },
-  {
-    image: balconyImage,
-    eyebrow: "Warm rooms · Local hospitality",
-    title: "Come for the view.\nStay for the feeling.",
-    copy: "Comfortable rooms, homemade Kinnauri flavours, and a genuine Himalayan welcome—just like a mountain home should feel.",
+    eyebrow: "Orchard Trails · Crisp Mountain Breeze",
+    title: "Where the Valley\nSets the Rhythm.",
+    copy: "Follow winding orchard paths among blooming apple trees, breathe in fragrant cedar air, and slow down your days.",
   },
 ];
 
 const featuredPreviewPhotos = [
   {
     src: mountainImage,
-    title: "Kinner Kailash Range",
+    title: "Kinner Kailash Range Vista",
     category: "Mountain Views",
     alt: "Snow-covered Himalayan mountains and orchards surrounding Negi Cottage in Kupa",
   },
@@ -144,7 +140,7 @@ const structuredData = {
   "@type": ["Hotel", "LocalBusiness"],
   name: "Negi Cottage",
   description:
-    "A premium boutique homestay in Kupa near Sangla Valley, surrounded by apple orchards with Himalayan and Kinner Kailash views.",
+    "A boutique Himalayan retreat in Kupa near Sangla Valley, surrounded by apple orchards with Himalayan and Kinner Kailash views.",
   telephone: "+91 78072 15761",
   priceRange: "₹1,500+",
   address: {
@@ -165,26 +161,21 @@ const structuredData = {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Negi Cottage Kupa | Premium Boutique Homestay near Sangla Valley" },
+      { title: "Negi Cottage Kupa | Luxury Boutique Homestay near Sangla Valley" },
       {
         name: "description",
         content:
-          "Stay at Negi Cottage, a boutique Himalayan homestay in Kupa near Sangla Valley. Apple orchards, Kinner Kailash views, evening bonfires, authentic dining, and rooms from around ₹1,500/night.",
+          "Negi Cottage is a premium boutique retreat in Kupa, Sangla Valley. Surrounded by apple orchards, Kinner Kailash views, evening bonfires, authentic Kinnauri dining, and rooms from ₹1,500/night.",
       },
-      { property: "og:title", content: "Negi Cottage — Your Himalayan Escape in Kupa" },
+      { property: "og:title", content: "Negi Cottage — A Slower Kind of Himalayan Escape" },
       {
         property: "og:description",
         content:
-          "A peaceful Himalayan cottage stay among apple orchards near Sangla Valley, Himachal Pradesh. 36 real photos of rooms, dining, bonfires, and views.",
+          "A peaceful boutique mountain retreat in Kupa, Sangla Valley, Himachal Pradesh. Authentic photography, 4.6★ Google rating, and direct WhatsApp booking.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Negi Cottage — Your Himalayan Escape in Kupa" },
-      {
-        name: "twitter:description",
-        content: "A peaceful Himalayan cottage stay among apple orchards near Sangla Valley.",
-      },
     ],
     links: [{ rel: "canonical", href: "/" }],
     scripts: [{ type: "application/ld+json", children: JSON.stringify(structuredData) }],
@@ -206,8 +197,18 @@ function Reveal({ children, className = "" }: { children: React.ReactNode; class
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const elements = document.querySelectorAll(".reveal");
@@ -225,7 +226,7 @@ function Index() {
   useEffect(() => {
     const timer = window.setInterval(
       () => setActiveSlide((slide) => (slide + 1) % heroSlides.length),
-      6000,
+      6200,
     );
     return () => window.clearInterval(timer);
   }, []);
@@ -245,134 +246,185 @@ function Index() {
     );
   };
 
-  const activeImage = lightboxIndex === null ? null : (featuredPreviewPhotos.at(lightboxIndex) ?? null);
+  const activeImage =
+    lightboxIndex === null ? null : (featuredPreviewPhotos.at(lightboxIndex) ?? null);
 
   return (
-    <main id="home" className="overflow-hidden bg-background text-foreground">
-      {/* Top Navbar */}
-      <header className="absolute inset-x-0 top-0 z-40 border-b border-hero-foreground/20">
-        <div className="mx-auto grid h-20 max-w-[1500px] grid-cols-[minmax(0,1fr)_auto] items-center gap-5 px-5 lg:h-24 lg:grid-cols-[auto_1fr_auto] lg:px-10">
-          <Link to="/" className="min-w-0 text-hero-foreground" aria-label="Negi Cottage home">
-            <span className="block font-display text-xl font-medium uppercase tracking-[0.16em] sm:text-2xl">
+    <main id="home" className="min-h-screen bg-background text-foreground pb-16 lg:pb-0">
+      {/* Editorial Fixed Navbar */}
+      <header
+        className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 ${
+          scrolled
+            ? "bg-forest/95 text-forest-foreground backdrop-blur-md shadow-md py-3.5 border-b border-forest-border/40"
+            : "bg-transparent text-hero-foreground py-4 lg:py-6 border-b border-hero-foreground/15"
+        }`}
+      >
+        <div className="mx-auto flex max-w-[1440px] items-center justify-between px-6 md:px-10 lg:px-12">
+          {/* Logo / Wordmark */}
+          <Link to="/" className="min-w-0 flex flex-col" aria-label="Negi Cottage Homepage">
+            <span className="font-display text-xl sm:text-2xl font-medium tracking-[0.16em] uppercase">
               Negi Cottage
             </span>
-            <span className="mt-0.5 hidden text-[10px] uppercase tracking-[0.3em] text-hero-foreground/70 sm:block">
+            <span className="text-[10px] uppercase tracking-[0.28em] opacity-75 font-sans font-medium -mt-0.5">
               Kupa · Sangla Valley · HP
             </span>
           </Link>
+
+          {/* Desktop Nav Items */}
           <nav
-            className="hidden items-center justify-center gap-6 lg:flex"
+            className="hidden items-center justify-center gap-7 lg:flex"
             aria-label="Main navigation"
           >
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 to={item.to}
-                className="nav-link text-xs uppercase tracking-[0.13em] text-hero-foreground/90 transition hover:text-gold"
+                className="nav-link text-xs uppercase tracking-[0.14em] text-hero-foreground/90 transition hover:text-terracotta"
               >
                 {item.label}
               </Link>
             ))}
           </nav>
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="button-gold hidden lg:inline-flex"
-          >
-            <WhatsAppIcon className="h-4 w-4" /> Book on WhatsApp
-          </a>
+
+          {/* Right CTA */}
+          <div className="hidden lg:flex items-center gap-4">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="button-forest text-xs py-2.5 px-6 font-bold"
+            >
+              <WhatsAppIcon className="h-4 w-4 text-terracotta" />
+              <span>Book Your Stay</span>
+            </a>
+          </div>
+
+          {/* Mobile Menu Toggle */}
           <button
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
-            className="grid h-11 w-11 place-items-center text-hero-foreground lg:hidden"
+            className="grid h-11 w-11 place-items-center rounded-full border border-white/20 text-current lg:hidden"
             aria-label="Toggle navigation"
             aria-expanded={menuOpen}
           >
-            {menuOpen ? <X /> : <Menu />}
+            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
+
+        {/* Mobile Nav Drawer */}
         {menuOpen && (
           <nav
-            className="mobile-menu border-t border-hero-foreground/15 px-5 py-6 lg:hidden"
+            className="mobile-menu fixed inset-x-0 top-full max-h-[85vh] overflow-y-auto border-t border-forest-border/40 bg-forest/98 px-6 py-8 text-forest-foreground shadow-2xl backdrop-blur-2xl lg:hidden"
             aria-label="Mobile navigation"
           >
-            <div className="grid gap-1">
+            <div className="flex flex-col gap-2">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-terracotta mb-2">
+                Menu Navigation
+              </p>
               {navItems.map((item) => (
                 <Link
                   key={item.label}
                   to={item.to}
                   onClick={() => setMenuOpen(false)}
-                  className="py-2.5 font-display text-2xl text-hero-foreground"
+                  className="font-display text-2xl py-2 border-b border-white/10 tracking-wide text-forest-foreground hover:text-terracotta transition-colors"
                 >
                   {item.label}
                 </Link>
               ))}
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="button-gold mt-4 w-full justify-center"
-              >
-                <WhatsAppIcon className="h-4 w-4" /> Book on WhatsApp
-              </a>
+
+              <div className="mt-6 flex flex-col gap-3 pt-2">
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="button-forest w-full justify-center text-xs py-3.5"
+                >
+                  <WhatsAppIcon className="h-4 w-4 text-terracotta" /> Book on WhatsApp
+                </a>
+                <a
+                  href={phoneUrl}
+                  className="button-outline-light w-full justify-center text-xs py-3"
+                >
+                  <Phone className="h-4 w-4" /> Call +91 78072 15761
+                </a>
+              </div>
             </div>
           </nav>
         )}
       </header>
 
-      {/* Cinematic Hero */}
-      <section className="hero-section relative min-h-[760px] h-[100svh] text-hero-foreground">
+      {/* Cinematic Hero Section (~88vh / 100svh) */}
+      <section className="hero-section relative min-h-[720px] h-[92vh] max-h-[1080px] overflow-hidden text-hero-foreground">
         {heroSlides.map((slide, index) => (
           <img
             key={slide.image}
             src={slide.image}
             alt="Himalayan landscape around Negi Cottage"
-            className={`hero-image absolute inset-0 h-full w-full object-cover ${index === activeSlide ? "hero-slide-active" : "hero-slide-hidden"}`}
+            className={`hero-image absolute inset-0 h-full w-full object-cover object-center ${
+              index === activeSlide ? "hero-slide-active" : "hero-slide-hidden"
+            }`}
           />
         ))}
+
+        {/* Refined gradient overlay */}
         <div className="hero-overlay absolute inset-0" />
-        <div className="relative z-10 mx-auto flex h-full max-w-[1500px] flex-col justify-end px-5 pb-16 pt-32 sm:px-8 sm:pb-20 lg:px-10 lg:pb-24">
-          <div className="max-w-4xl animate-hero-in">
+
+        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-end px-6 pb-16 pt-32 sm:px-10 sm:pb-20 lg:px-12 lg:pb-20">
+          <div className="max-w-3xl animate-hero-in">
+            {/* Location Label */}
             <p
-              className="mb-6 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-hero-foreground/85"
+              className="mb-4 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.24em] text-terracotta"
               key={`eyebrow-${activeSlide}`}
             >
-              <span className="h-px w-9 bg-gold" /> {heroSlides[activeSlide].eyebrow}
+              <span className="h-px w-8 bg-terracotta" /> {heroSlides[activeSlide].eyebrow}
             </p>
+
+            {/* Main Headline */}
             <h1
-              className="max-w-4xl whitespace-pre-line font-display text-5xl font-normal leading-[0.98] sm:text-7xl lg:text-[6.4rem]"
+              className="font-display text-4xl sm:text-6xl lg:text-[4.75rem] font-normal leading-[1.03] tracking-tight whitespace-pre-line text-white"
               key={`title-${activeSlide}`}
             >
               {heroSlides[activeSlide].title}
             </h1>
+
+            {/* Supporting Copy */}
             <p
-              className="mt-7 max-w-2xl text-base leading-7 text-hero-foreground/85 sm:text-lg"
+              className="mt-6 max-w-xl text-base leading-relaxed text-hero-foreground/90 sm:text-lg font-sans"
               key={`copy-${activeSlide}`}
             >
               {heroSlides[activeSlide].copy}
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+
+            {/* CTAs */}
+            <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="button-gold justify-center sm:justify-start"
+                className="button-forest text-xs py-3.5 px-7"
               >
-                Book Your Stay <ArrowRight className="h-4 w-4" />
+                <span>Book Your Stay</span>
+                <ArrowRight className="h-4 w-4 text-terracotta" />
               </a>
-              <Link to="/stay" className="button-glass justify-center sm:justify-start">
-                Explore Rooms & Suites
-              </Link>
-              <Link to="/gallery" className="button-glass justify-center sm:justify-start">
-                View 36 Photos
-              </Link>
+              <a href="#stay" className="button-glass text-xs py-3.5 px-6">
+                Explore the Cottage
+              </a>
+            </div>
+
+            {/* Verified Trust Badge */}
+            <div className="mt-8 flex items-center gap-3 pt-2 text-xs text-hero-foreground/80">
+              <div className="flex items-center text-terracotta">
+                {[1, 2, 3, 4, 5].map((s) => (
+                  <Star key={s} className="h-3.5 w-3.5 fill-current" />
+                ))}
+              </div>
+              <span className="font-semibold text-white">4.6 / 5 Rating</span>
+              <span className="opacity-70">· 279 Verified Google Reviews</span>
             </div>
           </div>
-          <div
-            className="absolute bottom-8 left-5 flex items-center gap-2 sm:left-8 lg:left-10"
-            aria-label="Choose hero slide"
-          >
+
+          {/* Slider Indicators & Scroll Indicator */}
+          <div className="absolute bottom-8 left-6 flex items-center gap-2 sm:left-10 lg:left-12">
             {heroSlides.map((slide, index) => (
               <button
                 key={slide.eyebrow}
@@ -382,131 +434,350 @@ function Index() {
                 aria-label={`Show slide ${index + 1}`}
               />
             ))}
-            <span className="ml-3 text-[10px] uppercase tracking-[0.25em] text-hero-foreground/65">
-              {String(activeSlide + 1).padStart(2, "0")} /{" "}
-              {String(heroSlides.length).padStart(2, "0")}
+            <span className="ml-3 text-[11px] uppercase tracking-[0.2em] text-hero-foreground/75 font-sans font-semibold">
+              {String(activeSlide + 1).padStart(2, "0")} / {String(heroSlides.length).padStart(2, "0")}
             </span>
           </div>
+
           <a
-            href="#welcome"
-            className="absolute bottom-7 right-6 hidden items-center gap-3 text-[10px] uppercase tracking-[0.25em] text-hero-foreground/70 sm:flex lg:right-10"
-            aria-label="Scroll to introduction"
+            href="#story"
+            className="absolute bottom-8 right-6 hidden items-center gap-3 text-[11px] uppercase tracking-[0.24em] text-hero-foreground/75 sm:flex lg:right-12 hover:text-white transition-colors"
+            aria-label="Scroll to introduction story"
           >
-            Discover{" "}
-            <span className="grid h-10 w-10 place-items-center rounded-full border border-hero-foreground/40">
-              <ArrowDown className="h-4 w-4" />
+            <span>Discover</span>
+            <span className="grid h-9 w-9 place-items-center rounded-full border border-hero-foreground/30 bg-black/15 backdrop-blur-xs">
+              <ArrowDown className="h-3.5 w-3.5" />
             </span>
           </a>
         </div>
       </section>
 
-      {/* Introduction Section */}
-      <section id="welcome" className="section-pad bg-background">
-        <div className="mx-auto grid max-w-7xl gap-14 px-5 md:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-20">
-          <Reveal>
-            <p className="eyebrow text-gold-dark">A quieter side of the Himalayas</p>
-            <h2 className="section-title mt-5">Where the apple orchard meets the peaks.</h2>
-          </Reveal>
-          <Reveal className="lg:pt-14">
-            <p className="max-w-2xl text-lg leading-8 text-muted-foreground sm:text-xl sm:leading-9">
-              Nestled beside Kuppa Bus Stand in Sangla Valley, Negi Cottage is surrounded by blooming apple orchards and dramatic Kinner Kailash mountain horizons—a peaceful, comfortable sanctuary for travelers exploring Kinnaur.
-            </p>
-            <div className="mt-10 grid grid-cols-3 border-y border-border py-7">
-              <div>
-                <strong className="stat">4.6</strong>
-                <span className="stat-label">
-                  <Star className="h-3 w-3 fill-current text-gold" /> guest rating
-                </span>
+      {/* 2. Introductory Story Section (Editorial Two-Column) */}
+      <section id="story" className="section-pad bg-background">
+        <div className="mx-auto max-w-[1440px] px-6 md:px-10 lg:px-12">
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-20">
+            {/* Visual Side */}
+            <Reveal className="relative">
+              <div className="editorial-frame aspect-[4/5] w-full rounded-2xl overflow-hidden shadow-xl border border-border">
+                <img
+                  src={exteriorImage}
+                  alt="Negi Cottage set amongst apple orchards in Kupa"
+                  className="h-full w-full object-cover object-center"
+                />
               </div>
-              <div className="border-x border-border px-4 sm:px-8">
-                <strong className="stat">279</strong>
-                <span className="stat-label">Google reviews</span>
+
+              {/* Overlapping entrance accent badge */}
+              <div className="mt-4 sm:absolute sm:-bottom-8 sm:-right-8 sm:mt-0 sm:w-1/2 rounded-xl overflow-hidden shadow-2xl border-4 border-background bg-card">
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={entranceImage}
+                    alt="Handcrafted carved wooden entrance at Negi Cottage"
+                    className="h-full w-full object-cover hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+                <div className="p-3.5 bg-card">
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-terracotta">
+                    Kinnauri Craft
+                  </p>
+                  <p className="text-xs text-charcoal font-medium">Hand-carved wooden entrance</p>
+                </div>
               </div>
-              <div className="pl-4 sm:pl-8">
-                <strong className="stat">₹1,500</strong>
-                <span className="stat-label">approx. from / night</span>
+            </Reveal>
+
+            {/* Editorial Copy Side */}
+            <Reveal className="lg:pl-6">
+              <span className="eyebrow">The Homestay Setting · Kupa</span>
+              <h2 className="section-title mt-3">Where Apple Orchards Meet the Himalayas.</h2>
+
+              <p className="mt-6 text-base text-muted-foreground leading-relaxed sm:text-lg">
+                Nestled peacefully right beside Kuppa Bus Stand in Sangla Valley, Negi Cottage is a true mountain retreat surrounded by private apple orchards and snow-clad Himalayan horizons.
+              </p>
+              <p className="mt-4 text-base text-muted-foreground leading-relaxed">
+                Run by Mr. Ajit Negi and his family, this is not an impersonal hotel, but a warm, authentic homestay where you wake to birdsong, breathe in pure pine air, and enjoy home-cooked Himachali meals prepared with love.
+              </p>
+
+              {/* Verified Highlight Metrics Row */}
+              <div className="mt-10 grid grid-cols-3 border-y border-border py-6">
+                <div>
+                  <strong className="stat">4.6</strong>
+                  <span className="stat-label">
+                    <Star className="h-3 w-3 fill-current text-terracotta" /> Google Rating
+                  </span>
+                </div>
+                <div className="border-x border-border px-4 sm:px-6">
+                  <strong className="stat">279</strong>
+                  <span className="stat-label">Verified Reviews</span>
+                </div>
+                <div className="pl-4 sm:pl-6">
+                  <strong className="stat">₹1,500</strong>
+                  <span className="stat-label">From / Night</span>
+                </div>
               </div>
-            </div>
-          </Reveal>
+
+              <div className="mt-8 flex flex-wrap gap-4">
+                <a href={whatsappUrl} target="_blank" rel="noreferrer" className="button-forest">
+                  <WhatsAppIcon className="h-4 w-4 text-terracotta" />
+                  <span>Enquire on WhatsApp</span>
+                </a>
+                <Link to="/experience" className="button-outline-forest">
+                  Discover the Experience
+                </Link>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 
-      {/* Visual Highlights with Real Images */}
-      <section className="section-pad bg-forest text-forest-foreground">
-        <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-14">
+      {/* 3. Signature Experiences (Asymmetric Editorial Layout) */}
+      <section id="experiences" className="section-pad bg-soft-sand/70">
+        <div className="mx-auto max-w-[1440px] px-6 md:px-10 lg:px-12">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between mb-14 border-b border-border/80 pb-8">
             <div>
-              <p className="eyebrow text-gold">The Negi Cottage Highlights</p>
-              <h2 className="mt-2 font-display text-4xl sm:text-5xl text-forest-foreground">
-                Crafted for genuine mountain living
-              </h2>
+              <p className="eyebrow">Signature Experiences</p>
+              <h2 className="section-title mt-2">Days shaped by nature and warmth.</h2>
             </div>
-            <p className="max-w-md text-sm text-forest-foreground/75 leading-relaxed">
-              Every detail is shaped by real Kinnauri hospitality, breathtaking mountain views, and the comforting quiet of the orchards.
+            <p className="max-w-md text-sm text-muted-foreground leading-relaxed">
+              Every moment here reflects authentic Kinnauri mountain life—unhurried, peaceful, and surrounded by alpine beauty.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Asymmetric Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+            {/* Feature Card 1: Apple Orchard Walks (Spans 7 cols) */}
+            <div className="group md:col-span-7 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
+              <div className="aspect-[16/10] overflow-hidden bg-muted">
+                <img
+                  src={orchardImage}
+                  alt="Apple orchard walks around Negi Cottage"
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-7">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-terracotta">
+                  Nature & Harvest
+                </span>
+                <h3 className="font-display text-2xl sm:text-3xl font-semibold text-charcoal mt-1.5">
+                  Apple Orchard Walks
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                  Step straight from your room into heritage apple groves. In spring, white blossoms fill the air; in autumn, trees hang heavy with world-famous sweet Kinnauri apples.
+                </p>
+              </div>
+            </div>
+
+            {/* Feature Card 2: Kinner Kailash Views (Spans 5 cols) */}
+            <div className="group md:col-span-5 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
+              <div className="aspect-[4/3] overflow-hidden bg-muted">
+                <img
+                  src={mountainImage}
+                  alt="Kinner Kailash mountain views from Negi Cottage"
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-7">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-terracotta">
+                  Sacred Peaks
+                </span>
+                <h3 className="font-display text-2xl sm:text-3xl font-semibold text-charcoal mt-1.5">
+                  Kinner Kailash Views
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                  Watch early morning sunlight crown the holy snow peaks directly across the valley from our open rooftop terrace.
+                </p>
+              </div>
+            </div>
+
+            {/* Feature Card 3: Evening Bonfires (Spans 4 cols) */}
+            <div className="group md:col-span-4 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
+              <div className="aspect-[4/3] overflow-hidden bg-muted">
+                <img
+                  src={bornfireImage}
+                  alt="Evening campfire and bonfire at Negi Cottage"
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-6">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-terracotta">
+                  Evening Magic
+                </span>
+                <h3 className="font-display text-xl sm:text-2xl font-semibold text-charcoal mt-1">
+                  Evening Bonfires
+                </h3>
+                <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
+                  Gather under crisp starlit skies around crackling firewood with warm cups of chai and mountain stories.
+                </p>
+              </div>
+            </div>
+
+            {/* Feature Card 4: Homemade Himachali Cuisine (Spans 4 cols) */}
+            <div className="group md:col-span-4 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
+              <div className="aspect-[4/3] overflow-hidden bg-muted">
+                <img
+                  src={diningImage}
+                  alt="Wood-panelled dining room at Negi Cottage"
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-6">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-terracotta">
+                  Homestyle Kitchen
+                </span>
+                <h3 className="font-display text-xl sm:text-2xl font-semibold text-charcoal mt-1">
+                  Himachali Dining
+                </h3>
+                <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
+                  Fresh, comforting meals prepared on the spot using garden-fresh vegetables and regional spices. Jain food available upon request.
+                </p>
+              </div>
+            </div>
+
+            {/* Feature Card 5: Family & Group Accommodation (Spans 4 cols) */}
+            <div className="group md:col-span-4 flex flex-col justify-between rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl">
+              <div className="aspect-[4/3] overflow-hidden bg-muted">
+                <img
+                  src={familyRoomImage}
+                  alt="Grand Family Suite at Negi Cottage"
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-6">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-terracotta">
+                  Spacious Suites
+                </span>
+                <h3 className="font-display text-xl sm:text-2xl font-semibold text-charcoal mt-1">
+                  Family Accommodation
+                </h3>
+                <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
+                  Generously sized rooms with multiple large beds, clean attached washrooms, and dual-aspect mountain views.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Accommodation Showcase (Spacious & Refined) */}
+      <section id="stay" className="section-pad bg-background">
+        <div className="mx-auto max-w-[1440px] px-6 md:px-10 lg:px-12">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between mb-16 border-b border-border pb-8">
+            <div>
+              <p className="eyebrow">Accommodation</p>
+              <h2 className="section-title mt-2">Rest, with an unobstructed view.</h2>
+            </div>
+            <Link to="/stay" className="button-forest shrink-0 text-xs">
+              View All Room Details & Amenities &rarr;
+            </Link>
+          </div>
+
+          {/* 3 Verified Room Categories */}
+          <div className="space-y-12">
             {[
               {
-                title: "Apple Orchard Setting",
-                desc: "Walk amidst heritage apple groves right outside your door, fragrant with spring blossoms and autumn fruit.",
-                image: orchardImage,
-                tag: "Nature & Walks",
+                title: "Balcony Mountain Room",
+                tag: "Most Popular",
+                price: "From ₹1,800 / night",
+                image: balconyRoom,
+                desc: "Bright, morning-facing bedroom featuring direct access to a private wooden veranda looking out across the apple orchards and snow-clad valley.",
+                amenities: [
+                  "Private wooden balcony with mountain view",
+                  "Attached clean washroom with 24/7 hot water",
+                  "Warm Himalayan woollen quilts & blankets",
+                  "Morning tea served to the room",
+                ],
               },
               {
-                title: "Kinner Kailash Views",
-                desc: "Panoramic vantage points directly overlooking snow-capped peaks and changing mountain weather.",
-                image: mountainImage,
-                tag: "Mountain Vista",
-              },
-              {
-                title: "Comfortable Cottage Rooms",
-                desc: "Handcrafted wooden rooms, heated blankets, and sparkling clean bathrooms with 24/7 hot water.",
-                image: roomImage,
-                tag: "Rooms & Rest",
-              },
-              {
-                title: "Evening Bonfire & Campfire",
-                desc: "Gather under starlit Himalayan skies around a crackling wood fire with hot cups of local spiced tea.",
-                image: bornfireImage,
-                tag: "Stargazing",
-              },
-              {
-                title: "Authentic Himachali Cuisine",
-                desc: "Homemade Kinnauri thalis, steaming parathas, and local dishes prepared with garden-fresh ingredients.",
-                image: dinnerareaImage,
-                tag: "Homestyle Food",
-              },
-              {
-                title: "Family & Group Friendly",
-                desc: "Spacious multi-bed suites, wide garden lawns, and warm personal hospitality that makes everyone feel at home.",
+                title: "Grand Family Suite",
+                tag: "Spacious Group Comfort",
+                price: "From ₹2,500 / night",
                 image: familyRoomImage,
-                tag: "Family Comfort",
+                desc: "Specially designed for parents traveling with children or small trekking groups. Features two large beds, wide dual-aspect windows, and ample luggage space.",
+                amenities: [
+                  "Accommodates up to 4–5 guests in comfort",
+                  "Ensuite bathroom with high-capacity geyser",
+                  "Dual-side views: orchard & snowy mountains",
+                  "Peaceful, child-friendly homestay setting",
+                ],
               },
-            ].map((item) => (
+              {
+                title: "Classic Double Room",
+                tag: "Cozy Mountain Rest",
+                price: "From ₹1,500 / night",
+                image: roomImage,
+                desc: "Traditional pine-trimmed double bedroom celebrating the rustic simplicity and comfort of an authentic Himalayan homestay. Peaceful and warm through chill mountain nights.",
+                amenities: [
+                  "Comfortable double spring bed with fresh linen",
+                  "Attached hygienic washroom with geyser",
+                  "Heated blankets & electric kettle on request",
+                  "Quick access to garden and dining hall",
+                ],
+              },
+            ].map((room, idx) => (
               <div
-                key={item.title}
-                className="group overflow-hidden rounded-2xl border border-white/10 bg-black/20 shadow-md transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/50"
+                key={room.title}
+                className={`grid gap-8 lg:grid-cols-12 items-center rounded-3xl border border-border/80 bg-card p-6 sm:p-10 shadow-xs transition-all hover:shadow-md ${
+                  idx % 2 === 1 ? "lg:grid-flow-dense" : ""
+                }`}
               >
-                <div className="aspect-[16/10] overflow-hidden">
+                {/* Image side (7 cols) */}
+                <div
+                  className={`lg:col-span-7 overflow-hidden rounded-2xl bg-muted aspect-[16/10] ${
+                    idx % 2 === 1 ? "lg:col-start-6" : ""
+                  }`}
+                >
                   <img
-                    src={item.image}
-                    alt={item.title}
+                    src={room.image}
+                    alt={room.title}
                     loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
                   />
                 </div>
-                <div className="p-6">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-gold">
-                    {item.tag}
-                  </span>
-                  <h3 className="mt-2 font-display text-2xl font-bold text-forest-foreground">
-                    {item.title}
+
+                {/* Text side (5 cols) */}
+                <div className={`lg:col-span-5 ${idx % 2 === 1 ? "lg:col-start-1" : ""}`}>
+                  <div className="flex items-center gap-2.5">
+                    <span className="rounded-full bg-forest px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-terracotta">
+                      {room.tag}
+                    </span>
+                    <span className="text-xs font-semibold text-terracotta font-sans">
+                      {room.price}
+                    </span>
+                  </div>
+
+                  <h3 className="font-display text-3xl sm:text-4xl font-bold text-charcoal mt-3">
+                    {room.title}
                   </h3>
-                  <p className="mt-2 text-xs leading-relaxed text-forest-foreground/75">
-                    {item.desc}
+                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                    {room.desc}
                   </p>
+
+                  <ul className="mt-6 space-y-2 border-t border-border pt-4">
+                    {room.amenities.map((am) => (
+                      <li key={am} className="flex items-center gap-2.5 text-xs text-charcoal font-medium">
+                        <CheckCircle2 className="h-4 w-4 shrink-0 text-terracotta" />
+                        <span>{am}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-8 flex flex-wrap items-center gap-4">
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="button-forest text-xs py-3 px-6"
+                    >
+                      <WhatsAppIcon className="h-4 w-4 text-terracotta" />
+                      <span>Book on WhatsApp</span>
+                    </a>
+                    <Link to="/stay" className="button-outline-forest text-xs py-3 px-5">
+                      View Details
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}
@@ -514,79 +785,75 @@ function Index() {
         </div>
       </section>
 
-      {/* Stay Section Preview */}
-      <section id="stay" className="section-pad bg-background">
-        <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-12">
+      {/* 5. Dining & Local Flavours */}
+      <section id="dining" className="section-pad bg-soft-sand/80">
+        <div className="mx-auto max-w-[1440px] px-6 md:px-10 lg:px-12">
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+            {/* Left Copy */}
             <div>
-              <p className="eyebrow text-gold-dark">Accommodation</p>
-              <h2 className="section-title mt-2">Rest, with an unobstructed view.</h2>
-              <p className="mt-3 max-w-xl text-base text-muted-foreground">
-                Warm wood-trimmed rooms, valley-facing verandas, and peaceful suites made for quiet mountain nights.
+              <p className="eyebrow">From the Homestay Kitchen</p>
+              <h2 className="section-title mt-2">Authentic Himachali Flavours.</h2>
+              <p className="mt-5 text-base text-muted-foreground leading-relaxed sm:text-lg">
+                Gather in our warm, wood-lined dining room for comforting, homemade mountain meals. We cook on the spot using clean spring water and fresh vegetables harvested right from our adjacent garden.
               </p>
-            </div>
-            <Link to="/stay" className="button-forest shrink-0">
-              View All Room Options &rarr;
-            </Link>
-          </div>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            <div className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
-              <div className="aspect-[4/3] overflow-hidden">
-                <img
-                  src={balconyRoom}
-                  alt="Balcony Mountain Room"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="rounded-xl border border-border bg-card p-4">
+                  <Utensils className="h-5 w-5 text-terracotta" />
+                  <h4 className="font-display text-lg font-bold text-charcoal mt-2">
+                    Home-Cooked Thalis
+                  </h4>
+                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                    Local dal, seasonal organic sabzi, fresh rotis, and mountain chutneys.
+                  </p>
+                </div>
+                <div className="rounded-xl border border-border bg-card p-4">
+                  <Sparkles className="h-5 w-5 text-terracotta" />
+                  <h4 className="font-display text-lg font-bold text-charcoal mt-2">
+                    Jain Food Available
+                  </h4>
+                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                    Custom pure vegetarian & Jain dietary requirements catered upon advance request.
+                  </p>
+                </div>
               </div>
-              <div className="p-5">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-gold-dark">From ₹1,800 / night</span>
-                <h3 className="mt-1 font-display text-2xl font-bold">Balcony Mountain Room</h3>
-                <p className="mt-1.5 text-xs text-muted-foreground">Step directly out onto the wooden veranda overlooking Kupa valley.</p>
-              </div>
-            </div>
 
-            <div className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
-              <div className="aspect-[4/3] overflow-hidden">
-                <img
-                  src={familyRoomImage}
-                  alt="Grand Family Suite"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div className="p-5">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-gold-dark">From ₹2,500 / night</span>
-                <h3 className="mt-1 font-display text-2xl font-bold">Grand Family Suite</h3>
-                <p className="mt-1.5 text-xs text-muted-foreground">Spacious multi-bed quarters designed for comfortable family time.</p>
+              <div className="mt-8">
+                <Link to="/dining" className="button-forest text-xs">
+                  Read Dining Details & Food Menu &rarr;
+                </Link>
               </div>
             </div>
 
-            <div className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
-              <div className="aspect-[4/3] overflow-hidden">
+            {/* Right Images */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="editorial-frame aspect-[3/4] rounded-2xl overflow-hidden shadow-md">
                 <img
-                  src={roomImage}
-                  alt="Classic Double Room"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  src={diningImage}
+                  alt="Wood panelled dining hall at Negi Cottage"
+                  className="h-full w-full object-cover hover:scale-105 transition-transform duration-700"
                 />
               </div>
-              <div className="p-5">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-gold-dark">From ₹1,500 / night</span>
-                <h3 className="mt-1 font-display text-2xl font-bold">Classic Double Room</h3>
-                <p className="mt-1.5 text-xs text-muted-foreground">Cozy pine finishes, heated blankets, and quiet mountain rest.</p>
+              <div className="editorial-frame aspect-[3/4] rounded-2xl overflow-hidden shadow-md mt-8">
+                <img
+                  src={dinnerareaImage}
+                  alt="Family dining table setting"
+                  className="h-full w-full object-cover hover:scale-105 transition-transform duration-700"
+                />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Curated Gallery Showcase (36 Photos Hook) */}
-      <section id="gallery" className="section-pad bg-gold-light">
-        <div className="mx-auto max-w-[1500px] px-5 md:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <p className="eyebrow text-gold-dark">Real Visual Journey</p>
-            <h2 className="section-title mt-2">Negi Cottage in Frames</h2>
+      {/* 6. Curated Visual Gallery */}
+      <section id="gallery" className="section-pad bg-background">
+        <div className="mx-auto max-w-[1440px] px-6 md:px-10 lg:px-12">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <p className="eyebrow">Kinnaur in Frames · 36 Curated Photos</p>
+            <h2 className="section-title mt-2">Every Corner, Captured.</h2>
             <p className="mt-3 text-base text-muted-foreground">
-              We have uploaded 36 authentic photographs showing every angle of our homestay—rooms, bathrooms, dining halls, snowfalls, bonfires, and apple orchards.
+              Explore authentic photographs of our rooms, bathrooms, snowy balconies, apple orchards, and peaceful mountain moments.
             </p>
           </div>
 
@@ -594,13 +861,13 @@ function Index() {
             {featuredPreviewPhotos.map((photo, index) => (
               <figure
                 key={photo.title}
-                className="group relative overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl"
+                className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-xs transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl"
               >
                 <button
                   type="button"
                   onClick={() => setLightboxIndex(index)}
                   className="block h-full w-full text-left cursor-pointer"
-                  aria-label={`Open ${photo.title}`}
+                  aria-label={`Open ${photo.title} in lightbox`}
                 >
                   <div className="aspect-[4/3] overflow-hidden bg-muted">
                     <img
@@ -611,10 +878,10 @@ function Index() {
                     />
                   </div>
                   <div className="p-4">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-gold-dark">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-terracotta">
                       {photo.category}
                     </span>
-                    <h3 className="font-display text-lg font-semibold text-foreground mt-0.5">
+                    <h3 className="font-display text-lg font-semibold text-charcoal mt-0.5">
                       {photo.title}
                     </h3>
                   </div>
@@ -626,45 +893,47 @@ function Index() {
           <div className="mt-12 text-center">
             <Link
               to="/gallery"
-              className="button-forest inline-flex items-center gap-2 px-8 py-4 text-sm font-semibold tracking-wider shadow-lg"
+              className="button-forest inline-flex items-center gap-2 px-8 py-3.5 text-xs font-bold tracking-wider"
             >
-              Browse Complete 36-Photo Gallery with Descriptions & Lightbox &rarr;
+              Browse Complete 36-Photo Gallery with Descriptions &rarr;
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Guest Reviews */}
-      <section id="reviews" className="section-pad bg-background" aria-labelledby="reviews-title">
-        <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <Reveal className="grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:items-end">
+      {/* 7. Guest Reviews & Trust */}
+      <section id="reviews" className="section-pad bg-soft-sand/70" aria-labelledby="reviews-title">
+        <div className="mx-auto max-w-[1440px] px-6 md:px-10 lg:px-12">
+          <div className="grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:items-end">
             <div>
-              <p className="eyebrow text-gold-dark">Verified Google Reviews</p>
-              <h2 id="reviews-title" className="section-title mt-5">
+              <p className="eyebrow">Verified Guest Feedback</p>
+              <h2 id="reviews-title" className="section-title mt-2">
                 The kind of stay guests remember.
               </h2>
             </div>
             <div className="md:justify-self-end md:max-w-md">
               <div
-                className="flex items-center gap-1 text-gold-dark"
+                className="flex items-center gap-1.5 text-terracotta"
                 aria-label="4.6 out of 5 stars"
               >
-                {[0, 1, 2, 3, 4].map((star) => (
+                {[1, 2, 3, 4, 5].map((star) => (
                   <Star key={star} className="h-4 w-4 fill-current" />
                 ))}
-                <span className="ml-2 text-xs font-bold uppercase tracking-[0.12em]">
-                  4.6 · 279 Google reviews
+                <span className="ml-2 text-xs font-bold uppercase tracking-[0.14em] text-charcoal">
+                  4.6 · 279 Google Reviews
                 </span>
               </div>
-              <p className="mt-4 leading-7 text-muted-foreground">
-                Read direct Google feedback from families, solo travelers, and groups who stayed with us amidst the apple orchards of Kupa.
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                Reflections from travelers who came for the mountains and experienced the slow magic of Negi Cottage.
               </p>
             </div>
-          </Reveal>
+          </div>
 
-          {/* Popular Google Topics tags */}
+          {/* Google Topic Pills */}
           <div className="mt-8 flex flex-wrap items-center gap-2 border-y border-border py-4">
-            <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground mr-2">Top Mentions:</span>
+            <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground mr-2">
+              Popular Mentions:
+            </span>
             {[
               "Apple Orchards (28)",
               "Mountain View (10)",
@@ -675,17 +944,21 @@ function Index() {
               "Humble Host (4)",
               "Bonfire (3)",
             ].map((tag) => (
-              <span key={tag} className="rounded-full bg-muted/60 px-3 py-1 text-xs font-medium text-foreground/80">
+              <span
+                key={tag}
+                className="rounded-full bg-card border border-border/80 px-3 py-1 text-xs font-medium text-charcoal shadow-xs"
+              >
                 {tag}
               </span>
             ))}
           </div>
 
+          {/* 3 Real Review Excerpts */}
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {[
               {
                 quote:
-                  "Awesome experience received by our group of 9 senior citizens! Checked in at night, the owner helped carry luggage from the road. Welcomed with hot tea & veg pakoras followed by delicious dinner. Greeted next morning with snow-capped Kinnar-Kailash range and golden apple orchards. Strongly recommend!",
+                  "Awesome experience received by our group of 9 senior citizens! Checked in late at night, the owner helped carry luggage from the road. Welcomed with hot tea & veg pakoras followed by delicious dinner. Greeted next morning with snow-capped Kinnar-Kailash range and golden apple orchards. Strongly recommend!",
                 name: "Anup Chaudhuri",
                 detail: "Local Guide · 26 reviews · October 2026",
                 highlight: "Senior Citizens Group",
@@ -705,34 +978,37 @@ function Index() {
                 highlight: "10/10 Cleanliness & Food",
               },
             ].map((r) => (
-              <Reveal key={r.name} className="review-card group flex flex-col justify-between bg-card border border-border p-7 sm:p-9 rounded-2xl shadow-xs hover:border-gold/50 transition-colors">
+              <div
+                key={r.name}
+                className="group flex flex-col justify-between bg-card border border-border p-7 sm:p-8 rounded-2xl shadow-xs hover:border-terracotta/40 transition-all duration-300 hover:-translate-y-1"
+              >
                 <div>
                   <div className="flex items-center justify-between">
-                    <div className="flex gap-1 text-gold-dark" aria-label="5 out of 5 stars">
-                      {[0, 1, 2, 3, 4].map((star) => (
+                    <div className="flex gap-1 text-terracotta" aria-label="5 out of 5 stars">
+                      {[1, 2, 3, 4, 5].map((star) => (
                         <Star key={star} className="h-3.5 w-3.5 fill-current" />
                       ))}
                     </div>
-                    <span className="rounded bg-gold-light/60 px-2 py-0.5 text-[10px] font-semibold text-forest">
+                    <span className="rounded-full bg-soft-sand px-2.5 py-0.5 text-[10px] font-semibold text-charcoal">
                       {r.highlight}
                     </span>
                   </div>
-                  <blockquote className="mt-6 text-sm leading-relaxed text-foreground/90">
+                  <blockquote className="mt-5 text-sm leading-relaxed text-charcoal/90 italic">
                     “{r.quote}”
                   </blockquote>
                 </div>
-                <div className="mt-8 border-t border-border pt-4">
-                  <p className="text-sm font-bold text-foreground">{r.name}</p>
+                <div className="mt-6 border-t border-border pt-4">
+                  <p className="text-sm font-bold text-charcoal">{r.name}</p>
                   <p className="mt-0.5 text-xs text-muted-foreground">{r.detail}</p>
                 </div>
-              </Reveal>
+              </div>
             ))}
           </div>
 
           <div className="mt-12 text-center">
             <Link
               to="/reviews"
-              className="button-forest inline-flex items-center gap-2 px-8 py-3.5 text-sm font-semibold tracking-wider shadow-md"
+              className="button-forest inline-flex items-center gap-2 px-8 py-3.5 text-xs font-bold tracking-wider"
             >
               Read All 279+ Google Reviews with Topics & Filters &rarr;
             </Link>
@@ -740,35 +1016,46 @@ function Index() {
         </div>
       </section>
 
-      {/* Location Section */}
+      {/* 8. Location Section */}
       <section id="location" className="bg-forest text-forest-foreground">
         <div className="grid lg:grid-cols-[0.72fr_1.28fr]">
-          <Reveal className="flex flex-col justify-center px-5 py-16 md:px-12 lg:px-[max(3rem,calc((100vw-1280px)/2))] lg:py-24">
-            <p className="eyebrow text-gold">Find your way</p>
-            <h2 className="mt-5 font-display text-5xl sm:text-6xl">In the heart of Kupa.</h2>
-            <div className="mt-9 flex gap-4">
-              <MapPin className="mt-1 h-5 w-5 shrink-0 text-gold" />
-              <address className="not-italic leading-7 text-forest-foreground/75">
-                <strong className="block text-forest-foreground">Negi Cottage</strong>Kuppa Bus Stand, Kupa
+          <div className="flex flex-col justify-center px-6 py-16 md:px-12 lg:px-16 lg:py-24">
+            <p className="eyebrow text-terracotta">Location & Directions</p>
+            <h2 className="mt-3 font-display text-4xl sm:text-5xl text-forest-foreground font-normal">
+              In the heart of Kupa.
+            </h2>
+            <div className="mt-8 flex gap-4">
+              <MapPin className="mt-1 h-5 w-5 shrink-0 text-terracotta" />
+              <address className="not-italic leading-relaxed text-forest-foreground/80 text-sm">
+                <strong className="block text-forest-foreground font-display text-xl mb-1">
+                  Negi Cottage
+                </strong>
+                Kuppa Bus Stand, Kupa
                 <br />
-                Himachal Pradesh 172106
+                Himachal Pradesh 172106, India
               </address>
             </div>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <a href={directionsUrl} target="_blank" rel="noreferrer" className="button-gold">
+
+            <p className="mt-5 text-xs text-forest-foreground/70 leading-relaxed max-w-sm">
+              Conveniently located just 2.5 km before Sangla town, making it easy to visit Kamru Fort, Chitkul, and Rakchham.
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href={directionsUrl} target="_blank" rel="noreferrer" className="button-gold text-xs py-3 px-6">
                 Get Directions <ExternalLink className="h-4 w-4" />
               </a>
-              <a href="tel:+917807215761" className="button-outline-light">
+              <a href={phoneUrl} className="button-outline-light text-xs py-3 px-6">
                 <Phone className="h-4 w-4" /> Call Host
               </a>
             </div>
-          </Reveal>
-          <div className="min-h-[480px] bg-muted lg:min-h-[650px]">
+          </div>
+
+          <div className="min-h-[420px] bg-muted lg:min-h-[600px]">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3404.2618068319944!2d78.24440711086206!3d31.43445865127477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390614d8c0b2125d%3A0x55fdf9e8aad17a56!2sNegi%20Cottage!5e0!3m2!1sen!2sin!4v1789809051469!5m2!1sen!2sin"
               width="600"
               height="450"
-              className="h-full min-h-[480px] w-full border-0 grayscale-[20%] lg:min-h-[650px]"
+              className="h-full min-h-[420px] w-full border-0 lg:min-h-[600px]"
               allowFullScreen
               loading="lazy"
               referrerPolicy="strict-origin-when-cross-origin"
@@ -778,122 +1065,224 @@ function Index() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="relative overflow-hidden bg-gold-light section-pad">
-        <Mountain
-          className="absolute -bottom-20 -right-16 h-80 w-80 text-gold/15 pointer-events-none"
-          strokeWidth={0.7}
+      {/* 9. Premium Final Booking CTA */}
+      <section className="relative overflow-hidden bg-forest text-forest-foreground py-24 sm:py-32">
+        <img
+          src={mountainImage}
+          alt="Snow-capped Himalayan peaks of Sangla Valley"
+          className="absolute inset-0 h-full w-full object-cover object-center opacity-30"
         />
-        <div className="relative mx-auto max-w-5xl px-5 text-center md:px-8">
-          <Reveal>
-            <p className="eyebrow text-gold-dark">Come stay awhile</p>
-            <h2 className="mx-auto mt-5 max-w-4xl font-display text-5xl leading-[1.02] sm:text-7xl text-foreground">
-              Your mountain escape begins with a message.
-            </h2>
-            <p className="mx-auto mt-7 max-w-xl text-muted-foreground text-base leading-relaxed">
-              For availability, current apple season rates, bonfire arrangements, and booking enquiries, message Negi Cottage directly on WhatsApp.
-            </p>
+        <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/80 to-forest/90" />
+
+        <div className="relative z-10 mx-auto max-w-4xl px-6 text-center md:px-10">
+          <p className="eyebrow text-terracotta">Begin Your Journey</p>
+          <h2 className="font-display text-4xl sm:text-6xl font-normal text-white mt-3 leading-tight">
+            Your Himalayan Escape Awaits.
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl text-base text-forest-foreground/80 leading-relaxed font-sans">
+            Enquire about seasonal room availability, apple harvest experiences, and custom travel guidance for your journey across Kinnaur.
+          </p>
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noreferrer"
-              className="button-forest mx-auto mt-10 justify-center text-sm font-semibold py-4 px-8"
+              className="button-gold text-xs py-3.5 px-8"
             >
-              <WhatsAppIcon /> Message on WhatsApp
+              <WhatsAppIcon className="h-4 w-4" /> Book Your Stay
             </a>
             <a
-              href="tel:+917807215761"
-              className="mt-5 inline-block text-sm font-semibold tracking-[0.08em] text-foreground underline decoration-gold underline-offset-8"
+              href={whatsappUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="button-outline-light text-xs py-3.5 px-8"
             >
-              +91 78072 15761
+              Chat on WhatsApp
             </a>
-          </Reveal>
+          </div>
+          <div className="mt-8">
+            <a
+              href={phoneUrl}
+              className="text-xs font-semibold tracking-wider text-forest-foreground/80 hover:text-white underline decoration-terracotta underline-offset-8"
+            >
+              Direct Host Line: +91 78072 15761
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-forest px-5 py-10 text-forest-foreground md:px-8">
-        <div className="mx-auto grid max-w-7xl gap-8 border-b border-forest-border pb-9 sm:grid-cols-[1fr_auto] sm:items-end">
-          <div>
-            <p className="font-display text-3xl uppercase tracking-[0.12em]">Negi Cottage</p>
-            <p className="mt-2 text-sm text-forest-foreground/55">
-              Kupa · Sangla Valley · Himachal Pradesh 172106
-            </p>
+      {/* 10. Footer */}
+      <footer className="bg-forest px-6 py-14 text-forest-foreground md:px-12 lg:px-16 border-t border-forest-border">
+        <div className="mx-auto max-w-[1440px]">
+          <div className="grid gap-12 border-b border-forest-border pb-12 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="lg:col-span-2">
+              <span className="font-display text-3xl sm:text-4xl uppercase tracking-[0.14em] text-forest-foreground">
+                Negi Cottage
+              </span>
+              <p className="mt-1 text-xs font-semibold uppercase tracking-[0.24em] text-terracotta">
+                Boutique Himalayan Homestay · Kupa
+              </p>
+              <p className="mt-4 max-w-md text-sm text-forest-foreground/75 leading-relaxed">
+                Surrounded by heritage apple orchards and snow-clad Kinner Kailash mountain horizons in Sangla Valley, Kinnaur, Himachal Pradesh.
+              </p>
+
+              <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-black/25 px-4 py-1.5 border border-white/10 text-xs">
+                <Star className="h-3.5 w-3.5 fill-current text-terracotta" />
+                <span className="font-semibold text-white">4.6 / 5 Rating</span>
+                <span className="opacity-60">· 279 Verified Google Reviews</span>
+              </div>
+            </div>
+
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-terracotta mb-4">
+                Explore
+              </p>
+              <div className="flex flex-col gap-2.5 text-xs tracking-wider text-forest-foreground/80">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.label}
+                    to={item.to}
+                    className="hover:text-terracotta transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-terracotta mb-4">
+                Direct Contact
+              </p>
+              <address className="not-italic text-xs text-forest-foreground/80 space-y-3 leading-relaxed">
+                <div className="flex items-start gap-2.5">
+                  <MapPin className="h-4 w-4 shrink-0 text-terracotta mt-0.5" />
+                  <span>Kuppa Bus Stand, Kupa, Himachal Pradesh 172106</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <Phone className="h-4 w-4 shrink-0 text-terracotta" />
+                  <a href={phoneUrl} className="hover:text-terracotta transition-colors font-semibold">
+                    +91 78072 15761
+                  </a>
+                </div>
+                <div className="pt-2">
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-terracotta hover:underline"
+                  >
+                    <WhatsAppIcon className="h-4 w-4" /> Message on WhatsApp &rarr;
+                  </a>
+                </div>
+              </address>
+            </div>
           </div>
-          <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs uppercase tracking-[0.12em] text-forest-foreground/70">
-            {navItems.map((item) => (
-              <Link key={item.label} to={item.to} className="hover:text-gold transition-colors">
-                {item.label}
-              </Link>
-            ))}
+
+          <div className="mt-8 flex flex-col gap-3 text-xs text-forest-foreground/55 sm:flex-row sm:items-center sm:justify-between">
+            <span>© 2026 Negi Cottage. All rights reserved.</span>
+            <span>
+              Powered by{" "}
+              <a
+                href="https://www.techhim.online/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-terracotta hover:underline transition-colors"
+              >
+                TechHim Solutions
+              </a>
+            </span>
+            <span>Sangla Valley, Kinnaur, Himachal Pradesh</span>
           </div>
-        </div>
-        <div className="mx-auto mt-6 flex max-w-7xl flex-col gap-2 text-xs text-forest-foreground/50 sm:flex-row sm:items-center sm:justify-between">
-          <span>© 2026 Negi Cottage. All rights reserved.</span>
-          <span>
-            Powered by{" "}
-            <a
-              href="https://www.techhim.online/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gold font-medium hover:underline transition-colors"
-            >
-              TechHim Solutions
-            </a>
-          </span>
-          <span>Apple Orchard Homestay · Kupa, Sangla Valley</span>
         </div>
       </footer>
 
-      {/* Floating WhatsApp Booking Button */}
+      {/* Floating WhatsApp on Desktop */}
       <a
         href={whatsappUrl}
         target="_blank"
         rel="noreferrer"
-        className="floating-whatsapp"
+        className="floating-whatsapp hidden lg:inline-flex"
         aria-label="Book Negi Cottage on WhatsApp"
       >
-        <WhatsAppIcon className="h-6 w-6" />
-        <span className="hidden sm:inline">Book on WhatsApp</span>
+        <WhatsAppIcon className="h-5 w-5 text-terracotta" />
+        <span>Book on WhatsApp</span>
       </a>
 
-      {/* Lightbox for Preview Photos */}
+      {/* Mobile Fixed Bottom Action Bar */}
+      <div className="fixed inset-x-0 bottom-0 z-40 flex items-center gap-2 border-t border-forest-border/40 bg-forest/98 p-2.5 shadow-2xl backdrop-blur-lg lg:hidden">
+        <a
+          href={phoneUrl}
+          className="flex-1 flex items-center justify-center gap-2 rounded-full border border-white/20 bg-black/20 py-2.5 text-xs font-bold uppercase tracking-wider text-white"
+        >
+          <Phone className="h-3.5 w-3.5 text-terracotta" />
+          <span>Call Host</span>
+        </a>
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="flex-1 flex items-center justify-center gap-2 rounded-full bg-terracotta py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow-md"
+        >
+          <WhatsAppIcon className="h-4 w-4" />
+          <span>Book Stay</span>
+        </a>
+      </div>
+
+      {/* Lightbox Modal */}
       {activeImage && lightboxIndex !== null && (
         <div
-          className="lightbox fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6"
+          className="lightbox fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8"
           role="dialog"
           aria-modal="true"
+          onClick={() => setLightboxIndex(null)}
         >
           <button
             type="button"
             onClick={() => setLightboxIndex(null)}
-            className="absolute right-4 top-4 z-20 grid h-11 w-11 place-items-center rounded-full bg-black/60 text-white"
-            aria-label="Close"
+            className="absolute right-5 top-5 z-20 grid h-11 w-11 place-items-center rounded-full bg-black/60 text-white hover:bg-black/80 transition"
+            aria-label="Close Lightbox"
           >
             <X className="h-6 w-6" />
           </button>
           <button
             type="button"
-            onClick={() => moveLightbox(-1)}
-            className="absolute left-3 sm:left-6 z-20 grid h-12 w-12 place-items-center rounded-full bg-black/60 text-white"
-            aria-label="Previous"
+            onClick={(e) => {
+              e.stopPropagation();
+              moveLightbox(-1);
+            }}
+            className="absolute left-4 sm:left-8 z-20 grid h-12 w-12 place-items-center rounded-full bg-black/60 text-white hover:bg-black/90 transition hover:scale-110"
+            aria-label="Previous Photo"
           >
             <ChevronLeft className="h-7 w-7" />
           </button>
-          <div className="max-w-4xl text-center text-white">
+
+          <div
+            className="max-w-4xl text-center text-white"
+            onClick={(e) => e.stopPropagation()}
+          >
             <img
               src={activeImage.src}
               alt={activeImage.title}
-              className="max-h-[75vh] max-w-full rounded-xl object-contain mx-auto shadow-2xl"
+              className="max-h-[75vh] max-w-full rounded-2xl object-contain mx-auto shadow-2xl"
             />
-            <h3 className="mt-4 font-display text-2xl font-bold">{activeImage.title}</h3>
-            <p className="text-xs text-gold uppercase tracking-widest mt-1">{activeImage.category}</p>
+            <div className="mt-4">
+              <span className="text-[11px] font-bold uppercase tracking-widest text-terracotta">
+                {activeImage.category}
+              </span>
+              <h3 className="font-display text-2xl font-bold mt-1">{activeImage.title}</h3>
+              <p className="text-xs text-white/70 mt-1">{activeImage.alt}</p>
+            </div>
           </div>
+
           <button
             type="button"
-            onClick={() => moveLightbox(1)}
-            className="absolute right-3 sm:right-6 z-20 grid h-12 w-12 place-items-center rounded-full bg-black/60 text-white"
-            aria-label="Next"
+            onClick={(e) => {
+              e.stopPropagation();
+              moveLightbox(1);
+            }}
+            className="absolute right-4 sm:right-8 z-20 grid h-12 w-12 place-items-center rounded-full bg-black/60 text-white hover:bg-black/90 transition hover:scale-110"
+            aria-label="Next Photo"
           >
             <ChevronRight className="h-7 w-7" />
           </button>

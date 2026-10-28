@@ -1,8 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Bed, CheckCircle2, Coffee, Flame, Heart, Sparkles, Sun, Wifi, Wind } from "lucide-react";
+import { Bed, CheckCircle2, Coffee, Flame, Heart, ShieldCheck, Sparkles, Sun, Wifi, Wind } from "lucide-react";
 import { BookingCalculator } from "@/components/booking-calculator";
 import { PageFrame, PageHero, whatsappUrl, WhatsAppIcon } from "@/components/negi-layout";
-import { roomPhotos } from "@/lib/cottage-photos";
 import balconyRoom from "@/assets/balcony-room.png";
 import windowRoom from "@/assets/window-room.png";
 import roomView from "@/assets/negi-cottage-room-view.png";
@@ -21,11 +20,11 @@ import bathroom1 from "@/assets/bathroom1.png";
 export const Route = createFileRoute("/stay")({
   head: () => ({
     meta: [
-      { title: "Stay at Negi Cottage | Deluxe Rooms & Family Suites in Kupa" },
+      { title: "Stay at Negi Cottage | Deluxe Rooms & Family Suites in Kupa, Sangla" },
       {
         name: "description",
         content:
-          "Explore genuine photo tours of accommodations at Negi Cottage, Kupa: Balcony Mountain Rooms, Deluxe Suites, Grand Family Suites, and clean ensuite bathrooms with 24/7 hot water.",
+          "Explore genuine photo tours of accommodations at Negi Cottage, Kupa: Balcony Mountain Rooms, Deluxe Suites, Grand Family Suites, and clean ensuite bathrooms with 24/7 hot water geysers.",
       },
       { property: "og:title", content: "Rooms & Suites at Negi Cottage, Sangla Valley" },
       {
@@ -44,10 +43,11 @@ export const Route = createFileRoute("/stay")({
 const roomTiers = [
   {
     title: "Balcony & Scenic Window Rooms",
-    tag: "Most Popular",
+    tag: "Guest Favorite",
     price: "From ₹1,800 / night",
+    prefillMessage: "Hello, I would like to book a Balcony Mountain Room at Negi Cottage, Kupa.",
     description:
-      "Bright, morning-facing rooms featuring direct wooden balcony access or broad picture windows overlooking snow-capped Kinner Kailash ridges and blooming apple orchards.",
+      "Bright, morning-facing rooms featuring direct wooden balcony access or wide picture windows overlooking snow-capped Kinner Kailash ridges and blooming apple orchards. Perfect for couples and writers seeking tranquil mountain views.",
     images: [
       { src: balconyRoom, title: "Balcony Mountain Room", desc: "Private step-out wooden balcony facing the valley." },
       { src: windowRoom, title: "Scenic Window Suite", desc: "Large windows framing alpine peaks and morning light." },
@@ -55,18 +55,21 @@ const roomTiers = [
       { src: room2, title: "Sunlit Mountain Suite", desc: "Ample natural daylight and warm wooden accents." },
     ],
     amenities: [
-      "Valley & orchard view balcony",
-      "Attached private washroom with 24/7 hot water",
-      "Warm Himalayan woollen quilts & blankets",
-      "Morning tea / coffee service in bed",
+      "Valley & orchard view wooden balcony",
+      "Attached private washroom with 24/7 hot water geyser",
+      "Warm Himalayan woollen quilts & heavy blankets",
+      "Morning tea / coffee served in bed upon request",
+      "Power sockets with phone/camera charging points",
+      "Fresh daily linen & housekeeping service",
     ],
   },
   {
     title: "Grand Family Suites",
     tag: "Ideal for Groups & Families",
     price: "From ₹2,500 / night",
+    prefillMessage: "Hello, I would like to enquire about the Grand Family Suite for our family/group at Negi Cottage, Kupa.",
     description:
-      "Spacious multi-bed chambers crafted specifically for parents traveling with children or small trekking groups exploring the Sangla Valley together in comfort.",
+      "Expansive multi-bed chambers crafted specifically for parents traveling with children or small trekking groups exploring the Sangla Valley together in comfort. Generous floor plan with ample space for mountain luggage and winter gear.",
     images: [
       { src: familyRoom, title: "Grand Family Suite", desc: "Expansive layout with multiple beds and seating space." },
       { src: familyRoom1, title: "Master Bed Section", desc: "Extra wide beds with plush mattresses and warm linens." },
@@ -74,18 +77,21 @@ const roomTiers = [
       { src: negiCottageFamilyRoom, title: "Upper Family Quarters", desc: "Top floor panoramic windows capturing full valley vistas." },
     ],
     amenities: [
-      "Accommodates 3 to 5 guests comfortably",
-      "Ensuite bathroom with high-capacity geysers",
-      "Spacious room layout for luggage and gear",
-      "Child-friendly and quiet environment",
+      "Comfortably accommodates 3 to 5 guests",
+      "Multiple beds with plush mattresses & heavy quilts",
+      "Ensuite bathroom with high-capacity fast geysers",
+      "Spacious room layout for luggage, trekking gear & boots",
+      "Quiet family-friendly environment close to dining hall",
+      "Extra blankets and hot water bottles on chill nights",
     ],
   },
   {
     title: "Classic Mountain Comfort Rooms",
-    tag: "Cozy & Authentic",
+    tag: "Cozy & Great Value",
     price: "From ₹1,500 / night",
+    prefillMessage: "Hello, I would like to book a Classic Mountain Room at Negi Cottage, Kupa.",
     description:
-      "Traditional pine-trimmed rooms that celebrate the rustic simplicity of a true Himalayan homestay. Silent, peaceful, and warm throughout the chill mountain nights.",
+      "Traditional pine-trimmed rooms that celebrate the rustic simplicity and soothing peace of an authentic Himalayan homestay. Silent, peaceful, and warm throughout the chill mountain nights.",
     images: [
       { src: room, title: "Classic Double Room", desc: "Quiet retreat with warm bedding and pine timber trim." },
       { src: room3, title: "Pine-Accented Bedroom", desc: "Cozy mountain hideaway for couples and solo travelers." },
@@ -93,10 +99,12 @@ const roomTiers = [
       { src: negiCottageRoom, title: "Traditional Wooden Room", desc: "Wood-panelled charm with genuine local hospitality." },
     ],
     amenities: [
-      "Double spring/foam comfortable bed",
-      "Daily housekeeping & fresh mountain linen",
-      "Dedicated power sockets for cameras & phones",
-      "Quick access to the dining hall and garden",
+      "Comfortable spring/foam double mattress",
+      "Ensuite private bathroom with running hot water",
+      "Warm wooden ceiling panels & local textiles",
+      "Daily housekeeping & fresh mountain towels",
+      "Quick access to the dining hall and garden lawn",
+      "Fast host assistance for travel planning",
     ],
   },
 ];
@@ -114,68 +122,73 @@ function StayPage() {
 
       {/* Intro Overview */}
       <section className="section-pad bg-background">
-        <div className="mx-auto max-w-7xl px-5 md:px-8">
+        <div className="mx-auto max-w-[1440px] px-6 md:px-10">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between border-b border-border pb-10">
             <div>
-              <p className="eyebrow text-gold-dark">Real Photos · Real Homestay</p>
-              <h2 className="mt-2 font-display text-4xl sm:text-5xl text-foreground">
+              <p className="eyebrow text-terracotta">Real Photographs · Real Homestay</p>
+              <h2 className="mt-2 font-display text-4xl sm:text-5xl lg:text-6xl text-foreground font-normal">
                 Our Rooms & Suites
               </h2>
-              <p className="mt-3 max-w-2xl text-base text-muted-foreground leading-relaxed">
-                Every photograph below is taken directly inside Negi Cottage. We pride ourselves on sparkling cleanliness, warm hospitality, and unobstructed Himalayan views.
+              <p className="mt-4 max-w-2xl text-base text-muted-foreground leading-relaxed">
+                Every photograph below is taken directly inside Negi Cottage. We take immense pride in sparkling cleanliness, warm Kinnauri hospitality, and unobstructed Himalayan mountain views.
               </p>
             </div>
             <a href={whatsappUrl} target="_blank" rel="noreferrer" className="button-forest shrink-0">
-              <WhatsAppIcon className="h-5 w-5" /> Enquire Availability
+              <WhatsAppIcon className="h-4 w-4 text-terracotta" /> Enquire Availability
             </a>
           </div>
 
           {/* Room Tiers Section */}
           <div className="mt-14 space-y-20">
-            {roomTiers.map((tier, idx) => (
-              <div key={tier.title} className="rounded-3xl border border-border/80 bg-card p-6 sm:p-10 shadow-sm">
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-border/60 pb-6">
+            {roomTiers.map((tier) => (
+              <div
+                key={tier.title}
+                className="overflow-hidden rounded-3xl border border-border bg-card p-6 sm:p-10 lg:p-12 shadow-sm transition-shadow hover:shadow-lg"
+              >
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-border/70 pb-6">
                   <div>
                     <div className="flex items-center gap-3">
-                      <span className="rounded-full bg-forest px-3 py-1 text-xs font-bold uppercase tracking-wider text-gold">
+                      <span className="rounded-full bg-forest px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-forest-foreground">
                         {tier.tag}
                       </span>
-                      <span className="text-sm font-semibold text-gold-dark">{tier.price}</span>
+                      <span className="font-display text-xl sm:text-2xl font-bold text-forest">
+                        {tier.price}
+                      </span>
                     </div>
-                    <h3 className="mt-2 font-display text-3xl sm:text-4xl font-bold text-foreground">
+                    <h3 className="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-normal text-foreground">
                       {tier.title}
                     </h3>
                   </div>
                   <a
-                    href={whatsappUrl}
+                    href={`https://wa.me/917807215761?text=${encodeURIComponent(tier.prefillMessage)}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="button-gold self-start sm:self-auto text-xs uppercase tracking-wider font-bold py-2.5 px-5"
+                    className="button-gold self-start sm:self-auto shrink-0"
                   >
-                    Book This Room &rarr;
+                    <WhatsAppIcon className="h-4 w-4" /> Book This Room &rarr;
                   </a>
                 </div>
 
-                <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-5 max-w-4xl text-base leading-relaxed text-muted-foreground">
                   {tier.description}
                 </p>
 
                 {/* 4 Image Grid per Tier */}
-                <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
                   {tier.images.map((img) => (
                     <div
                       key={img.title}
-                      className="group overflow-hidden rounded-xl border border-border bg-background transition-all hover:-translate-y-1 hover:shadow-md"
+                      className="group overflow-hidden rounded-2xl border border-border bg-background transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
                     >
-                      <div className="aspect-[4/3] w-full overflow-hidden bg-muted">
+                      <div className="aspect-[4/3] w-full overflow-hidden bg-soft-sand">
                         <img
                           src={img.src}
                           alt={img.title}
                           loading="lazy"
-                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                         />
                       </div>
-                      <div className="p-3.5">
+                      <div className="p-4">
                         <h4 className="font-display text-lg font-semibold text-foreground">
                           {img.title}
                         </h4>
@@ -188,14 +201,14 @@ function StayPage() {
                 </div>
 
                 {/* Key Amenities row */}
-                <div className="mt-8 rounded-xl bg-muted/40 p-5">
-                  <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">
-                    Included Amenities:
+                <div className="mt-8 rounded-2xl bg-soft-sand/50 p-6 border border-border/80">
+                  <p className="text-xs font-bold uppercase tracking-widest text-forest mb-4 flex items-center gap-2">
+                    <Sparkles className="h-3.5 w-3.5 text-terracotta" /> Included in This Room:
                   </p>
-                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                     {tier.amenities.map((amenity) => (
-                      <div key={amenity} className="flex items-center gap-2 text-xs font-medium text-foreground">
-                        <CheckCircle2 className="h-4 w-4 shrink-0 text-gold-dark" />
+                      <div key={amenity} className="flex items-center gap-2.5 text-xs font-medium text-foreground">
+                        <CheckCircle2 className="h-4 w-4 shrink-0 text-terracotta" />
                         <span>{amenity}</span>
                       </div>
                     ))}
@@ -206,54 +219,54 @@ function StayPage() {
           </div>
 
           {/* Ensuite Bathrooms Showcase */}
-          <div className="mt-20 rounded-3xl bg-forest p-8 text-forest-foreground sm:p-12 shadow-xl">
-            <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
+          <div className="mt-20 rounded-3xl bg-forest p-8 text-forest-foreground sm:p-12 lg:p-16 shadow-xl">
+            <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
               <div>
-                <span className="eyebrow text-gold">Cleanliness & Hygiene Guaranteed</span>
-                <h3 className="mt-3 font-display text-3xl sm:text-4xl text-forest-foreground">
+                <span className="eyebrow text-terracotta">Cleanliness & Hygiene Guaranteed</span>
+                <h3 className="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-normal text-forest-foreground">
                   Modern Ensuite Bathrooms with 24/7 Hot Water
                 </h3>
-                <p className="mt-4 text-sm text-forest-foreground/80 leading-relaxed">
-                  We know that nothing matters more after a long drive across Kinnaur than a sparkling clean, private restroom and a steaming hot shower. All our bathrooms are fitted with high-efficiency geysers, western toilets, and fresh toiletries.
+                <p className="mt-4 text-base text-forest-foreground/85 leading-relaxed">
+                  We know that nothing matters more after a long scenic drive through Kinnaur than a sparkling clean, private restroom and a steaming hot shower. All our bathrooms are fitted with high-efficiency geysers, hygienic western commodes, and fresh mountain towels.
                 </p>
-                <div className="mt-6 space-y-2.5 text-xs text-forest-foreground/90">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-gold" />
-                    <span>Instant electric geyser for non-stop hot water in freezing temperatures</span>
+                <div className="mt-6 space-y-3 text-xs sm:text-sm text-forest-foreground/90">
+                  <div className="flex items-start gap-2.5">
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-terracotta mt-0.5" />
+                    <span>Instant electric geyser for non-stop steaming hot water even in freezing temperatures</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-gold" />
+                  <div className="flex items-start gap-2.5">
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-terracotta mt-0.5" />
                     <span>Sparkling clean tiled interiors, western commodes, and sanitary fittings</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-gold" />
-                    <span>Freshly laundered towels and complimentary mountain soaps provided</span>
+                  <div className="flex items-start gap-2.5">
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-terracotta mt-0.5" />
+                    <span>Freshly laundered soft towels and complimentary mountain soaps provided</span>
                   </div>
                 </div>
               </div>
 
               {/* 2 Bathroom Photos */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="overflow-hidden rounded-2xl border border-white/15 bg-black/20">
+                <div className="overflow-hidden rounded-2xl border border-white/15 bg-black/25">
                   <img
                     src={bathroom}
                     alt="Modern attached bathroom at Negi Cottage"
-                    className="h-60 w-full object-cover transition-transform duration-500 hover:scale-105"
+                    className="h-64 w-full object-cover transition-transform duration-500 hover:scale-105"
                   />
-                  <div className="p-3 bg-black/40 text-center">
-                    <p className="text-xs font-semibold text-gold">Clean Ensuite Bathroom</p>
-                    <p className="text-[11px] text-white/70">Equipped with 24/7 hot water geyser</p>
+                  <div className="p-4 bg-black/40 text-center">
+                    <p className="text-xs font-semibold text-terracotta">Clean Ensuite Bathroom</p>
+                    <p className="text-[11px] text-white/75 mt-0.5">Equipped with 24/7 electric hot water geyser</p>
                   </div>
                 </div>
-                <div className="overflow-hidden rounded-2xl border border-white/15 bg-black/20">
+                <div className="overflow-hidden rounded-2xl border border-white/15 bg-black/25">
                   <img
                     src={bathroom1}
                     alt="Pristine ensuite washroom facilities"
-                    className="h-60 w-full object-cover transition-transform duration-500 hover:scale-105"
+                    className="h-64 w-full object-cover transition-transform duration-500 hover:scale-105"
                   />
-                  <div className="p-3 bg-black/40 text-center">
-                    <p className="text-xs font-semibold text-gold">Modern Washroom Fixtures</p>
-                    <p className="text-[11px] text-white/70">Hygienic, tiled & fully functional</p>
+                  <div className="p-4 bg-black/40 text-center">
+                    <p className="text-xs font-semibold text-terracotta">Modern Washroom Fixtures</p>
+                    <p className="text-[11px] text-white/75 mt-0.5">Hygienic, tiled & meticulously maintained</p>
                   </div>
                 </div>
               </div>
@@ -262,9 +275,9 @@ function StayPage() {
         </div>
       </section>
 
-      {/* Booking Rate Calculator */}
-      <section className="section-pad bg-gold-light">
-        <div className="mx-auto max-w-4xl px-5 md:px-8">
+      {/* Booking Rate Calculator Section */}
+      <section className="section-pad bg-soft-sand/50 border-t border-border">
+        <div className="mx-auto max-w-4xl px-6 md:px-10">
           <BookingCalculator />
         </div>
       </section>

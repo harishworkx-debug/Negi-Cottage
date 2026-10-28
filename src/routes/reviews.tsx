@@ -8,7 +8,7 @@ import mountain from "@/assets/negi-cottage-mountains.png";
 export const Route = createFileRoute("/reviews")({
   head: () => ({
     meta: [
-      { title: "Guest Reviews (4.6★ · 279 Reviews) | Negi Cottage, Sangla" },
+      { title: "Guest Reviews (4.6★ · 279 Reviews) | Negi Cottage, Sangla Valley" },
       {
         name: "description",
         content:
@@ -69,16 +69,16 @@ function ReviewsPage() {
       />
 
       <section className="section-pad bg-background">
-        <div className="mx-auto max-w-7xl px-5 md:px-8">
+        <div className="mx-auto max-w-[1440px] px-6 md:px-10">
           {/* Rating Summary Banner */}
-          <div className="rounded-3xl border border-border bg-card p-6 sm:p-10 shadow-sm">
+          <div className="rounded-3xl border border-border bg-card p-6 sm:p-10 lg:p-12 shadow-sm">
             <div className="grid gap-8 lg:grid-cols-[1fr_1.4fr] lg:items-center">
               <div>
-                <span className="eyebrow text-gold-dark">Google Business Rating</span>
+                <span className="eyebrow text-terracotta">Google Business Rating</span>
                 <div className="mt-3 flex items-baseline gap-4">
-                  <span className="font-display text-6xl font-bold text-foreground">4.6</span>
+                  <span className="font-display text-6xl sm:text-7xl font-bold text-forest">4.6</span>
                   <div>
-                    <div className="flex items-center text-gold">
+                    <div className="flex items-center text-terracotta">
                       {[1, 2, 3, 4, 5].map((star) => (
                         <Star key={star} className="h-5 w-5 fill-current" />
                       ))}
@@ -88,16 +88,16 @@ function ReviewsPage() {
                     </p>
                   </div>
                 </div>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-4 text-sm sm:text-base leading-relaxed text-muted-foreground">
                   Guests consistently highlight our peaceful apple orchard location, warm personal hosting by Mr. Negi, delicious fresh-cooked meals, and 360-degree rooftop views.
                 </p>
               </div>
 
               {/* Topics from Google */}
-              <div className="border-t border-border/80 pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+              <div className="border-t border-border pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
                 <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3 flex items-center gap-2">
-                  <Filter className="h-3.5 w-3.5 text-gold-dark" />
-                  Popular Review Topics:
+                  <Filter className="h-3.5 w-3.5 text-terracotta" />
+                  Popular Google Review Topics:
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {googleReviewsStats.topics.map((topic) => {
@@ -109,8 +109,8 @@ function ReviewsPage() {
                         onClick={() => setSelectedTopic(topic.name)}
                         className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all ${
                           isSelected
-                            ? "bg-forest text-gold shadow-sm scale-105"
-                            : "bg-muted/70 text-foreground/80 hover:bg-muted hover:text-foreground"
+                            ? "bg-forest text-forest-foreground shadow-sm scale-105"
+                            : "bg-soft-sand/70 text-foreground/80 hover:bg-soft-sand hover:text-foreground"
                         }`}
                       >
                         {topic.name} <span className="opacity-60 text-[11px]">({topic.count})</span>
@@ -125,23 +125,25 @@ function ReviewsPage() {
           {/* Search & Star Filters */}
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-border pb-6">
             <div className="relative max-w-md w-full">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <input
                 type="text"
                 placeholder="Search reviews (e.g. food, bonfire, family, host, snow)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-full border border-border bg-card py-2.5 pl-10 pr-4 text-xs text-foreground placeholder:text-muted-foreground focus:outline-hidden focus:ring-2 focus:ring-gold"
+                className="w-full rounded-full border border-border bg-card py-2.5 pl-11 pr-4 text-xs text-foreground placeholder:text-muted-foreground focus:outline-hidden focus:border-forest"
               />
             </div>
 
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-xs text-muted-foreground font-medium">Filter by stars:</span>
+              <span className="text-xs text-muted-foreground font-medium">Filter by rating:</span>
               <button
                 type="button"
                 onClick={() => setSelectedRating(null)}
-                className={`rounded-lg px-3 py-1.5 text-xs font-semibold ${
-                  selectedRating === null ? "bg-forest text-gold" : "bg-muted/60 text-foreground/80"
+                className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition-colors ${
+                  selectedRating === null
+                    ? "bg-forest text-forest-foreground"
+                    : "border border-border bg-card text-foreground/80 hover:border-forest"
                 }`}
               >
                 All
@@ -149,22 +151,26 @@ function ReviewsPage() {
               <button
                 type="button"
                 onClick={() => setSelectedRating(5)}
-                className={`flex items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-semibold ${
-                  selectedRating === 5 ? "bg-forest text-gold" : "bg-muted/60 text-foreground/80"
+                className={`flex items-center gap-1 rounded-full px-3.5 py-1.5 text-xs font-semibold transition-colors ${
+                  selectedRating === 5
+                    ? "bg-forest text-forest-foreground"
+                    : "border border-border bg-card text-foreground/80 hover:border-forest"
                 }`}
               >
                 <span>5</span>
-                <Star className="h-3 w-3 fill-current text-gold" />
+                <Star className="h-3 w-3 fill-current text-terracotta" />
               </button>
               <button
                 type="button"
                 onClick={() => setSelectedRating(4)}
-                className={`flex items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-semibold ${
-                  selectedRating === 4 ? "bg-forest text-gold" : "bg-muted/60 text-foreground/80"
+                className={`flex items-center gap-1 rounded-full px-3.5 py-1.5 text-xs font-semibold transition-colors ${
+                  selectedRating === 4
+                    ? "bg-forest text-forest-foreground"
+                    : "border border-border bg-card text-foreground/80 hover:border-forest"
                 }`}
               >
                 <span>4</span>
-                <Star className="h-3 w-3 fill-current text-gold" />
+                <Star className="h-3 w-3 fill-current text-terracotta" />
               </button>
             </div>
           </div>
@@ -174,13 +180,13 @@ function ReviewsPage() {
             {filteredReviews.map((review) => (
               <div
                 key={review.id}
-                className="flex flex-col justify-between rounded-2xl border border-border/80 bg-card p-6 sm:p-7 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-gold/40"
+                className="flex flex-col justify-between rounded-2xl border border-border bg-card p-6 sm:p-7 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-forest/40"
               >
                 <div>
                   {/* Reviewer Header */}
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-3">
-                      <div className="grid h-11 w-11 place-items-center rounded-full bg-forest text-sm font-bold text-gold">
+                      <div className="grid h-11 w-11 place-items-center rounded-full bg-forest text-sm font-bold text-forest-foreground">
                         {review.author.charAt(0)}
                       </div>
                       <div>
@@ -197,25 +203,25 @@ function ReviewsPage() {
 
                   {/* Rating Stars & Badges */}
                   <div className="mt-3 flex items-center justify-between">
-                    <div className="flex items-center text-gold">
+                    <div className="flex items-center text-terracotta">
                       {[1, 2, 3, 4, 5].map((star) => (
                         <Star
                           key={star}
                           className={`h-4 w-4 ${
-                            star <= review.rating ? "fill-current" : "text-muted"
+                            star <= review.rating ? "fill-current" : "text-border"
                           }`}
                         />
                       ))}
                     </div>
                     {review.travelGroup && (
-                      <span className="rounded-full bg-muted/80 px-2.5 py-0.5 text-[10px] font-semibold text-muted-foreground">
+                      <span className="rounded-full bg-soft-sand px-2.5 py-0.5 text-[10px] font-semibold text-muted-foreground">
                         {review.travelGroup}
                       </span>
                     )}
                   </div>
 
                   {/* Content */}
-                  <blockquote className="mt-4 text-xs leading-relaxed text-foreground/90">
+                  <blockquote className="mt-4 text-xs sm:text-sm leading-relaxed text-foreground/90">
                     "{review.content}"
                   </blockquote>
 
@@ -225,7 +231,7 @@ function ReviewsPage() {
                       {review.highlights.map((hl) => (
                         <span
                           key={hl}
-                          className="rounded bg-gold-light/60 px-2 py-0.5 text-[10px] font-medium text-forest"
+                          className="rounded-full bg-soft-sand px-2.5 py-0.5 text-[10px] font-medium text-forest"
                         >
                           ✓ {hl}
                         </span>
@@ -236,7 +242,7 @@ function ReviewsPage() {
 
                 {/* Owner Reply if available */}
                 {review.ownerResponse && (
-                  <div className="mt-5 rounded-xl bg-muted/40 p-3 text-[11px] border-l-2 border-gold-dark text-muted-foreground">
+                  <div className="mt-5 rounded-xl bg-soft-sand/60 p-3 text-[11px] border-l-2 border-terracotta text-muted-foreground">
                     <strong className="block text-foreground font-semibold">Response from Negi Cottage:</strong>
                     <p className="mt-0.5 italic">"{review.ownerResponse}"</p>
                   </div>
@@ -248,11 +254,11 @@ function ReviewsPage() {
           {/* CTA Box */}
           <div className="mt-16 flex flex-col items-center justify-between gap-6 rounded-3xl bg-forest p-8 text-center sm:p-12 text-forest-foreground sm:flex-row sm:text-left shadow-xl">
             <div>
-              <p className="eyebrow text-gold">Experience it for yourself</p>
-              <h2 className="mt-2 font-display text-3xl sm:text-4xl text-forest-foreground">
+              <p className="eyebrow text-terracotta">Experience it for yourself</p>
+              <h2 className="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl text-forest-foreground font-normal">
                 Join 275+ happy travelers at Negi Cottage.
               </h2>
-              <p className="mt-2 text-sm text-forest-foreground/75 max-w-xl">
+              <p className="mt-2 text-sm text-forest-foreground/80 max-w-xl">
                 Direct booking on WhatsApp gives you transparent rates, instant confirmation, and direct contact with the host.
               </p>
             </div>
@@ -260,9 +266,9 @@ function ReviewsPage() {
               href={whatsappUrl}
               target="_blank"
               rel="noreferrer"
-              className="button-gold shrink-0 px-7 py-3.5 text-sm font-semibold"
+              className="button-gold shrink-0 px-7 py-3.5 text-xs font-bold uppercase tracking-wider"
             >
-              <WhatsAppIcon className="h-5 w-5" /> Book on WhatsApp
+              <WhatsAppIcon className="h-4 w-4" /> Book on WhatsApp
             </a>
           </div>
         </div>
@@ -270,4 +276,3 @@ function ReviewsPage() {
     </PageFrame>
   );
 }
-

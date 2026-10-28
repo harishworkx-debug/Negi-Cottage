@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, ChevronLeft, ChevronRight, Filter, Sparkles, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Filter, Sparkles, X } from "lucide-react";
 import { useEffect, useState, useMemo } from "react";
 import { PageFrame, PageHero, whatsappUrl, WhatsAppIcon } from "@/components/negi-layout";
 import { allCottagePhotos, type CottagePhoto } from "@/lib/cottage-photos";
@@ -8,7 +8,7 @@ import mountain from "@/assets/negi-cottage-mountains.png";
 type FilterCategory = "all" | "rooms" | "dining" | "views" | "winter" | "outdoor" | "experience";
 
 const categoryFilters: { id: FilterCategory; label: string }[] = [
-  { id: "all", label: "All Photos (36)" },
+  { id: "all", label: "All Photos" },
   { id: "rooms", label: "Rooms & Suites" },
   { id: "views", label: "Mountain Panoramas" },
   { id: "winter", label: "Snow & Winter" },
@@ -20,7 +20,7 @@ const categoryFilters: { id: FilterCategory; label: string }[] = [
 export const Route = createFileRoute("/gallery")({
   head: () => ({
     meta: [
-      { title: "Visual Gallery (36 Photos) | Negi Cottage, Kupa" },
+      { title: "Visual Gallery (36 Photos) | Negi Cottage, Kupa, Sangla" },
       {
         name: "description",
         content:
@@ -32,6 +32,8 @@ export const Route = createFileRoute("/gallery")({
         content:
           "Browse 36 authentic photographs of Negi Cottage, Sangla Valley: apple orchards, snowy winter views, comfortable rooms, and warm Himachali dining.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "/gallery" }],
   }),
@@ -83,11 +85,11 @@ function GalleryPage() {
       />
 
       <section className="section-pad bg-background">
-        <div className="mx-auto max-w-7xl px-5 md:px-8">
+        <div className="mx-auto max-w-[1440px] px-6 md:px-10">
           {/* Category Filter Controls */}
-          <div className="mb-10 flex flex-wrap items-center justify-between gap-4 border-b border-border pb-6">
+          <div className="mb-12 flex flex-wrap items-center justify-between gap-4 border-b border-border pb-6">
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              <Filter className="h-4 w-4 text-gold-dark" />
+              <Filter className="h-4 w-4 text-terracotta" />
               <span>Filter Gallery:</span>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -107,8 +109,8 @@ function GalleryPage() {
                     }}
                     className={`rounded-full px-4 py-2 text-xs font-semibold tracking-wider transition-all duration-300 ${
                       isActive
-                        ? "bg-forest text-gold shadow-md"
-                        : "border border-border bg-card text-foreground/80 hover:border-gold hover:text-foreground"
+                        ? "bg-forest text-forest-foreground shadow-md"
+                        : "border border-border bg-card text-foreground/80 hover:border-forest hover:text-foreground"
                     }`}
                   >
                     {tab.label} ({count})
@@ -123,7 +125,7 @@ function GalleryPage() {
             {filteredPhotos.map((photo, index) => (
               <figure
                 key={photo.id}
-                className="group relative mb-6 break-inside-avoid overflow-hidden rounded-xl border border-border/80 bg-card shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:border-gold/50"
+                className="group relative mb-6 break-inside-avoid overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:border-forest/40"
               >
                 <button
                   type="button"
@@ -131,7 +133,7 @@ function GalleryPage() {
                   className="relative block w-full overflow-hidden text-left cursor-pointer"
                   aria-label={`Open ${photo.title} in lightbox`}
                 >
-                  <div className="overflow-hidden bg-muted/40">
+                  <div className="overflow-hidden bg-soft-sand">
                     <img
                       src={photo.src}
                       alt={photo.title}
@@ -141,130 +143,126 @@ function GalleryPage() {
                   </div>
 
                   {/* Badge */}
-                  <span className="absolute left-3 top-3 rounded-md bg-forest/85 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-gold backdrop-blur-sm shadow-sm">
+                  <span className="absolute left-3.5 top-3.5 rounded-full bg-forest/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-forest-foreground backdrop-blur-sm shadow-sm">
                     {photo.tag}
                   </span>
 
                   {/* Information Overlay */}
                   <div className="p-4 sm:p-5">
-                    <h3 className="font-display text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="font-display text-xl font-bold text-foreground group-hover:text-forest transition-colors">
                       {photo.title}
                     </h3>
-                    <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground line-clamp-2">
+                    <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed line-clamp-2">
                       {photo.description}
                     </p>
-                    <div className="mt-3 flex items-center justify-between text-[11px] font-medium text-gold-dark border-t border-border/50 pt-2.5">
-                      <span>Click to expand</span>
-                      <span className="inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                        View Photo &rarr;
-                      </span>
-                    </div>
+                    <span className="mt-3 inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-terracotta">
+                      View Frame &rarr;
+                    </span>
                   </div>
                 </button>
               </figure>
             ))}
           </div>
 
-          {/* Enquiry CTA Bar */}
-          <div className="mt-16 flex flex-col items-start justify-between gap-6 rounded-2xl bg-forest p-8 text-forest-foreground sm:flex-row sm:items-center sm:p-12 shadow-xl">
-            <div>
-              <p className="eyebrow text-gold">Ready to experience this in person?</p>
-              <h2 className="mt-2 font-display text-3xl sm:text-4xl text-forest-foreground">
-                Plan your stay at Negi Cottage today.
-              </h2>
-              <p className="mt-2 max-w-xl text-sm text-forest-foreground/75 leading-relaxed">
-                Contact us on WhatsApp for direct booking, current apple season rates, and personalized travel recommendations for Sangla Valley.
-              </p>
+          {/* Bottom booking teaser */}
+          <div className="mt-20 rounded-3xl bg-soft-sand/50 p-8 sm:p-12 border border-border text-center max-w-4xl mx-auto">
+            <span className="eyebrow text-terracotta">Experience It Yourself</span>
+            <h3 className="mt-2 font-display text-3xl sm:text-4xl font-normal text-foreground">
+              Ready to wake up to these views?
+            </h3>
+            <p className="mt-3 text-sm sm:text-base text-muted-foreground max-w-xl mx-auto">
+              Direct booking with the host guarantees personal attention, flexible check-in times, and genuine Kinnauri hospitality.
+            </p>
+            <div className="mt-6 flex flex-wrap justify-center gap-4">
+              <a href={whatsappUrl} target="_blank" rel="noreferrer" className="button-forest">
+                <WhatsAppIcon className="h-4 w-4 text-terracotta" /> Enquire on WhatsApp
+              </a>
             </div>
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="button-gold shrink-0 px-6 py-3.5 text-sm font-semibold"
-            >
-              <WhatsAppIcon className="h-5 w-5" /> Enquire on WhatsApp
-            </a>
           </div>
         </div>
       </section>
 
-      {/* Fullscreen Lightbox Modal */}
-      {activePhoto !== null && activePhotoIndex !== null && (
+      {/* Lightbox Modal */}
+      {activePhoto && (
         <div
-          className="lightbox fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6"
           role="dialog"
           aria-modal="true"
-          aria-label="Photo gallery lightbox"
+          className="lightbox fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
+          onClick={() => setActivePhotoIndex(null)}
         >
-          {/* Close button */}
-          <button
-            type="button"
-            onClick={() => setActivePhotoIndex(null)}
-            className="absolute right-4 top-4 z-20 grid h-11 w-11 place-items-center rounded-full bg-black/60 text-white backdrop-blur-md transition hover:bg-black/80"
-            aria-label="Close gallery"
+          <div
+            className="relative flex max-h-[92vh] max-w-5xl w-full flex-col overflow-hidden rounded-3xl bg-forest/95 text-forest-foreground shadow-2xl border border-white/15"
+            onClick={(e) => e.stopPropagation()}
           >
-            <X className="h-6 w-6" />
-          </button>
+            {/* Top Bar */}
+            <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
+              <div className="flex items-center gap-3">
+                <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-terracotta">
+                  {activePhoto.tag}
+                </span>
+                <span className="text-xs text-forest-foreground/60">
+                  Frame {(activePhotoIndex ?? 0) + 1} of {filteredPhotos.length}
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setActivePhotoIndex(null)}
+                className="rounded-full p-2 text-forest-foreground/80 hover:bg-white/10 hover:text-white transition-colors"
+                aria-label="Close lightbox"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
 
-          {/* Prev button */}
-          <button
-            type="button"
-            onClick={() => movePhoto(-1)}
-            className="absolute left-3 sm:left-6 z-20 grid h-12 w-12 place-items-center rounded-full bg-black/60 text-white backdrop-blur-md transition hover:bg-black/90 hover:scale-110"
-            aria-label="Previous image"
-          >
-            <ChevronLeft className="h-7 w-7" />
-          </button>
-
-          {/* Modal Container */}
-          <div className="relative flex max-h-[92vh] max-w-5xl flex-col items-center overflow-hidden rounded-2xl bg-black/80 p-4 text-center text-white backdrop-blur-xl border border-white/10 shadow-2xl">
-            <div className="relative max-h-[68vh] w-full overflow-hidden rounded-xl">
+            {/* Image Stage */}
+            <div className="relative flex flex-1 items-center justify-center overflow-hidden bg-black/40 min-h-[350px] sm:min-h-[480px]">
               <img
                 src={activePhoto.src}
                 alt={activePhoto.title}
-                className="mx-auto max-h-[68vh] w-auto max-w-full rounded-xl object-contain"
+                className="max-h-[65vh] w-auto max-w-full object-contain p-2"
               />
+
+              {/* Prev / Next buttons */}
+              <button
+                type="button"
+                onClick={() => movePhoto(-1)}
+                className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-3 text-white backdrop-blur-sm transition-all hover:bg-black/80"
+                aria-label="Previous photo"
+              >
+                <ChevronLeft className="h-6 w-6" />
+              </button>
+              <button
+                type="button"
+                onClick={() => movePhoto(1)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-3 text-white backdrop-blur-sm transition-all hover:bg-black/80"
+                aria-label="Next photo"
+              >
+                <ChevronRight className="h-6 w-6" />
+              </button>
             </div>
 
-            <div className="mt-4 max-w-2xl px-2">
-              <div className="flex items-center justify-center gap-2">
-                <span className="rounded bg-gold/20 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-gold">
-                  {activePhoto.tag}
-                </span>
-                <span className="text-xs text-white/50">
-                  {activePhotoIndex + 1} of {filteredPhotos.length}
-                </span>
+            {/* Bottom Caption & WhatsApp CTA */}
+            <div className="flex flex-col gap-4 border-t border-white/10 p-6 sm:flex-row sm:items-center sm:justify-between bg-black/25">
+              <div>
+                <h3 className="font-display text-2xl font-bold text-white">
+                  {activePhoto.title}
+                </h3>
+                <p className="mt-1 text-xs text-white/80 max-w-xl">
+                  {activePhoto.description}
+                </p>
               </div>
-              <h3 className="mt-2 font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
-                {activePhoto.title}
-              </h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-white/80">
-                {activePhoto.description}
-              </p>
-
-              <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2 text-xs font-bold text-forest transition hover:bg-gold-light"
-                >
-                  <WhatsAppIcon className="h-4 w-4" /> Book this experience on WhatsApp
-                </a>
-                <span className="text-xs text-white/40">Use ← → arrow keys to navigate</span>
-              </div>
+              <a
+                href={`https://wa.me/917807215761?text=${encodeURIComponent(
+                  `Hello, I saw "${activePhoto.title}" in the Negi Cottage gallery and would like to enquire about staying here.`,
+                )}`}
+                target="_blank"
+                rel="noreferrer"
+                className="button-gold shrink-0 text-xs"
+              >
+                <WhatsAppIcon className="h-4 w-4" /> Book This Experience &rarr;
+              </a>
             </div>
           </div>
-
-          {/* Next button */}
-          <button
-            type="button"
-            onClick={() => movePhoto(1)}
-            className="absolute right-3 sm:right-6 z-20 grid h-12 w-12 place-items-center rounded-full bg-black/60 text-white backdrop-blur-md transition hover:bg-black/90 hover:scale-110"
-            aria-label="Next image"
-          >
-            <ChevronRight className="h-7 w-7" />
-          </button>
         </div>
       )}
     </PageFrame>

@@ -4,7 +4,9 @@ import {
   ArrowRight,
   CheckCircle2,
   ChevronLeft,
+  ChevronDown,
   ChevronRight,
+  HelpCircle,
   ExternalLink,
   Flame,
   Heart,
@@ -50,8 +52,8 @@ const heroSlides = [
   {
     image: mountainImage,
     eyebrow: "Kupa · Sangla Valley · Himachal Pradesh",
-    title: "A Slower Kind of\nHimalayan Escape.",
-    copy: "Wake up to mountain horizons, wander through apple orchards, and experience the warmth of authentic Kinnauri hospitality.",
+    title: "Stay at Negi Cottage in\nSangla Valley, Kinnaur",
+    copy: "Plan your peaceful mountain stay in Kupa, Sangla Valley. Wake up to snow-clad peaks, wander through private apple orchards, and experience authentic Kinnauri homestay hospitality.",
   },
   {
     image: sunriseImage,
@@ -135,6 +137,51 @@ const navItems = [
   { label: "Contact", to: "/contact" },
 ];
 
+
+const homeFaqs = [
+  {
+    q: "What are the check-in and check-out timings at Negi Cottage?",
+    a: "Check-in time is from 12:00 PM onwards, and check-out time is until 11:00 AM. Early check-in or late check-out can usually be accommodated based on room availability upon prior intimation.",
+  },
+  {
+    q: "How can I check room availability and book my stay?",
+    a: "You can check real-time availability and confirm your booking directly via WhatsApp or phone call at +91 78072 15761. Direct bookings carry zero middleman commission, best available tariffs, and instant confirmation from Mr. Negi.",
+  },
+  {
+    q: "What meals and dining options are available at the homestay?",
+    a: "We serve wholesome, home-cooked Himachali thalis, hot parathas, local dal, and fresh rotis prepared using clean mountain spring water and organic vegetables harvested from our adjacent garden. Pure vegetarian and Jain food requirements are lovingly catered upon advance request.",
+  },
+  {
+    q: "Is vehicle parking available at the property?",
+    a: "Yes, safe roadside parking for cars, SUVs, and motorcycles is available directly adjacent to the cottage entrance beside Kuppa Bus Stand with easy drive-in access.",
+  },
+  {
+    q: "How are the road conditions and road accessibility to Negi Cottage in Kupa?",
+    a: "Negi Cottage is situated directly on the paved Sangla Valley road at Kuppa Bus Stand (2 km before Sangla town). The road is smoothly accessible for all types of vehicles including hatchbacks, sedans, SUVs, and tempo travellers without any steep off-road tracks.",
+  },
+  {
+    q: "What is the best time of year to visit Sangla Valley and Kinnaur?",
+    a: "April to June brings pleasant summer weather (15°C–25°C) and fragrant white apple blossoms; August to October is the vibrant apple harvest season with crisp mountain air; and December to February offers a magical winter snowfall wonderland with snow-covered pine trees and cozy heated rooms.",
+  },
+  {
+    q: "Is hot water and room heating available during cold weather?",
+    a: "Yes, every private bedroom is equipped with an attached ensuite bathroom featuring a dedicated 24/7 electric geyser. In addition, we provide heavy Himalayan wool quilts, warm blankets, and electric room heaters on chill nights.",
+  },
+];
+
+const faqStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: homeFaqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.a,
+    },
+  })),
+};
+
 const structuredData = {
   "@context": "https://schema.org",
   "@type": ["Hotel", "LocalBusiness"],
@@ -162,29 +209,32 @@ const structuredData = {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Negi Cottage Sangla | Best Homestay in Sangla Valley, Kinnaur Himachal Pradesh" },
+      { title: "Negi Cottage, Sangla Valley | Stay in Kinnaur, Himachal" },
       {
         name: "description",
         content:
-          "Negi Cottage Sangla is a top-rated boutique homestay in Sangla Valley, Kinnaur Himachal Pradesh. Surrounded by private apple orchards, snow-capped Kinner Kailash views, evening bonfires, authentic Kinnauri food, and rooms from ₹1,500/night.",
+          "Plan your stay at Negi Cottage in Kupa, Sangla Valley, Kinnaur, Himachal Pradesh. Explore the local mountains, discover the valley and contact us for room availability and bookings.",
       },
       {
         name: "keywords",
         content:
-          "Negi Cottage Sangla, Homestay in Sangla Valley, Cottage in Kinnaur Himachal Pradesh, Best homestay in Sangla, Kupa homestay, Kinnaur homestay",
+          "Negi Cottage Sangla Valley, Stay in Kinnaur Himachal, Negi Cottage Kupa, Homestay in Sangla Valley, Cottage in Kinnaur Himachal Pradesh, Best homestay in Sangla, Hotel in Sangla Valley, Budget homestay in Sangla",
       },
-      { property: "og:title", content: "Negi Cottage Sangla — Best Homestay in Sangla Valley, Kinnaur" },
+      { property: "og:title", content: "Negi Cottage, Sangla Valley | Stay in Kinnaur, Himachal" },
       {
         property: "og:description",
         content:
-          "Top-rated boutique cottage in Kinnaur Himachal Pradesh with apple orchards, snow-covered Kinner Kailash views, and authentic Kinnauri hospitality. 4.6★ Google rating.",
+          "Plan your stay at Negi Cottage in Kupa, Sangla Valley, Kinnaur, Himachal Pradesh. Explore the local mountains, discover the valley and contact us for room availability and bookings.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "/" }],
-    scripts: [{ type: "application/ld+json", children: JSON.stringify(structuredData) }],
+    scripts: [
+      { type: "application/ld+json", children: JSON.stringify(structuredData) },
+      { type: "application/ld+json", children: JSON.stringify(faqStructuredData) },
+    ],
   }),
   component: Index,
 });
@@ -246,6 +296,7 @@ function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
@@ -1060,6 +1111,79 @@ function Index() {
             >
               Read All 279+ Google Reviews with Topics & Filters &rarr;
             </Link>
+          </div>
+        </div>
+      </section>
+
+
+      {/* 7. Frequently Asked Questions (SEO & Traveler Information) */}
+      <section id="faqs" className="section-pad bg-background border-t border-border" aria-labelledby="faqs-title">
+        <div className="mx-auto max-w-[1440px] px-6 md:px-10 lg:px-12">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <span className="eyebrow">Clear Guest Information · Negi Cottage</span>
+            <h2 id="faqs-title" className="mt-2 font-display text-4xl sm:text-5xl lg:text-6xl text-foreground font-normal">
+              Frequently Asked Questions
+            </h2>
+            <p className="mt-4 text-base text-muted-foreground leading-relaxed">
+              Everything you need to know about planning your stay at Negi Cottage in Kupa, Sangla Valley — check-in timings, meals, road accessibility, and seasonal tips.
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto space-y-4">
+            {homeFaqs.map((faq, index) => {
+              const isOpen = openFaq === index;
+              return (
+                <div
+                  key={faq.q}
+                  className="rounded-2xl border border-border bg-card transition-all duration-300 overflow-hidden shadow-xs hover:border-gold/50"
+                >
+                  <button
+                    type="button"
+                    onClick={() => setOpenFaq(isOpen ? null : index)}
+                    className="w-full flex items-center justify-between gap-4 p-5 sm:p-6 text-left transition-colors hover:bg-muted/40"
+                    aria-expanded={isOpen}
+                  >
+                    <span className="font-display text-lg sm:text-xl font-medium text-foreground pr-2">
+                      {faq.q}
+                    </span>
+                    <span
+                      className={`flex items-center justify-center h-8 w-8 rounded-full border border-border bg-muted/50 text-foreground shrink-0 transition-transform duration-300 ${
+                        isOpen ? "rotate-180 bg-forest text-gold border-forest" : ""
+                      }`}
+                    >
+                      <ChevronDown className="h-4 w-4" />
+                    </span>
+                  </button>
+
+                  {isOpen && (
+                    <div className="px-5 pb-6 sm:px-6 text-sm sm:text-base text-muted-foreground leading-relaxed border-t border-border/40 pt-4">
+                      {faq.a}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="mt-12 text-center">
+            <p className="text-xs sm:text-sm text-muted-foreground">
+              Have a specific requirement or planning a group trip? Ask Mr. Negi directly on WhatsApp:
+            </p>
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="button-forest text-xs font-bold"
+              >
+                <WhatsAppIcon className="h-4 w-4 text-terracotta" />
+                <span>Chat with Host on WhatsApp</span>
+              </a>
+              <a href={phoneUrl} className="button-outline-forest text-xs font-bold">
+                <Phone className="h-3.5 w-3.5 text-gold" />
+                <span>Call +91 78072 15761</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>

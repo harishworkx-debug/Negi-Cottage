@@ -441,6 +441,9 @@ function Index() {
             key={slide.image}
             src={slide.image}
             alt="Himalayan landscape around Negi Cottage"
+            loading={index === 0 ? "eager" : "lazy"}
+            fetchPriority={index === 0 ? "high" : "low"}
+            decoding={index === 0 ? "sync" : "async"}
             className={`hero-image absolute inset-0 h-full w-full object-cover object-center ${
               index === activeSlide ? "hero-slide-active" : "hero-slide-hidden"
             }`}
@@ -543,6 +546,8 @@ function Index() {
                 <img
                   src={exteriorImage}
                   alt="Negi Cottage set amongst apple orchards in Kupa"
+                  loading="lazy"
+                  decoding="async"
                   className="h-full w-full object-cover object-center"
                 />
               </div>
@@ -553,6 +558,8 @@ function Index() {
                   <img
                     src={entranceImage}
                     alt="Handcrafted carved wooden entrance at Negi Cottage"
+                    loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
@@ -912,6 +919,8 @@ function Index() {
                 <img
                   src={diningImage}
                   alt="Wood panelled dining hall at Negi Cottage"
+                  loading="lazy"
+                  decoding="async"
                   className="h-full w-full object-cover hover:scale-105 transition-transform duration-700"
                 />
               </div>
@@ -919,6 +928,8 @@ function Index() {
                 <img
                   src={dinnerarea1Image}
                   alt="Cozy traditional dining lounge and seating"
+                  loading="lazy"
+                  decoding="async"
                   className="h-full w-full object-cover hover:scale-105 transition-transform duration-700"
                 />
               </div>
@@ -1224,6 +1235,8 @@ function Index() {
         <img
           src={mountainImage}
           alt="Snow-capped Himalayan peaks of Sangla Valley"
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 h-full w-full object-cover object-center opacity-30"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/80 to-forest/90" />

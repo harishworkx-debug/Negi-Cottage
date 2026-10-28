@@ -1,4 +1,6 @@
 {
+  "cleanUrls": true,
+  "trailingSlash": false,
   "redirects": [
     {
       "source": "/:path*",
@@ -10,6 +12,12 @@
       ],
       "destination": "https://www.negicottage.in/:path*",
       "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/((?!assets/|images/|api/|.*\\..*).*)",
+      "destination": "/index.html"
     }
   ],
   "headers": [
@@ -35,7 +43,7 @@
       ]
     },
     {
-      "source": "/(sitemap\\.xml|robots\\.txt)",
+      "source": "/(sitemap\\.xml|robots\\.txt|site\\.webmanifest)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -51,7 +59,15 @@
           "value": "public, max-age=31536000, immutable"
         }
       ]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=86400"
+        }
+      ]
     }
   ]
 }
-

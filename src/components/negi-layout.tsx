@@ -361,6 +361,9 @@ export function PageHero({
       <img
         src={image}
         alt={imageAlt}
+        loading="eager"
+        fetchPriority="high"
+        decoding="async"
         className="absolute inset-0 h-full w-full object-cover object-center"
       />
       <div className="hero-overlay absolute inset-0" />

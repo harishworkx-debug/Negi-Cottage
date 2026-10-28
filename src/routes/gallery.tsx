@@ -142,6 +142,7 @@ function GalleryPage() {
                       src={photo.src}
                       alt={photo.title}
                       loading="lazy"
+                      decoding="async"
                       className="w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
                   </div>
